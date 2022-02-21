@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './Components/footer/footer.component';
 
 import { environment } from 'src/environments/environment';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
 
 @NgModule({
   declarations: [
