@@ -4,6 +4,7 @@
     padding: 0;
     font-family: 'Times New Roman', Times, serif;
     border-top: 5px solid #e32207;
+    border-bottom: 2px solid rgb(241, 238, 238);
 }
 .listStyle{
     list-style-type: none;
@@ -30,4 +31,5 @@
     /* background-color: #e32207; */
     border: 2px solid #e32207;
     color: #e32207;
+    border-radius: 5%;
 }
