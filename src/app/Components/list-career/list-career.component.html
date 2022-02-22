@@ -1,1 +1,8 @@
-<p>list-career works!</p>
+<ul>
+    <li *ngFor="let item of Careers">
+        <p>{{item.Name}}</p>
+        <ul *ngFor="let job of item.Jobs">
+            <li>{{job.Name}}</li>
+        </ul>
+    </li>
+</ul>
