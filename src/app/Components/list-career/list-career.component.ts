@@ -8,17 +8,22 @@ import { map } from 'rxjs';
 })
 export class ListCareerComponent implements OnInit {
    Careers:any;
+   index2:number=0;
   constructor(private careerService:CareerfirebaseService) { }
   
   ngOnInit(): void {
     this.careerService.getAll().subscribe((career: any)=>{
-      console.log(career)
+      console.log(career[0])
     this.Careers = career
     })
 
     this.careerService.getJobs().subscribe((job:any)=>{
       console.log(job)
     })
+  }
+  saveValue(event:any){
+       console.log(event.target.value)
+       this.index2=event.target.value;  
   }
   
 

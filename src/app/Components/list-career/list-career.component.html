@@ -1,8 +1,29 @@
-<ul>
+<!-- <ul>
     <li *ngFor="let item of Careers">
         <p>{{item.Name}}</p>
         <ul *ngFor="let job of item.Jobs">
             <li>{{job.Name}}</li>
         </ul>
     </li>
-</ul>
+</ul> -->
+<select  class="mb-3 mt-1" (change)="saveValue($event)" >
+    <option *ngFor="let c of Careers ; let i=index"  [value]="i" >{{c.Name}}</option>
+</select>
+<table class="table table-hover">
+    <thead style="background-color:#e32207 ;color: white">
+      <tr>
+        <th>Job Name</th>
+        <th>Address</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of Careers[index2].Jobs" >
+        <td >{{job.Name}}</td>       
+        <td>{{job.Address}}</td>
+        <td><i class="fas fa-edit"></i><i class="fas fa-trash-alt"></i></td>
+      </tr>
+   
+    </tbody>
+  </table>
+  
