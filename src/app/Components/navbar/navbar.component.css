@@ -33,3 +33,7 @@
     color: #e32207;
     border-radius: 5%;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
