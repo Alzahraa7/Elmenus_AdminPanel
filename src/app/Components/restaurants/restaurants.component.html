@@ -1,15 +1,15 @@
-<div class="container">
+<div class="container bg-light">
     <div class="row">
         <div class="col-lg-4 col-md-6 col-12  my-2 divStyle p-2" *ngFor="let res of Restaurants">
             <section style="position: relative; " >
                 <span class="editStyle" > 
                     <button class="btn btn-light mx-1 editIcon" ><i class="fas fa-edit" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger " ><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger " (click)="deleteRes(res.id)"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
                 </span>
                 <img src="{{res.ImageURL}}" alt="" width="100%" height="250px">
                 <div>
                     <img class="imgStyle" src="{{res.ImageLogo}}" alt="" width="15%" height="50px">
-                    <a href="#">{{ res.ResName }}</a>
+                    <a href="#">{{ res.id }}</a>
                         <span class="resturantRate text-warning" style="margin-left: 60px; font-size: 1vw;">
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>

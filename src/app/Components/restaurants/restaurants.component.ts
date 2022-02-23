@@ -31,8 +31,10 @@ export class RestaurantsComponent implements OnInit {
       
 
     })
+  }
 
-
+  deleteRes(id:number){
+    console.log(id)
   }
 
 }
