@@ -10,14 +10,17 @@ import { FooterComponent } from './Components/footer/footer.component';
 
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
-import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
+import { AngularFirestoreModule } from "@angular/fire/firestore"; 
+import { AngularFireStorageModule  } from "@angular/fire/storage";
+// import { AngularFireStorageModule  } from "angularfire2/storage";
+import { RestaurantsComponent } from './Components/restaurants/restaurants.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    RestaurantsComponent,
 
   ],
   imports: [
@@ -26,6 +29,7 @@ import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     BrowserAnimationsModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
