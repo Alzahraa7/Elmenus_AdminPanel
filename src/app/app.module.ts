@@ -9,19 +9,27 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { JobDetailsComponent } from './Components/job-details/job-details.component';
+import { AddCareerComponent } from './Components/add-career/add-career.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    ListCareerComponent
+    ListCareerComponent,
+    JobDetailsComponent,
+    AddCareerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-  
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

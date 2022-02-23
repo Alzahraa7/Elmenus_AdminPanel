@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
 import { map } from 'rxjs';
+import { faCoffee,faTrashAlt,faEdit } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-list-career',
   templateUrl: './list-career.component.html',
@@ -9,22 +11,53 @@ import { map } from 'rxjs';
 export class ListCareerComponent implements OnInit {
    Careers:any;
    index2:number=0;
-  constructor(private careerService:CareerfirebaseService) { }
+   faCoffee = faCoffee;
+   faTrash=faTrashAlt;
+   faEdit=faEdit;
+  constructor(private careerService:CareerfirebaseService,private router:Router,) { }
   
   ngOnInit(): void {
     this.careerService.getAll().subscribe((career: any)=>{
-      console.log(career[0])
-    this.Careers = career
+      console.log(career[0].id)
+      this.Careers = career
+    
     })
-
+   
+    
     this.careerService.getJobs().subscribe((job:any)=>{
-      console.log(job)
+      console.log(job[0].id)
     })
   }
   saveValue(event:any){
-       console.log(event.target.value)
+      //  console.log(event.target.value)
        this.index2=event.target.value;  
   }
-  
+  Edit(i:number,index2:number){
+  // console.log(i);
+  // console.log(index2)
 
+
+  }
+  deleteJob(event:any,job:any,Career:any){
+    this.careerService.deleteJob(job,Career)
+    console.log(Career);
+
+  }
+  deleteCareer(Career:any){
+    this.careerService.deleteCareer(Career)
+  }
+  
+add(){
+  this.careerService.add();
+  console.log("add")
+}
+JobDetails(jobName:string){
+ console.log(jobName);
+ this.careerService.getJobID(jobName).subscribe((job:any)=>{
+  const d = job
+  console.log(d[0])
+})
+this.router.navigate(['\JobDetails',jobName])
+
+}
 }
