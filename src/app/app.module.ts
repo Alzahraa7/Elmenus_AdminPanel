@@ -13,6 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { JobDetailsComponent } from './Components/job-details/job-details.component';
 import { AddCareerComponent } from './Components/add-career/add-career.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddJobComponent } from './Components/add-job/add-job.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     ListCareerComponent,
     JobDetailsComponent,
-    AddCareerComponent
+    AddCareerComponent,
+    AddJobComponent
   ],
   imports: [
     BrowserModule,

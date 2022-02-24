@@ -33,6 +33,20 @@ export class CareerfirebaseService {
         return data
       })
     }))
+
+  //   db.collection("Careers").doc("pFj1ptR5Dyr6DFiuwDKX").set({
+  //     name: "Los Angeles",
+  //     state: "CA",
+  //     country: "USA"
+  // })
+//  const tmpObj = {
+//     title: "vm.pageTitle",
+//     desc: "description",
+//     creationDate: "dt.getTime()"
+//   }
+
+// db.collection('Careers').doc("pFj1ptR5Dyr6DFiuwDKX").collection<any>("AllPages").doc("ss").set(tmpObj)
+
     
   }
 

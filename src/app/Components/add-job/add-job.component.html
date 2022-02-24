@@ -1,0 +1,66 @@
+<div class="container mt-5">
+  <h3 style="text-align: center; color: #e32207">Add Details Of Job</h3>
+  <form [formGroup]="RegisterForm" class="m-3">
+    <!----------------------------------------Description Job------------------------------------------->
+    <div class="mb-3">
+      <label for="Name" class="form-label">Description</label>
+      <input
+        type="text"
+        formControlName="Description"
+        class="form-control"
+        id="Name"
+        name="name"
+        [class.is-invalid]="Description?.touched && Description?.invalid"
+        [class.is-valid]="Description?.valid"
+      />
+      <div
+        class="alert alert-danger"
+        [hidden]="Description?.valid || Description?.untouched"
+      >
+        <small *ngIf="Description?.errors?.['required']">
+            Description Of Job is required !
+        </small>
+        <small *ngIf="Description?.errors?.['minlength']">
+          Name of Job at least 100 letters
+        </small>
+      </div>
+    </div>
+    <!-----------------------------------------Location------------------------------------------>
+    <div class="mb-3">
+        <label for="Name" class="form-label">Location</label>
+        <input
+          type="text"
+          formControlName="Location"
+          class="form-control"
+          id="Name"
+          name="name"
+          [class.is-invalid]="Location?.touched && Location?.invalid"
+          [class.is-valid]="Location?.valid"
+        />
+        <div
+          class="alert alert-danger"
+          [hidden]="Location?.valid || Location?.untouched"
+        >
+          <small *ngIf="Location?.errors?.['required']">
+            Location Of Job is required !
+          </small>
+          <small *ngIf="Location?.errors?.['minlength']">
+            Location of Job at least 5 letters
+          </small>
+        </div>
+      </div>
+      <!-------------------------------------add ------------------------------------------->
+      <div >
+        <button
+         [disabled]="RegisterForm.invalid"
+          type="submit"
+          class="btn"
+          style="background-color: #e32207; color: white"
+         (click)="submit()"
+        >
+          Add
+        </button>
+    </div>
+  </form>
+</div>
+

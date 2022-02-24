@@ -1,14 +1,110 @@
-<div class="container">
-    <form [formGroup]="RegisterForm" class="m-3" >
-      <div class="mb-3">
-        <label for="Name" class="form-label">Name</label>
-        <input type="text" formControlName="Name" class="form-control" id="Name" name="name" [class.is-invalid]="Name?.touched && Name?.invalid" [class.is-valid]="Name?.valid">
-        <div class="alert alert-danger" [hidden]="Name?.valid || Name?.untouched">
-          <small *ngIf="Name?.errors?.['required']">
-             Name is required !
-          </small>
-          
-        </div>
+<div class="container mt-5">
+  <h3 style="text-align: center; color: #e32207">Add New Career</h3>
+  <form [formGroup]="RegisterForm" class="m-3">
+    <!----------------------------------------Name Career------------------------------------------->
+    <div class="mb-3">
+      <label for="Name" class="form-label">Name</label>
+      <input
+        type="text"
+        formControlName="Name"
+        class="form-control"
+        id="Name"
+        name="name"
+        [class.is-invalid]="NameCareer?.touched && NameCareer?.invalid"
+        [class.is-valid]="NameCareer?.valid"
+      />
+      <div
+        class="alert alert-danger"
+        [hidden]="NameCareer?.valid || NameCareer?.untouched"
+      >
+        <small *ngIf="NameCareer?.errors?.['required']">
+          Name Of Career is required !
+        </small>
+        <small *ngIf="NameCareer?.errors?.['minlength']">
+          Name of Career at least 4 letters
+        </small>
       </div>
-    </form>
+    </div>
+    <!----------------------------------------Jobs---------------------------------------------------->
+    <ng-container formArrayName="Jobs">
+      <div class="d-flex justify-content-end">
+        <button
+         
+          type="button"
+          class="btn"
+          style="background-color: #e32207; color: white"
+          (click)="addNewJob()"
+        >
+          Add Job
+        </button>
+      </div>
+      <ng-container *ngFor="let Job of Jobs.controls; let i = index">
+        <div class="mb-3" [formGroup]="JobForm">
+          <label for="{{ i }}" class="form-label"
+            ><h5 style="color: #4b4b4b">Job{{ i + 1 }}</h5></label
+          >
+          <br />
+          <div class="" [formGroupName]="i">
+            <!--------------------------------JobName-------------------------------------------------->
+            <div class="mb-3">
+              <label for="name">Name</label>
+              <input
+                id="name"
+                class="form-control"
+                type="text"
+                formControlName="Name"
+                [class.is-invalid]="NameJob?.touched && NameJob?.invalid"
+                [class.is-valid]="NameJob?.valid"
+              />
+              <div
+                class="alert alert-danger"
+                [hidden]="NameJob?.valid || NameJob?.untouched"
+              >
+                <small *ngIf="NameJob?.errors?.['required']">
+                  Name Of Job is required !
+                </small>
+                <small *ngIf="NameJob?.errors?.['minlength']">
+                  Name of Job at least 6 letters.
+                </small>
+              </div>
+            </div>
+            <!----------------------------------JobAddress---------------------------------------------->
+            <div class="mb-3">
+              <label for="address">Address</label>
+              <input
+                id="address"
+                class="form-control"
+                type="text"
+                formControlName="Address"
+                [class.is-invalid]="AddressJob?.touched && AddressJob?.invalid"
+                [class.is-valid]="AddressJob?.valid"
+              />
+              <div
+                class="alert alert-danger"
+                [hidden]="AddressJob?.valid || AddressJob?.untouched"
+              >
+                <small *ngIf="AddressJob?.errors?.['required']">
+                  Address Of Job is required !
+                </small>
+                <small *ngIf="AddressJob?.errors?.['minlength']">
+                  Address of Job at least 5 letters.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <div >
+      <button
+       [disabled]="RegisterForm.invalid"
+        type="submit"
+        class="btn"
+        style="background-color: #e32207; color: white"
+        (click)="submit()"
+      >
+        Add
+      </button>
+  </div>
+  </form>
 </div>
