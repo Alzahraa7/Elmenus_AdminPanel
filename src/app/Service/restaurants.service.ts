@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable, map } from 'rxjs';
 import { Restaurant } from '../Model/restaurant';
@@ -10,6 +10,7 @@ import { Restaurant } from '../Model/restaurant';
 export class RestaurantsService {
 
   Restaurants:any;
+  RestaurantDoc : AngularFirestoreDocument<Restaurant> | undefined;
  
 
   constructor(private fs: AngularFirestore,
@@ -28,5 +29,9 @@ export class RestaurantsService {
     return this.Restaurants;
   }
 
+  deleteRestaurant(RestaurantID:any){
+    // this.RestaurantDoc = this.fs.doc(`Restaurant/${RestaurantID}`);
+    // this.RestaurantDoc.delete();
+  }
 
 }

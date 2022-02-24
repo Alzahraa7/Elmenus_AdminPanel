@@ -4,15 +4,15 @@
             <section style="position: relative; " >
                 <span class="editStyle" > 
                     <button class="btn btn-light mx-1 editIcon" ><i class="fas fa-edit" aria-hidden="true"></i></button>
-                    <button class="btn btn-danger " (click)="deleteRes(res.id)"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modelId" (click)="saveDeletedResID(res.id)"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
                 </span>
                 <img src="{{res.ImageURL}}" alt="" width="100%" height="250px">
                 <div>
                     <img class="imgStyle" src="{{res.ImageLogo}}" alt="" width="15%" height="50px">
-                    <a href="#">{{ res.id }}</a>
+                    <a href="#">{{ res.ResName }}</a>
                         <span class="resturantRate text-warning" style="margin-left: 60px; font-size: 1vw;">
                         <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>       
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star-half" aria-hidden="true"></i>
                         <span style="font-size: 1vw"> {{ res.Rate }} </span>
@@ -24,10 +24,32 @@
                     <p class="paraStyle my-4"> <i class="fas fa-bullhorn" style="color: orangered;"  aria-hidden="true"></i> {{ res.Type }} </p>
                 </div>
 
+  
+  <!-- Modal -->
+  <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Delete Restaurant !!</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  Do You Want To Delete this Restaurant?!
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteRes()">Delete</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
 
             </section>
         </div>
     </div>
 
 </div>
+
+
 

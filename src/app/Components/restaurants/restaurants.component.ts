@@ -12,6 +12,7 @@ import { RestaurantsService } from 'src/app/Service/restaurants.service';
 export class RestaurantsComponent implements OnInit {
   Restaurants: Restaurant[] | undefined;
   RestaurantsImages: any = [];
+  RestaurantDeletedID:any;
 
 
 
@@ -33,8 +34,13 @@ export class RestaurantsComponent implements OnInit {
     })
   }
 
-  deleteRes(id:number){
-    console.log(id)
+  saveDeletedResID(id:any){
+    this.RestaurantDeletedID = id;
+  }
+
+  deleteRes(){
+    this.RestaurantService.deleteRestaurant(this.RestaurantDeletedID);
+   
   }
 
 }
