@@ -47,10 +47,10 @@ export class ListCareerComponent implements OnInit {
     this.careerService.deleteCareer(Career)
   }
   
-add(){
-  this.careerService.add();
+  add(){
+  
   console.log("add")
-}
+  }
 JobDetails(jobName:string){
  console.log(jobName);
  this.careerService.getJobID(jobName).subscribe((job:any)=>{
@@ -59,5 +59,13 @@ JobDetails(jobName:string){
 })
 this.router.navigate(['\JobDetails',jobName])
 
+}
+EditCareer(idCareer:string){
+    console.log(idCareer)
+     this.router.navigate(['\addCareer',idCareer])
+}
+AddJob(id:string,JobName:string){
+  console.log(id,JobName)
+  this.router.navigate(['\addJob',id,JobName])
 }
 }

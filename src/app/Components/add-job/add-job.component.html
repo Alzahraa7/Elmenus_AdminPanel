@@ -5,12 +5,13 @@
     <div class="mb-3">
       <label for="Name" class="form-label">Description</label>
       <input
+        placeholder="Description your Job at least in 100 words"
         type="text"
         formControlName="Description"
         class="form-control"
         id="Name"
         name="name"
-        [class.is-invalid]="Description?.touched && Description?.invalid"
+        [class.is-invalid]="Description?.untouched && Description?.invalid"
         [class.is-valid]="Description?.valid"
       />
       <div
@@ -18,7 +19,7 @@
         [hidden]="Description?.valid || Description?.untouched"
       >
         <small *ngIf="Description?.errors?.['required']">
-            Description Of Job is required !
+          Description Of Job is required !
         </small>
         <small *ngIf="Description?.errors?.['minlength']">
           Name of Job at least 100 letters
@@ -27,40 +28,123 @@
     </div>
     <!-----------------------------------------Location------------------------------------------>
     <div class="mb-3">
-        <label for="Name" class="form-label">Location</label>
-        <input
-          type="text"
-          formControlName="Location"
-          class="form-control"
-          id="Name"
-          name="name"
-          [class.is-invalid]="Location?.touched && Location?.invalid"
-          [class.is-valid]="Location?.valid"
-        />
-        <div
+      <label for="Name" class="form-label">Location</label>
+      <input
+        placeholder="Enter Location of Job"
+        type="text"
+        formControlName="Location"
+        class="form-control"
+        id="Name"
+        name="name"
+        [class.is-invalid]="Location?.untouched && Location?.invalid"
+        [class.is-valid]="Location?.valid"
+      />
+      <div
+        class="alert alert-danger"
+        [hidden]="Location?.valid || Location?.untouched"
+      >
+        <small *ngIf="Location?.errors?.['required']">
+          Location Of Job is required !
+        </small>
+        <small *ngIf="Location?.errors?.['minlength']">
+          Location of Job at least 5 letters
+        </small>
+      </div>
+    </div>
+    <!------------------------------------------------Requirments--------------------------->
+    <button
+      class="btn me-3"
+      (click)="addRequirment()"
+      style="background-color: #e32207; color: white"
+    >
+      Add Requirment
+    </button>
+    <div
+      *ngFor="let control of Requirements.controls; let i = index"
+      formArrayName="Requirements"
+    >
+      <div [formGroupName]="i">
+        <div class="input-field mb-3">
+          <label> Requirment {{ i + 1 }}</label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Enter your Requirement"
+            formControlName="Requirement"
+            [class.is-invalid]="Requirements.controls[i]?.untouched && Requirements.controls[i]?.invalid"
+            [class.is-valid]="Requirements.controls[i]?.valid"
+          />
+          <button
+            type="button"
+            class="btn btn-danger "
+            [hidden]="i == 0"
+            (click)="removeRequirment(i)"
+          >
+            -
+          </button>
+          <!-- <div
           class="alert alert-danger"
-          [hidden]="Location?.valid || Location?.untouched"
+          [hidden]="Requirements.controls[i]?.valid || Requirements.controls[i]?.untouched"
         >
-          <small *ngIf="Location?.errors?.['required']">
-            Location Of Job is required !
+          <small *ngIf="Requirements.controls[i]?.errors?.['required']">
+            Requirement Of Job is required !
           </small>
-          <small *ngIf="Location?.errors?.['minlength']">
-            Location of Job at least 5 letters
-          </small>
+         
+        </div> -->
+
+        </div>
+
+
+      </div>
+    </div>
+    <!-----------------------------------------Responsabilities---------------------------->
+    <button
+      class="btn"
+      (click)="addRespons()"
+      style="background-color: #e32207; color: white"
+    >
+      Add Responsibilities
+    </button>
+    <div
+      *ngFor="let control of Responsibilities.controls; let i = index"
+      formArrayName="Responsibilities"
+    >
+      <div [formGroupName]="i">
+        <div class="input-field mb-3">
+          <label> Responsibilitie {{ i + 1 }}</label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Enter your Responsibilitie"
+            formControlName="Respons"
+            [class.is-invalid]="Responsibilities.controls[i]?.untouched && Responsibilities.controls[i]?.invalid"
+            [class.is-valid]="Responsibilities.controls[i]?.valid"
+          />
+          <button
+            type="button"
+            class="btn btn-danger "
+            [hidden]="i == 0"
+            (click)="removeRespons(i)"
+          >
+            -
+          </button>
         </div>
       </div>
-      <!-------------------------------------add ------------------------------------------->
-      <div >
-        <button
-         [disabled]="RegisterForm.invalid"
-          type="submit"
-          class="btn"
-          style="background-color: #e32207; color: white"
-         (click)="submit()"
-        >
-          Add
-        </button>
+    </div>
+ 
+
+    <!-------------------------------------add ------------------------------------------->
+    <div>
+      <button
+        [disabled]="RegisterForm.invalid"
+
+        type="submit"
+        class="btn"
+        style="background-color: #e32207; color: white"
+        (click)="submit()"
+      >
+        Add
+      </button>
     </div>
   </form>
 </div>
-

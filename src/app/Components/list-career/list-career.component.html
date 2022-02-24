@@ -1,42 +1,90 @@
+<div class="container">
+  <div class="my-3">
+    <select
+      class="mb-3 mt-1 me-5 py-2"
+      (change)="saveValue($event)"
+      style="
+        background: #fff;
+        box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
+        border: #e32207;
+        border-radius: 8px;
+      "
+    >
+      <option *ngFor="let c of Careers; let i = index" [value]="i">
+        {{ c.Name }}
+      </option>
+    </select>
+    <button
+      type="button"
+      class="btn btn-danger"
+      style="background-color: #e32207"
+      (click)="add()"
+    >
+      add Career
+    </button>
+  </div>
+  <div
+    style="
+      background: rgb(255, 255, 255);
+      box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    "
+    class="p-2"
+  >
+    <h4>
+      Jobs List of
+      <span style="color: #636161">{{ Careers[index2].Name }}</span>
+      <fa-icon
+        [icon]="faTrash"
+        class="ms-5"
+        (click)="deleteCareer(Careers[index2])"
+        style="color: #e32207"
+      ></fa-icon>
+      <fa-icon [icon]="faEdit" class="me-3 ms-1" (click)="EditCareer(Careers[index2].id)"></fa-icon>
 
-    <div class="container">
-      
-        
-        <div class=" my-3 " >
-           
-            <select  class="mb-3 mt-1 me-5 py-2 " (change)="saveValue($event)" style="background: #fff;box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);border:#e32207;border-radius: 8px;" >
-                <option *ngFor="let c of Careers ; let i=index"  [value]="i" >{{c.Name}}</option>
-            </select>
-            <button type="button" class="btn btn-danger" style="background-color:#e32207" (click)="add()">add Career</button>
-        </div>
-        <div style="background: rgb(255, 255, 255);box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);border-bottom: 1px solid rgba(0,0,0,.1);" class="p-2" >
-            <h4>Jobs List of <span style="color: #636161;">{{Careers[index2].Name}}</span>  <fa-icon [icon]="faTrash" class="ms-5" (click)="deleteCareer(Careers[index2])" style="color: #e32207;"></fa-icon></h4>
-       
-        </div>
-        <div style="background: rgb(255, 255, 255);box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);" class="px-2 py-4">
-            <table class="table table-hover" style="background-color: #fff;">
-                <thead style="background-color:#e32207 ;color: white;">
-                  <tr>
-                    <th>Job Name</th>
-                    <th>Address</th>
-                    <th>Details</th>
-                    <th>Edit / Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let job of Careers[index2].Jobs, let i=index" >
-                    <td >{{job.Name}}</td>       
-                    <td>{{job.Address}}</td>
-                    <td><button type="button" class="btn btn-danger ms-2" style="background-color:#e32207" (click)="JobDetails(job.Name)">Details</button></td>
-                    <td><fa-icon [icon]="faEdit" class="me-3 ms-1" (click)="Edit(i,index2)"></fa-icon><fa-icon [icon]="faTrash" class="ms-3" (click)="deleteJob($event,job.Name,Careers[index2])" style="color: #e32207;"></fa-icon></td>
-                  </tr>
-               
-                </tbody>
-              </table>
-            </div>
-        
-    </div>
-   
-     
-      
-
+    </h4>
+  </div>
+  <div
+    style="
+      background: rgb(255, 255, 255);
+      box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
+    "
+    class="px-2 py-4"
+  >
+    <table class="table table-hover" style="background-color: #fff">
+      <thead style="background-color: #e32207; color: white">
+        <tr>
+          <th>Job Name</th>
+          <th>Address</th>
+          <th>Details</th>
+          <th>Edit / Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of Careers[index2].Jobs; let i = index">
+          <td>{{ job.Name }}</td>
+          <td>{{ job.Address }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger ms-2"
+              style="background-color: #e32207"
+              (click)="JobDetails(job.Name)"
+            >
+              Details
+            </button>
+          </td>
+          <td>
+            <fa-icon
+              [icon]="faTrash"
+              class="ms-3"
+              (click)="deleteJob($event, job.Name, Careers[index2])"
+              style="color: #e32207"
+            ></fa-icon>
+            <fa-icon [icon]="faEdit" class="me-3 ms-1" (click)="AddJob(Careers[index2].id,Careers[index2].Jobs[i].Name)"></fa-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
