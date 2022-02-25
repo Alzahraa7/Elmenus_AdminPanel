@@ -1,4 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root{
+  --first-color:#e32207;
+  --bt-hover:#bd1b05;
+  --second-color:#474747;
+  --bg-color:#FAF9F9;
+  --border-color:#dfe2e6;
+  --text1-color:rgb(245, 193, 55);
+  --text2-color:rgb(214, 73, 40);
+  --bt-color:#ff4612;
+  --font-family:Gilroy, "Open Sans", sans-serif;
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+img{
+  max-width: 100%;
+  height: auto;
+}

@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "d33688f4-19b8-40e3-a040-ca82454a7d6f"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -17,6 +20,19 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "firebase",
+              "@angular/common/locales/fr",
+              "lodash/dropRight",
+              "@firebase/app",
+              "firebase/app",
+              "@firebase/database",
+              "@firebase/firestore",
+              "@firebase/functions",
+              "@firebase/performance",
+              "@firebase/remote-config"
+          ],
             "outputPath": "dist/elmenus-admin-panel",
             "index": "src/index.html",
             "main": "src/main.ts",

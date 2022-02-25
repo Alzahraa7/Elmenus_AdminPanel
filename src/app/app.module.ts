@@ -10,15 +10,24 @@ import { FooterComponent } from './Components/footer/footer.component';
 
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFirestore, AngularFirestoreModule , AngularFirestoreCollection} from "angularfire2/firestore";
 import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
+import { ConfirmRestComponent } from './Components/confirm-rest/confirm-rest.component';
+import { TableComponent } from './Components/table/table.component'
+import { RestaurantService } from './Service/restaurant.service';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CustomDialogComponent } from './Components/custom-dialog/custom-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-
+    ConfirmRestComponent,
+    TableComponent,
+    CustomDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,8 +35,15 @@ import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    RestaurantService,
+    AngularFirestore,
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
