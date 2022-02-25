@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
 import { map } from 'rxjs';
-import { faCoffee,faTrashAlt,faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee,faTrashAlt,faEdit,faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-list-career',
@@ -14,6 +14,7 @@ export class ListCareerComponent implements OnInit {
    faCoffee = faCoffee;
    faTrash=faTrashAlt;
    faEdit=faEdit;
+   faCirclePlus=faCirclePlus;
   constructor(private careerService:CareerfirebaseService,private router:Router,) { }
   
   ngOnInit(): void {
@@ -47,9 +48,8 @@ export class ListCareerComponent implements OnInit {
     this.careerService.deleteCareer(Career)
   }
   
-  add(){
-  
-  console.log("add")
+  addCareer(){
+    this.router.navigate(['\addCareer'])
   }
 JobDetails(jobName:string){
  console.log(jobName);
@@ -64,7 +64,7 @@ EditCareer(idCareer:string){
     console.log(idCareer)
      this.router.navigate(['\addCareer',idCareer])
 }
-AddJob(id:string,JobName:string){
+AddJobDetails(id:string,JobName:string){
   console.log(id,JobName)
   this.router.navigate(['\addJob',id,JobName])
 }

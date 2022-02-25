@@ -18,7 +18,7 @@
       type="button"
       class="btn btn-danger"
       style="background-color: #e32207"
-      (click)="add()"
+      (click)="addCareer()"
     >
       add Career
     </button>
@@ -29,19 +29,24 @@
       box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     "
-    class="p-2"
+    class="p-2 d-flex justify-content-between"
   >
     <h4>
       Jobs List of
       <span style="color: #636161">{{ Careers[index2].Name }}</span>
+    </h4>
+    <h4>
       <fa-icon
         [icon]="faTrash"
-        class="ms-5"
+        class="me-4 "
         (click)="deleteCareer(Careers[index2])"
         style="color: #e32207"
       ></fa-icon>
-      <fa-icon [icon]="faEdit" class="me-3 ms-1" (click)="EditCareer(Careers[index2].id)"></fa-icon>
-
+      <fa-icon
+        [icon]="faEdit"
+        class=""
+        (click)="EditCareer(Careers[index2].id)"
+      ></fa-icon>
     </h4>
   </div>
   <div
@@ -56,8 +61,9 @@
         <tr>
           <th>Job Name</th>
           <th>Address</th>
-          <th>Details</th>
+          <th>View Details</th>
           <th>Edit / Delete</th>
+          <th>Add Details</th>
         </tr>
       </thead>
       <tbody>
@@ -75,13 +81,23 @@
             </button>
           </td>
           <td>
+            <fa-icon [icon]="faEdit" class="me-3 ms-1"></fa-icon>
             <fa-icon
               [icon]="faTrash"
               class="ms-3"
               (click)="deleteJob($event, job.Name, Careers[index2])"
               style="color: #e32207"
             ></fa-icon>
-            <fa-icon [icon]="faEdit" class="me-3 ms-1" (click)="AddJob(Careers[index2].id,Careers[index2].Jobs[i].Name)"></fa-icon>
+          </td>
+          <td>
+            <fa-icon
+              [icon]="faCirclePlus"
+              class="ms-4"
+              style="text-align: center"
+              (click)="
+                AddJobDetails(Careers[index2].id, Careers[index2].Jobs[i].Name)
+              "
+            ></fa-icon>
           </td>
         </tr>
       </tbody>

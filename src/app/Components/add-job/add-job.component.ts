@@ -19,6 +19,8 @@ export class AddJobComponent implements OnInit {
   RegisterForm: FormGroup;
   IDCareer:string="";
   JobName:string=""
+  Require:any;
+  Requires:any
   constructor(
     private FormService: FormBuilder,
     private careerService: CareerfirebaseService,
@@ -30,6 +32,10 @@ export class AddJobComponent implements OnInit {
       Requirements: this.FormService.array([], [Validators.required]),
       Responsibilities: this.FormService.array([], [Validators.required]),
     });
+    // this.Require = this.RegisterForm.controls
+    // console.log(this.Require.Requirements.controls)
+    // this.Requires = this.Require.Requirements.controls
+    // console.log(this.Requires)
   }
 
   ngOnInit(): void {
@@ -39,6 +45,7 @@ export class AddJobComponent implements OnInit {
       console.log(this.IDCareer,this.JobName);
     });
   }
+  
   get Description() {
     return this.RegisterForm.get('Description');
   }
@@ -77,6 +84,6 @@ export class AddJobComponent implements OnInit {
   submit() {
     let Job: Job = this.RegisterForm.value as Job;
     console.log(Job)
-    // this.careerService.addDetailsJob(Job,this.IDCareer,this.JobName)
+     this.careerService.addDetailsJob(Job,this.IDCareer,this.JobName)
   }
 }
