@@ -3,6 +3,7 @@ import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
 import { map } from 'rxjs';
 import { faCoffee,faTrashAlt,faEdit,faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { Career } from 'src/app/ViewModel/career';
 @Component({
   selector: 'app-list-career',
   templateUrl: './list-career.component.html',
@@ -18,7 +19,7 @@ export class ListCareerComponent implements OnInit {
   constructor(private careerService:CareerfirebaseService,private router:Router,) { }
   
   ngOnInit(): void {
-    this.careerService.getAll().subscribe((career: any)=>{
+    this.careerService.getAllCareers().subscribe((career: any)=>{
       console.log(career[0].id)
       this.Careers = career
     
@@ -40,12 +41,15 @@ export class ListCareerComponent implements OnInit {
 
   }
   deleteJob(event:any,job:any,Career:any){
-    this.careerService.deleteJob(job,Career)
     console.log(Career);
+    this.careerService.deleteJob(job,Career)
+    alert("Collection of this Job Delete Successfully")
 
   }
   deleteCareer(Career:any){
+    console.log(Career)
     this.careerService.deleteCareer(Career)
+    alert("Career Delete Successfully")
   }
   
   addCareer(){
@@ -63,6 +67,9 @@ this.router.navigate(['\JobDetails',jobName])
 EditCareer(idCareer:string){
     console.log(idCareer)
      this.router.navigate(['\addCareer',idCareer])
+}
+UpdateJob(JobName:string){
+  this.router.navigate(['\addJob',JobName])
 }
 AddJobDetails(id:string,JobName:string){
   console.log(id,JobName)

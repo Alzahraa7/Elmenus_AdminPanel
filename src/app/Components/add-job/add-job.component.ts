@@ -21,6 +21,8 @@ export class AddJobComponent implements OnInit {
   JobName:string=""
   Require:any;
   Requires:any
+  NameJob:string=""
+  CollectionJob:any
   constructor(
     private FormService: FormBuilder,
     private careerService: CareerfirebaseService,
@@ -43,6 +45,22 @@ export class AddJobComponent implements OnInit {
       this.IDCareer = String(paramMap.get('id'));
       this.JobName = String(paramMap.get('Name'))
       console.log(this.IDCareer,this.JobName);
+    });
+  
+    this.activeRoute.paramMap.subscribe((paramMap)=>{
+      this.NameJob=String(paramMap.get('NameJob'));
+      this.careerService.getJobID(this.NameJob).subscribe((job:any)=>{
+        this.CollectionJob= job
+        console.log(this.CollectionJob[0])
+        this.RegisterForm = this.FormService.group({
+          Description: [this.CollectionJob[0].Description],
+          Location: [this.CollectionJob[0].Location],
+          Requirements: this.FormService.array([this.CollectionJob.Requirements], [Validators.required]),
+          Responsibilities: this.FormService.array([this.CollectionJob.Responsibilities], [Validators.required]),
+        });
+      })
+      
+
     });
   }
   
@@ -85,5 +103,10 @@ export class AddJobComponent implements OnInit {
     let Job: Job = this.RegisterForm.value as Job;
     console.log(Job)
      this.careerService.addDetailsJob(Job,this.IDCareer,this.JobName)
+  }
+  Update(){
+    let JobDetails: Job = this.RegisterForm.value as Job;
+    this.careerService.UpdateJob(JobDetails,this.NameJob,this.CollectionJob.id);
+
   }
 }

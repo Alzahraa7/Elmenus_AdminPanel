@@ -40,7 +40,7 @@ export class AddCareerComponent implements OnInit {
       this.IDCareer=String(paramMap.get('id'));
       console.log(this.IDCareer)
       
-  this.careerService.getCareerByID(this.IDCareer).then((doc) => {
+    this.careerService.getCareerByID(this.IDCareer).then((doc) => {
       if (doc.exists) {
         this.UpdateCareer=doc.data()
         console.log("Document data:", doc.data());

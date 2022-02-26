@@ -134,17 +134,24 @@
  
 
     <!-------------------------------------add ------------------------------------------->
-    <div>
-      <button
+    
+      <div class="d-flex justify-content-end mt-2" >
+        <button
+         [disabled]="RegisterForm.invalid"
+          type="submit"
+          class="btn btn-success"
+          (click)="submit()"
+        >
+          Add
+        </button>
+        <button
         [disabled]="RegisterForm.invalid"
-
-        type="submit"
-        class="btn"
-        style="background-color: #e32207; color: white"
-        (click)="submit()"
-      >
-        Add
-      </button>
+         type="submit"
+         class="btn btn-secondary ms-2"
+         (click)="Update()"
+        >
+         Update
+       </button>
     </div>
   </form>
 </div>

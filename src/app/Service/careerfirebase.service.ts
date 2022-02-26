@@ -64,7 +64,7 @@ export class CareerfirebaseService {
     // db.collection('Careers').doc("pFj1ptR5Dyr6DFiuwDKX").collection<any>("AllPages").doc("ss").set(tmpObj)
   }
 
-  getAll() {
+  getAllCareers() {
     return this.Careers;
   }
   getJobs() {
@@ -86,14 +86,14 @@ export class CareerfirebaseService {
       .subscribe((jobs: any) => {
         this.IdJob = jobs[0].id;
         console.log(Career.id);
-        this.jobDoc = this.db.doc(`${Career.id}/${job}`);
-        //  this.jobDoc.delete()
+        this.jobDoc = this.db.doc(`Careers/${Career.id}/${job}/${this.IdJob}`);
+        this.jobDoc.delete()
         console.log(`Careers/${Career.id}/${job}/${this.IdJob}`);
       });
   }
   deleteCareer(Career: any) {
     this.CareerDoc = this.db.doc(`Careers/${Career.id}`);
-    // this.CareerDoc.delete();
+     this.CareerDoc.delete();
   }
   addCareer(Career: Career) {
     this.CareersRef = this.db.collection('Careers');
@@ -123,7 +123,12 @@ export class CareerfirebaseService {
     this.CareerDoc = this.db.doc(`Careers/${id}`);
     this.CareerDoc.update(Career);
   }
-
+ UpdateJob(JobDtails:any,NameJob:string, idJob:string ){
+  console.log(JobDtails);
+  this.CareerDoc = this.db.doc(`${NameJob}/${idJob}`);
+  this.CareerDoc.update(JobDtails);
+     
+ }
   addDetailsJob(Job: Job, IDDoc:string,NameCollection:string) {
    let idJob=this.db.createId()
     this.db

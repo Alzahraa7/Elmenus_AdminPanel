@@ -18,9 +18,9 @@ export class JobDetailsComponent implements OnInit {
       this.NameJob=String(paramMap.get('Name'));
       this.careerService.getJobID(this.NameJob).subscribe((job:any)=>{
         this.Job= job
-        console.log(this.Job[0].Responsibilities )
+        console.log(this.Job[0])
       })
-      // this.productIDArr=this.serviceProduct.getProductByID
+      
 
     });
   }
