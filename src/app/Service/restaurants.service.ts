@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable, map } from 'rxjs';
-import { Restaurant } from '../Model/restaurant';
+import { IRestaurant } from '../Model/Restaurant';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +9,10 @@ import { Restaurant } from '../Model/restaurant';
 export class RestaurantsService {
 
   Restaurants:any;
-  RestaurantDoc : AngularFirestoreDocument<Restaurant> | undefined;
- 
+  RestaurantDoc : AngularFirestoreDocument<IRestaurant> | undefined;
 
-  constructor(private fs: AngularFirestore,
-              private storage: AngularFireStorage) {
+
+  constructor(private fs: AngularFirestore) {
     this.Restaurants = this.fs.collection("Restaurant").snapshotChanges().pipe(map((changes:any)=>{
       return  changes.map((a:any)=>{
         const data = a.payload.doc.data() as any;

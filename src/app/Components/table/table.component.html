@@ -1,0 +1,28 @@
+<link rel="stylesheet" href='./table.component.css'>
+<div class="container">
+  <div class="tableDiv" class="px-2 py-4">
+    <table class="table table-hover tableDiv" style="background-color: #fff;">
+      <thead class="theadstyle">
+        <tr>
+          <td>Restaurant Name </td>
+          <td>Restaurant Owner Name</td>
+          <td>Restaurant Phone</td>
+          <td>Actions</td>
+        </tr>
+      </thead>
+      <tbody class="bodyDiv">
+        <tr *ngFor="let rest of restNeedConfirm">
+          <ng-template [ngIf]="!rest.IsActivated" > <!-- == false -->
+            <td>{{rest.ResName}}</td>
+            <td>{{rest.OwnerName}}</td>
+            <td>{{rest.Phone}}</td>
+            <td>
+               <button class="btn btnConfirm" (click)="ConfirmRes(rest)"> <fa-icon [icon]="faThumbIcon"></fa-icon> </button>
+               <button class="btn btnDelete" (click)="DeleteRes(rest.ResPushID,rest.ResName)"> <fa-icon [icon]="faDelete"></fa-icon> </button>
+            </td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

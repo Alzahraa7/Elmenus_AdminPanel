@@ -1,0 +1,9 @@
+<div *ngIf = 'restNeedConfirm?.length; else content'>
+  <app-table [restNeedConfirm]="restNeedConfirm"></app-table>
+</div>
+
+<ng-template #content>
+  <h1 class="mt-3">It seems that You're confirmed all the restaurants</h1>
+  <img width="50%" height="50%" src='../../../assets/allConfirmed.jpg'>
+</ng-template>
+

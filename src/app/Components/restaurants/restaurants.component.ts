@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { map, Observable } from 'rxjs';
-import { Restaurant } from 'src/app/Model/restaurant';
+import { IRestaurant } from 'src/app/Model/Restaurant';
 import { RestaurantsService } from 'src/app/Service/restaurants.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { RestaurantsService } from 'src/app/Service/restaurants.service';
   styleUrls: ['./restaurants.component.css']
 })
 export class RestaurantsComponent implements OnInit {
-  Restaurants: Restaurant[] | undefined;
+  Restaurants: IRestaurant[] | undefined;
   RestaurantsImages: any = [];
   RestaurantDeletedID:any;
 
@@ -19,7 +19,7 @@ export class RestaurantsComponent implements OnInit {
   private baseUrl = "ResImges";
   constructor(private RestaurantService: RestaurantsService,
               private storage: AngularFireStorage) { 
-
+ 
     console.log("hello")
     // this.storage.ref(`${this.baseUrl}/7amza/Atract_7amza.jpg`).getDownloadURL().subscribe(downloadURL=>{
     //   this.RestaurantsImages = downloadURL;
