@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, map } from 'rxjs';
-import { Career } from '../ViewModel/career';
+import { ICareer } from '../Model/icareer';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
-import { Job } from '../ViewModel/job';
+import { IJob } from '../Model/ijob';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,9 +19,9 @@ export class CareerfirebaseService {
   IdJob: string = '';
   ID: any;
   JobData: any;
-  careersCollection: AngularFirestoreCollection<Career> | undefined;
+  careersCollection: AngularFirestoreCollection<ICareer> | undefined;
   jobDoc: AngularFirestoreDocument<any> | undefined;
-  CareerDoc: AngularFirestoreDocument<Career> | undefined;
+  CareerDoc: AngularFirestoreDocument<ICareer> | undefined;
   CareerDocID: any;
   constructor(private db: AngularFirestore ) {
     // this.Careers = this.db.collection('Careers').valueChanges();
@@ -95,7 +95,7 @@ export class CareerfirebaseService {
     this.CareerDoc = this.db.doc(`Careers/${Career.id}`);
      this.CareerDoc.delete();
   }
-  addCareer(Career: Career) {
+  addCareer(Career: ICareer) {
     this.CareersRef = this.db.collection('Careers');
     this.CareersRef.add({ ...Career });
   }
@@ -129,7 +129,7 @@ export class CareerfirebaseService {
   this.CareerDoc.update(JobDtails);
      
  }
-  addDetailsJob(Job: Job, IDDoc:string,NameCollection:string) {
+  addDetailsJob(Job: IJob, IDDoc:string,NameCollection:string) {
    let idJob=this.db.createId()
     this.db
       .collection('Careers')

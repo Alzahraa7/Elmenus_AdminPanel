@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
-import { Job } from 'src/app/ViewModel/job';
+import { IJob } from 'src/app/Model/ijob';
 
 @Component({
   selector: 'app-add-job',
@@ -100,12 +100,12 @@ export class AddJobComponent implements OnInit {
     this.Responsibilities.removeAt(ResIndex);
   }
   submit() {
-    let Job: Job = this.RegisterForm.value as Job;
+    let Job: IJob = this.RegisterForm.value as IJob;
     console.log(Job)
      this.careerService.addDetailsJob(Job,this.IDCareer,this.JobName)
   }
   Update(){
-    let JobDetails: Job = this.RegisterForm.value as Job;
+    let JobDetails: IJob = this.RegisterForm.value as IJob;
     this.careerService.UpdateJob(JobDetails,this.NameJob,this.CollectionJob.id);
 
   }

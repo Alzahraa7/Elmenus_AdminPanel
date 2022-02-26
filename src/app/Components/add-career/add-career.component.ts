@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
-import { Career } from 'src/app/ViewModel/career';
+import { ICareer } from 'src/app/Model/icareer'; 
 
 @Component({
   selector: 'app-add-career',
@@ -84,7 +84,7 @@ export class AddCareerComponent implements OnInit {
     this.Jobs.removeAt(jobIndex);
   }
 
-   fillUpdate(Career:Career){
+   fillUpdate(Career:ICareer){
       console.log(Career)
       this.RegisterForm = this.FormService.group({
         Name: [Career.Name, [Validators.required, Validators.minLength(4)]],
@@ -95,12 +95,12 @@ export class AddCareerComponent implements OnInit {
       
   }
   submit() {
-    let Career: Career = this.RegisterForm.value as Career;
+    let Career: ICareer = this.RegisterForm.value as ICareer;
     this.careerService.addCareer(Career);
     alert('Add Success');
   }
   Update(){
-    let Career: Career = this.RegisterForm.value as Career;
+    let Career: ICareer = this.RegisterForm.value as ICareer;
     this.careerService.UpdateCareer(Career,this.IDCareer);
   }
 }
