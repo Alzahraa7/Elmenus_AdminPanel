@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { IRestaurant } from 'src/app/Model/Restaurant';
+import { IRestaurant } from 'src/app/Model/irestaurant';
 import { faThumbsUp, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { RestaurantService } from 'src/app/Service/restaurant.service';
 import {MatDialog} from '@angular/material/dialog';

@@ -1,4 +1,4 @@
-export interface IRestaurant{
+export interface IRestaurant {
   ResPushID:string,
   ResName:string,
   ImageLogo:string,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { IRestaurant } from 'src/app/Model/Restaurant';
+import { IRestaurant } from 'src/app/Model/irestaurant';
 import { RestaurantService } from 'src/app/Service/restaurant.service';
 
 @Component({

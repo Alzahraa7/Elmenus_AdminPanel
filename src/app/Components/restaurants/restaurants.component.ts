@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { map, Observable } from 'rxjs';
-import { IRestaurant } from 'src/app/Model/Restaurant';
-import { RestaurantsService } from 'src/app/Service/restaurants.service';
+import { IRestaurant } from 'src/app/Model/irestaurant';
+import { RestaurantService } from 'src/app/Service/restaurant.service';
 
 @Component({
   selector: 'app-restaurants',
@@ -17,7 +17,7 @@ export class RestaurantsComponent implements OnInit {
 
 
   private baseUrl = "ResImges";
-  constructor(private RestaurantService: RestaurantsService,
+  constructor(private RestaurantService: RestaurantService,
               private storage: AngularFireStorage) { 
  
     console.log("hello")
@@ -39,7 +39,7 @@ export class RestaurantsComponent implements OnInit {
   }
 
   deleteRes(){
-    this.RestaurantService.deleteRestaurant(this.RestaurantDeletedID);
+    this.RestaurantService.deleteRes(this.RestaurantDeletedID);
    
   }
 
