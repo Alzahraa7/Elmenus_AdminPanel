@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { IBranches } from 'src/app/Model/branches';
 @Component({
   selector: 'app-add-collection-branches',
   templateUrl: './add-collection-branches.component.html',
@@ -16,7 +16,7 @@ export class AddCollectionBranchesComponent implements OnInit {
       this.RegisterForm = this.FormService.group({
         LocName:['', [Validators.required, Validators.minLength(4)]],
         Address: ['', [Validators.required, Validators.minLength(10)]],
-        Workinghours:['',[Validators.required,Validators.minLength(12)]]
+        Workinghours:['',[Validators.required,Validators.pattern('^([0-1]?[0-9]|2[0-3]):[0-5][0-9](( )(AM||PM))(( )-( ))([0-1]?[0-9]|2[0-3]):[0-5][0-9](( )(AM||PM))$')]]
       });
 
   }
@@ -31,6 +31,11 @@ export class AddCollectionBranchesComponent implements OnInit {
   }
   get Workinghours(){
     return this.RegisterForm.get('Workinghours');
+  }
+
+  Submit(){
+    let Branch: IBranches = this.RegisterForm.value as IBranches;
+    console.log(Branch)
   }
 
 }

@@ -8,9 +8,10 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire"; 
 import { AngularFirestoreModule , AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
-import { RestaurantService } from './Service/restaurant.service';
+
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { AddCollectionBranchesComponent } from './Components/add-collection-branches/add-collection-branches.component';
 
@@ -28,11 +29,14 @@ import { AddCollectionBranchesComponent } from './Components/add-collection-bran
     BrowserAnimationsModule,
     AngularFireStorageModule,
     FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule,
   
   ],
   providers: [
-    RestaurantService,
+
     AngularFirestore,
+   
   ],
   bootstrap: [AppComponent]
 })
