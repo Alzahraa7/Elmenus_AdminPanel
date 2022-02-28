@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { map, Observable } from 'rxjs';
-import { IRestaurant } from 'src/app/Model/Restaurant';
+import { IRestaurant } from 'src/app/Model/irestaurant';
 import { RestaurantsService } from 'src/app/Service/restaurants.service';
 
 @Component({
