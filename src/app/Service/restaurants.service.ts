@@ -28,7 +28,7 @@ export class RestaurantsService {
   }
 
   deleteRestaurant(RestaurantID:any){
-    // this.RestaurantDoc = this.fs.doc(`Restaurant/${RestaurantID}`);
+    this.RestaurantDoc = this.fs.doc(`Restaurant/${RestaurantID}`);
     // this.RestaurantDoc.delete();
   }
 
