@@ -10,7 +10,7 @@ import { RestaurantService } from 'src/app/Service/restaurant.service';
   styleUrls: ['./restaurants.component.css']
 })
 export class RestaurantsComponent implements OnInit {
-  Restaurants: IRestaurant[] | undefined;
+  Restaurants: IRestaurant[] = [];
   RestaurantsImages: any = [];
   RestaurantDeletedID:any;
 
@@ -19,9 +19,7 @@ export class RestaurantsComponent implements OnInit {
   private baseUrl = "ResImges";
   constructor(private RestaurantService: RestaurantService,
               private storage: AngularFireStorage) { 
- 
-    console.log("hello")
-    // this.storage.ref(`${this.baseUrl}/7amza/Atract_7amza.jpg`).getDownloadURL().subscribe(downloadURL=>{
+     // this.storage.ref(`${this.baseUrl}/7amza/Atract_7amza.jpg`).getDownloadURL().subscribe(downloadURL=>{
     //   this.RestaurantsImages = downloadURL;
     // })
   }
@@ -29,7 +27,7 @@ export class RestaurantsComponent implements OnInit {
   ngOnInit(): void {
     this.RestaurantService.getRestaurants().subscribe((Res: any)=>{
       this.Restaurants = Res
-      
+      this.Restaurants = this.Restaurants.filter((res)=> res.IsActivated == true);
 
     })
   }
