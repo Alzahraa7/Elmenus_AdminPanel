@@ -1,1 +1,17 @@
-<p>add-collection-branches works!</p>
+<div class="container mt-5 CardForm" >
+  <h3 >Add New Career</h3>
+  <form class="m-3" >
+    <!----------------------------------------LocName------------------------------------------->
+    <div class="mb-3">
+        <label for="locName" class="form-label">FullName</label>
+        <input type="text" formControlName="LocName" class="form-control" id="locName" name="LocName" [class.is-invalid]="LocName?.touched && LocName?.invalid" [class.is-valid]="LocName?.valid">
+        <div class="alert alert-danger" [hidden]="LocName?.valid || LocName?.untouched">
+          <small *ngIf="LocName?.errors?.['required']">
+            Location Name is required !
+          </small>
+        </div>
+      </div>
+    
+  
+  </form>
+</div>
