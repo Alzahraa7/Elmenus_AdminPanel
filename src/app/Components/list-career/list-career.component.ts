@@ -3,7 +3,7 @@ import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
 import { map } from 'rxjs';
 import { faCoffee,faTrashAlt,faEdit,faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { Career } from 'src/app/ViewModel/career';
+import { ICareer } from 'src/app/Model/icareer'; 
 @Component({
   selector: 'app-list-career',
   templateUrl: './list-career.component.html',

@@ -72,6 +72,7 @@ export class AddCareerComponent implements OnInit {
     return this.RegisterForm.get('Jobs') as FormArray;
   }
   get Job(): any {
+    
     return this.FormService.group({
       Name: this.FormService.control('', [Validators.required]),
       Address: this.FormService.control('', [Validators.required]),
@@ -86,9 +87,18 @@ export class AddCareerComponent implements OnInit {
 
    fillUpdate(Career:ICareer){
       console.log(Career)
+      Career.Jobs?.map((job)=>{
+        console.log(job.Name)
+      })
+      console.log(Career.Jobs)
       this.RegisterForm = this.FormService.group({
         Name: [Career.Name, [Validators.required, Validators.minLength(4)]],
-        Jobs: this.FormService.array([], [Validators.required]),
+        Jobs: this.FormService.array([
+            this.FormService.group({
+              Name: this.FormService.control(Career.Jobs?.[0].Name, [Validators.required]),
+              Address: this.FormService.control(Career.Jobs?.[0].Address, [Validators.required]),
+               }) 
+              ]),
       });
      
       
