@@ -14,6 +14,7 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule  } from "@angular/fire/storage";
 // import { AngularFireStorageModule  } from "angularfire2/storage";
 import { RestaurantsComponent } from './Components/restaurants/restaurants.component';
+import { AddRestaurantComponent } from './Components/add-restaurant/add-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RestaurantsComponent } from './Components/restaurants/restaurants.compo
     NavbarComponent,
     FooterComponent,
     RestaurantsComponent,
+    AddRestaurantComponent,
 
   ],
   imports: [
