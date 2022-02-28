@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { map, Observable } from 'rxjs';
-import { RestaurantModel } from 'src/app/Model/restaurant-model';
+import { IRestaurant } from 'src/app/Model/Restaurant';
 import { RestaurantsService } from 'src/app/Service/restaurants.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { RestaurantsService } from 'src/app/Service/restaurants.service';
   styleUrls: ['./restaurants.component.css']
 })
 export class RestaurantsComponent implements OnInit {
-  Restaurants: RestaurantModel[] | undefined;
+  Restaurants: IRestaurant[] | undefined;
   RestaurantsImages: any = [];
   RestaurantDeletedID:any;
 
