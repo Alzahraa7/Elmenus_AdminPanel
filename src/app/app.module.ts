@@ -15,6 +15,9 @@ import { AngularFireStorageModule  } from "@angular/fire/storage";
 // import { AngularFireStorageModule  } from "angularfire2/storage";
 import { RestaurantsComponent } from './Components/restaurants/restaurants.component';
 
+import {FormsModule ,ReactiveFormsModule} from '@angular/forms'
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,9 @@ import { RestaurantsComponent } from './Components/restaurants/restaurants.compo
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     BrowserAnimationsModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
