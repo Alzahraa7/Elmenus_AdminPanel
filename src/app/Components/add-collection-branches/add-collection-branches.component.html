@@ -4,7 +4,7 @@
     <!----------------------------------------LocName------------------------------------------->
     <div class="mb-3">
         <label for="locName" class="form-label">Location Name</label>
-        <input type="text" formControlName="LocName" class="form-control" id="locName" name="LocName" [class.is-invalid]="LocName?.untouched && LocName?.invalid" [class.is-valid]="LocName?.valid">
+        <input type="text" formControlName="LocName" class="form-control" id="locName" name="LocName" [class.is-invalid]="LocName?.touched && LocName?.invalid" [class.is-valid]="LocName?.valid">
         <div class="alert alert-danger" [hidden]="LocName?.valid || LocName?.untouched">
           <small *ngIf="LocName?.errors?.['required']">
             Location Name is required !
@@ -17,12 +17,12 @@
       <!----------------------------------------Address------------------------------------------>
       <div class="mb-3">
         <label for="Address" class="form-label">Address</label>
-        <input type="text" formControlName="Address" class="form-control" id="Address" name="Address" [class.is-invalid]="Address?.untouched && Address?.invalid" [class.is-valid]="Address?.valid">
+        <input type="text" formControlName="Address" class="form-control" id="Address" name="Address" [class.is-invalid]="Address?.touched && Address?.invalid" [class.is-valid]="Address?.valid">
         <div class="alert alert-danger" [hidden]="Address?.valid || Address?.untouched">
           <small *ngIf="Address?.errors?.['required']">
             Address is required !
           </small>
-          <small *ngIf="LocName?.errors?.['minlength']">
+          <small *ngIf="Address?.errors?.['minlength']">
             Address must be at least 10 Charcters !
           </small>
         </div>
@@ -30,7 +30,7 @@
       <!-------------------------------------------Hours working---------------------------------->
       <div class="mb-3">
         <label for="Workinghours" class="form-label">Working Hours</label>
-        <input type="text" formControlName="Workinghours" class="form-control" id="Workinghours" name="Workinghours" [class.is-invalid]="Workinghours?.untouched && Workinghours?.invalid" [class.is-valid]="Workinghours?.valid">
+        <input type="text" formControlName="Workinghours" class="form-control" id="Workinghours" name="Workinghours" [class.is-invalid]="Workinghours?.touched && Workinghours?.invalid" [class.is-valid]="Workinghours?.valid">
         <div class="alert alert-danger" [hidden]="Workinghours?.valid || Workinghours?.untouched">
           <small *ngIf="Workinghours?.errors?.['required']">
             Workinghours is required !
