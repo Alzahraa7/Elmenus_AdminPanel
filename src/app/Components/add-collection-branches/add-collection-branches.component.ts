@@ -8,12 +8,12 @@ import { IBranches } from 'src/app/Model/branches';
   styleUrls: ['./add-collection-branches.component.css']
 })
 export class AddCollectionBranchesComponent implements OnInit {
-  RegisterForm: FormGroup;
+  addBranchForm: FormGroup;
   constructor(private FormService: FormBuilder,
     private router: Router,
     private activeRoute: ActivatedRoute) { 
 
-      this.RegisterForm = this.FormService.group({
+      this.addBranchForm = this.FormService.group({
         LocName:['', [Validators.required, Validators.minLength(4)]],
         Address: ['', [Validators.required, Validators.minLength(10)]],
         Workinghours:['',[Validators.required,Validators.pattern('^([0-1]?[0-9]|2[0-3]):[0-5][0-9](( )(AM||PM))(( )-( ))([0-1]?[0-9]|2[0-3]):[0-5][0-9](( )(AM||PM))$')]]
@@ -24,17 +24,17 @@ export class AddCollectionBranchesComponent implements OnInit {
   ngOnInit(): void {
   }
   get LocName(){
-    return this.RegisterForm.get('LocName');
+    return this.addBranchForm.get('LocName');
   }
   get Address(){
-    return this.RegisterForm.get('Address');
+    return this.addBranchForm.get('Address');
   }
   get Workinghours(){
-    return this.RegisterForm.get('Workinghours');
+    return this.addBranchForm.get('Workinghours');
   }
 
-  Submit(){
-    let Branch: IBranches = this.RegisterForm.value as IBranches;
+  SubmitBranch(){
+    let Branch: IBranches = this.addBranchForm.value as IBranches;
     console.log(Branch)
   }
 

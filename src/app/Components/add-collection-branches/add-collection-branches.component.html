@@ -1,6 +1,6 @@
 <div class="container mt-5 CardForm" >
   <h3 >Add New Branch</h3>
-  <form class="m-3" [formGroup]="RegisterForm" >
+  <form class="m-3" [formGroup]="addBranchForm" >
     <!----------------------------------------LocName------------------------------------------->
     <div class="mb-3">
         <label for="locName" class="form-label">Location Name</label>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="d-flex justify-content-end mt-4">
-        <button class="btn btn-success" [disabled]="RegisterForm.invalid" type="submit" (click)="Submit()">Add</button>
+        <button class="btn btn-success" [disabled]="addBranchForm.invalid" type="submit" (click)="SubmitBranch()">Add</button>
       </div>
   </form>
 </div>

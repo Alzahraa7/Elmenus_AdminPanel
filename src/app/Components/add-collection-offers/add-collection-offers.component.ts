@@ -8,11 +8,11 @@ import { IOffers } from 'src/app/Model/offers';
   styleUrls: ['./add-collection-offers.component.css']
 })
 export class AddCollectionOffersComponent implements OnInit {
-  RegisterForm: FormGroup;
+  addOfferForm: FormGroup;
   constructor(private FormService: FormBuilder,
     private router: Router,
     private activeRoute: ActivatedRoute) { 
-      this.RegisterForm = this.FormService.group({
+      this.addOfferForm = this.FormService.group({
         Description:['', [Validators.required, Validators.minLength(10)]],
         Expires: ['', [Validators.required]],
         PromoCode:['',[Validators.required,Validators.minLength(5)]]
@@ -22,17 +22,17 @@ export class AddCollectionOffersComponent implements OnInit {
   ngOnInit(): void {
   }
   get Description(){
-    return this.RegisterForm.get('Description');
+    return this.addOfferForm.get('Description');
   }
   get Expires(){
-    return this.RegisterForm.get('Expires');
+    return this.addOfferForm.get('Expires');
   }
   get PromoCode(){
-    return this.RegisterForm.get('PromoCode');
+    return this.addOfferForm.get('PromoCode');
   }
 
-  Submit(){
-    let Offer: IOffers = this.RegisterForm.value as IOffers;
+  SubmitOffer(){
+    let Offer: IOffers = this.addOfferForm.value as IOffers;
     console.log(Offer)
   }
 
