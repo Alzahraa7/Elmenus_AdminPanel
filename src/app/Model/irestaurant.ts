@@ -2,7 +2,7 @@ export interface IRestaurant {
   ResPushID:string,
   ResName:string,
   ImageLogo:string,
-  ImageURL:string,
+  ImageURL:string;
   OwnerName:string,
   Rate:number,
   Phone:number,
