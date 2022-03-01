@@ -1,0 +1,63 @@
+<mat-toolbar>
+  
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button>
+  reponsice side bar
+</mat-toolbar>
+
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav ="matSidenav"  class="mat-elevation-z8" mode="over" opened>
+  
+    <span class="dropdown mx-2">
+
+      <button class="btn dropdown-toggle " type="button" id="triggerId" data-bs-toggle="dropdown">
+          <mat-icon>person</mat-icon>
+          <span>Restaurants</span>
+      </button>
+
+      <div class="dropdown-menu" aria-labelledby="triggerId">
+          <a class="dropdown-item" href="#" id="dropDownItem">Restaurants List</a>
+          <a class="dropdown-item" href="#"  id="dropDownItem">Add Restaurant</a>
+          <a class="dropdown-item " href="#"  id="dropDownItem">Accept Restaurant</a>
+      </div>
+
+    </span>
+
+    <mat-divider></mat-divider>
+
+    <span class="dropdown mx-2">
+
+      <button class="btn dropdown-toggle " type="button" id="triggerId" data-bs-toggle="dropdown">
+          <mat-icon>person</mat-icon>
+          <span>Careers</span>
+      </button>
+
+      <div class="dropdown-menu" aria-labelledby="triggerId">
+          <a class="dropdown-item" href="#" id="dropDownItem">Careers List</a>
+          <a class="dropdown-item" href="#"  id="dropDownItem">Add Career</a>
+      </div>
+
+    </span>
+
+    <mat-divider></mat-divider>
+
+    <span class="dropdown mx-2">
+
+      <button class="btn dropdown-toggle " type="button" id="triggerId" data-bs-toggle="dropdown">
+          <mat-icon>person</mat-icon>
+          <span>Admin</span>
+      </button>
+
+      <div class="dropdown-menu" aria-labelledby="triggerId">
+          <a class="dropdown-item" href="#" id="dropDownItem">Admins List</a>
+          <a class="dropdown-item" href="#"  id="dropDownItem">Add Admin</a>
+      </div>
+
+    </span>
+  </mat-sidenav>
+ 
+
+</mat-sidenav-container>
