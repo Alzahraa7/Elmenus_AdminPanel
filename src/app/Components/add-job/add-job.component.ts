@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -16,6 +16,7 @@ import { IJob } from 'src/app/Model/ijob';
   styleUrls: ['./add-job.component.css'],
 })
 export class AddJobComponent implements OnInit {
+  @ViewChild('ReqInput') ReqInput !:ElementRef;
   RegisterForm: FormGroup;
   IDCareer:string="";
   JobName:string=""
@@ -28,16 +29,13 @@ export class AddJobComponent implements OnInit {
     private careerService: CareerfirebaseService,
     private activeRoute: ActivatedRoute
   ) {
-    this.RegisterForm = this.FormService.group({
+    this.RegisterForm = FormService.group({
       Description: ['', [Validators.required, Validators.minLength(100)]],
       Location: ['', [Validators.required, Validators.minLength(4)]],
-      Requirements: this.FormService.array([], [Validators.required]),
-      Responsibilities: this.FormService.array([], [Validators.required]),
+      Requirements: FormService.array([''],[Validators.required]),
+      Responsibilities: FormService.array([''],[Validators.required]),
     });
-    // this.Require = this.RegisterForm.controls
-    // console.log(this.Require.Requirements.controls)
-    // this.Requires = this.Require.Requirements.controls
-    // console.log(this.Requires)
+    
   }
 
   ngOnInit(): void {
@@ -51,13 +49,13 @@ export class AddJobComponent implements OnInit {
       this.NameJob=String(paramMap.get('NameJob'));
       this.careerService.getJobID(this.NameJob).subscribe((job:any)=>{
         this.CollectionJob= job
-        console.log(this.CollectionJob[0])
-        this.RegisterForm = this.FormService.group({
-          Description: [this.CollectionJob[0].Description],
-          Location: [this.CollectionJob[0].Location],
-          Requirements: this.FormService.array([this.CollectionJob.Requirements], [Validators.required]),
-          Responsibilities: this.FormService.array([this.CollectionJob.Responsibilities], [Validators.required]),
-        });
+        console.log(this.CollectionJob[0].Responsibilities)
+        this.RegisterForm.setValue({
+          Description:this.CollectionJob[0].Description,
+          Location:this.CollectionJob[0].Location,
+          Requirements:[this.CollectionJob[0].Requirements],
+          Responsibilities:[this.CollectionJob[0].Responsibilities]
+        })
       })
       
 
@@ -76,25 +74,17 @@ export class AddJobComponent implements OnInit {
   get Responsibilities() {
     return this.RegisterForm.get('Responsibilities') as FormArray;
   }
-  get Requirement(): any {
-    return this.FormService.group({
-      Requirement: this.FormService.control('', [Validators.required]),
-    });
-  }
-  get Respons(): any {
-    return this.FormService.group({
-      Respons: this.FormService.control('', [Validators.required]),
-    });
-  }
+
   addRequirment(): void {
-    this.Requirements.push(this.Requirement);
+      this.Requirements.push(this.FormService.control('',[Validators.required]));
+    
   }
   removeRequirment(ReqIndex: number): void {
     this.Requirements.removeAt(ReqIndex);
   }
 
   addRespons(): void {
-    this.Responsibilities.push(this.Respons);
+    this.Responsibilities.push(this.FormService.control('',[Validators.required]));
   }
   removeRespons(ResIndex: number): void {
     this.Responsibilities.removeAt(ResIndex);
@@ -102,11 +92,18 @@ export class AddJobComponent implements OnInit {
   submit() {
     let Job: IJob = this.RegisterForm.value as IJob;
     console.log(Job)
-     this.careerService.addDetailsJob(Job,this.IDCareer,this.JobName)
+    this.careerService.addDetailsJob(Job,this.IDCareer,this.JobName)
+    alert("Add Successfully!")
+    this.restForm();
   }
   Update(){
     let JobDetails: IJob = this.RegisterForm.value as IJob;
     this.careerService.UpdateJob(JobDetails,this.NameJob,this.CollectionJob.id);
+    alert("Update Successfully!")
+    this.restForm();
 
+  }
+  restForm(){
+    this.RegisterForm.reset()
   }
 }

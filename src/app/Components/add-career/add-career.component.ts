@@ -108,10 +108,16 @@ export class AddCareerComponent implements OnInit {
     let Career: ICareer = this.RegisterForm.value as ICareer;
     this.careerService.addCareer(Career);
     alert('Add Success');
+    this.restForm()
   }
   Update(){
     let Career: ICareer = this.RegisterForm.value as ICareer;
     this.careerService.UpdateCareer(Career,this.IDCareer);
+    alert('Update Scucess')
+    this.restForm()
+  }
+  restForm(){
+    this.RegisterForm.reset()
   }
 }
 
