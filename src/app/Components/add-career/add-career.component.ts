@@ -16,7 +16,7 @@ import { ICareer } from 'src/app/Model/icareer';
   styleUrls: ['./add-career.component.css'],
 })
 export class AddCareerComponent implements OnInit {
-  RegisterForm: FormGroup;
+  addCareerForm: FormGroup;
   IDCareer:string="";
   UpdateCareer:any
   constructor(
@@ -25,7 +25,7 @@ export class AddCareerComponent implements OnInit {
     private router: Router,
     private activeRoute: ActivatedRoute
   ) {
-    this.RegisterForm = this.FormService.group({
+    this.addCareerForm = this.FormService.group({
       Name: ['', [Validators.required, Validators.minLength(4)]],
       Jobs: this.FormService.array([], [Validators.required]),
     });
@@ -57,7 +57,7 @@ export class AddCareerComponent implements OnInit {
   }
 
   get NameCareer() {
-    return this.RegisterForm.get('Name');
+    return this.addCareerForm.get('Name');
   }
 
   // get NameJob(){
@@ -69,7 +69,7 @@ export class AddCareerComponent implements OnInit {
   // }
 
   get Jobs() {
-    return this.RegisterForm.get('Jobs') as FormArray;
+    return this.addCareerForm.get('Jobs') as FormArray;
   }
   get Job(): any {
     
@@ -91,7 +91,7 @@ export class AddCareerComponent implements OnInit {
         console.log(job.Name)
       })
       console.log(Career.Jobs)
-      this.RegisterForm = this.FormService.group({
+      this.addCareerForm = this.FormService.group({
         Name: [Career.Name, [Validators.required, Validators.minLength(4)]],
         Jobs: this.FormService.array([
             this.FormService.group({
@@ -104,20 +104,20 @@ export class AddCareerComponent implements OnInit {
       
       
   }
-  submit() {
-    let Career: ICareer = this.RegisterForm.value as ICareer;
+  SubmitDepartment() {
+    let Career: ICareer = this.addCareerForm.value as ICareer;
     this.careerService.addCareer(Career);
     alert('Add Success');
     this.restForm()
   }
-  Update(){
-    let Career: ICareer = this.RegisterForm.value as ICareer;
+  UpdateDepartment(){
+    let Career: ICareer = this.addCareerForm.value as ICareer;
     this.careerService.UpdateCareer(Career,this.IDCareer);
     alert('Update Scucess')
     this.restForm()
   }
   restForm(){
-    this.RegisterForm.reset()
+    this.addCareerForm.reset()
   }
 }
 

@@ -8,7 +8,7 @@
   "
 >
   <h3 style="text-align: center; color: #e32207">Add Details Of Job</h3>
-  <form [formGroup]="RegisterForm" class="m-3">
+  <form [formGroup]="addJobForm" class="m-3">
     <!----------------------------------------Description Job------------------------------------------->
     <div class="mb-3">
       <label for="Name" class="form-label">Description</label>
@@ -175,18 +175,18 @@
 
     <div class="d-flex justify-content-end mt-2">
       <button
-        [disabled]="RegisterForm.invalid"
+        [disabled]="addJobForm.invalid"
         type="submit"
         class="btn btn-success"
-        (click)="submit()"
+        (click)="SubmitJob()"
       >
         Add
       </button>
       <button
-        [disabled]="RegisterForm.invalid"
+        [disabled]="addJobForm.invalid"
         type="submit"
         class="btn btn-secondary ms-2"
-        (click)="Update()"
+        (click)="UpdateJob()"
       >
         Update
       </button>

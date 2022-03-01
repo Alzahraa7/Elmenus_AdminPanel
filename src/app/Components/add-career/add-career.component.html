@@ -1,7 +1,7 @@
 <div class="container mt-5" style="box-shadow: 5px 2px 10px 2px grey !important;
 border-radius: 20px !important;padding: 12px 0;">
   <h3 style="text-align: center; color: #e32207">Add New Career</h3>
-  <form [formGroup]="RegisterForm" class="m-3">
+  <form [formGroup]="addCareerForm" class="m-3">
     <!----------------------------------------Name Career------------------------------------------->
     <div class="mb-3">
       <label for="Name" class="form-label">Name</label>
@@ -11,7 +11,7 @@ border-radius: 20px !important;padding: 12px 0;">
         class="form-control"
         id="Name"
         name="name"
-        [class.is-invalid]="NameCareer?.untouched && NameCareer?.invalid"
+        [class.is-invalid]="NameCareer?.touched && NameCareer?.invalid"
         [class.is-valid]="NameCareer?.valid"
       />
       <div
@@ -46,7 +46,7 @@ border-radius: 20px !important;padding: 12px 0;">
           type="text"
           placeholder="Enter your Name Job"
           formControlName="Name"
-          [class.is-invalid]="Jobs.controls[i].get('Name')?.untouched && Jobs.controls[i].get('Name')?.invalid"
+          [class.is-invalid]="Jobs.controls[i].get('Name')?.touched && Jobs.controls[i].get('Name')?.invalid"
           [class.is-valid]="Jobs.controls[i].get('Name')?.valid"
         />
         <input
@@ -54,7 +54,7 @@ border-radius: 20px !important;padding: 12px 0;">
           type="text"
           placeholder="Enter your Address Job"
           formControlName="Address"
-          [class.is-invalid]="Jobs.controls[i].get('Address')?.untouched && Jobs.controls[i].get('Address')?.invalid"
+          [class.is-invalid]="Jobs.controls[i].get('Address')?.touched && Jobs.controls[i].get('Address')?.invalid"
           [class.is-valid]="Jobs.controls[i].get('Address')?.valid"
         />
         <button
@@ -71,18 +71,18 @@ border-radius: 20px !important;padding: 12px 0;">
     <!-------------------------------------------------------Add-------------------------------->
     <div class="d-flex justify-content-end mt-2" >
       <button
-       [disabled]="RegisterForm.invalid"
+       [disabled]="addCareerForm.invalid"
         type="submit"
         class="btn btn-success"
-        (click)="submit()"
+        (click)="SubmitDepartment()"
       >
         Add
       </button>
       <button
-      [disabled]="RegisterForm.invalid"
+      [disabled]="addCareerForm.invalid"
        type="submit"
        class="btn btn-secondary ms-2"
-       (click)="Update()"
+       (click)="UpdateDepartment()"
      >
        Update
      </button>

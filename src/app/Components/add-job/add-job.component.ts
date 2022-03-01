@@ -17,7 +17,7 @@ import { IJob } from 'src/app/Model/ijob';
 })
 export class AddJobComponent implements OnInit {
   @ViewChild('ReqInput') ReqInput !:ElementRef;
-  RegisterForm: FormGroup;
+  addJobForm: FormGroup;
   IDCareer:string="";
   JobName:string=""
   Require:any;
@@ -29,7 +29,7 @@ export class AddJobComponent implements OnInit {
     private careerService: CareerfirebaseService,
     private activeRoute: ActivatedRoute
   ) {
-    this.RegisterForm = FormService.group({
+    this.addJobForm = FormService.group({
       Description: ['', [Validators.required, Validators.minLength(100)]],
       Location: ['', [Validators.required, Validators.minLength(4)]],
       Requirements: FormService.array([''],[Validators.required]),
@@ -50,7 +50,7 @@ export class AddJobComponent implements OnInit {
       this.careerService.getJobID(this.NameJob).subscribe((job:any)=>{
         this.CollectionJob= job
         console.log(this.CollectionJob[0].Responsibilities)
-        this.RegisterForm.setValue({
+        this.addJobForm.setValue({
           Description:this.CollectionJob[0].Description,
           Location:this.CollectionJob[0].Location,
           Requirements:[this.CollectionJob[0].Requirements],
@@ -63,16 +63,16 @@ export class AddJobComponent implements OnInit {
   }
   
   get Description() {
-    return this.RegisterForm.get('Description');
+    return this.addJobForm.get('Description');
   }
   get Location() {
-    return this.RegisterForm.get('Location');
+    return this.addJobForm.get('Location');
   }
   get Requirements() {
-    return this.RegisterForm.get('Requirements') as FormArray;
+    return this.addJobForm.get('Requirements') as FormArray;
   }
   get Responsibilities() {
-    return this.RegisterForm.get('Responsibilities') as FormArray;
+    return this.addJobForm.get('Responsibilities') as FormArray;
   }
 
   addRequirment(): void {
@@ -89,21 +89,21 @@ export class AddJobComponent implements OnInit {
   removeRespons(ResIndex: number): void {
     this.Responsibilities.removeAt(ResIndex);
   }
-  submit() {
-    let Job: IJob = this.RegisterForm.value as IJob;
+  SubmitJob() {
+    let Job: IJob = this.addJobForm.value as IJob;
     console.log(Job)
     this.careerService.addDetailsJob(Job,this.IDCareer,this.JobName)
     alert("Add Successfully!")
     this.restForm();
   }
-  Update(){
-    let JobDetails: IJob = this.RegisterForm.value as IJob;
+  UpdateJob(){
+    let JobDetails: IJob = this.addJobForm.value as IJob;
     this.careerService.UpdateJob(JobDetails,this.NameJob,this.CollectionJob.id);
     alert("Update Successfully!")
     this.restForm();
 
   }
   restForm(){
-    this.RegisterForm.reset()
+    this.addJobForm.reset()
   }
 }
