@@ -15,12 +15,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { AddCollectionBranchesComponent } from './Components/add-collection-branches/add-collection-branches.component';
 import { AddCollectionOffersComponent } from './Components/add-collection-offers/add-collection-offers.component';
+import { AddMealComponent } from './Components/add-meal/add-meal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddCollectionBranchesComponent,
     AddCollectionOffersComponent,
+    AddMealComponent,
   
   ],
   imports: [
