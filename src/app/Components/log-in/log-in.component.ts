@@ -20,10 +20,10 @@ export class LogInComponent implements OnInit {
     constructor(private firebaseService: AuthService) { }
 
   ngOnInit(){
-    // if(localStorage.getItem('user') !== null)
-    // this.isSignIn = true
-    // else
-    // this.isSignIn = false
+    if(localStorage.getItem('user') !== null)
+    this.isSignIn = true
+    else
+    this.isSignIn = false
   
   }
 

@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { FooterComponent } from './Components/footer/footer.component';
+import { LogInComponent } from './Components/log-in/log-in.component';
 
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire";
@@ -16,7 +17,9 @@ import { AngularFireStorageModule  } from "@angular/fire/storage";
 import { RestaurantsComponent } from './Components/restaurants/restaurants.component';
 
 import {FormsModule ,ReactiveFormsModule} from '@angular/forms'
-
+import {AngularFireAuthModule } from '@angular/fire/auth'
+import { AuthService } from './Service/auth.service';
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import {FormsModule ,ReactiveFormsModule} from '@angular/forms'
     NavbarComponent,
     FooterComponent,
     RestaurantsComponent,
+    LogInComponent,
 
   ],
   imports: [
@@ -34,9 +38,11 @@ import {FormsModule ,ReactiveFormsModule} from '@angular/forms'
     BrowserAnimationsModule,
     AngularFireStorageModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule,
+    // AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
