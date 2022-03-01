@@ -14,11 +14,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { AddCollectionBranchesComponent } from './Components/add-collection-branches/add-collection-branches.component';
+import { AddCollectionOffersComponent } from './Components/add-collection-offers/add-collection-offers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddCollectionBranchesComponent,
+    AddCollectionOffersComponent,
   
   ],
   imports: [
