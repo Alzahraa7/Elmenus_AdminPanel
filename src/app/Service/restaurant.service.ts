@@ -35,4 +35,10 @@ export class RestaurantService {
     const ref = this.firestore.doc(`Restaurant/${id}`);
     ref.delete();
   }
+
+  addRestaurant(restaurant: IRestaurant){
+    // console.log(restaurant)
+    this.Rests = this.firestore.collection('Restaurant');
+    this.Rests.add({ ...restaurant });
+  }
 }

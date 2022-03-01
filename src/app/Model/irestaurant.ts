@@ -9,16 +9,5 @@ export interface IRestaurant {
   Mood:string[],
   Type:string[],
   IsActivated:boolean,
-  Branches:{
-    Address:string,
-    LocName:string,
-    Workinghours:string
-  },
-  Menu:{
-  },
-  Offers:{
-    Description:string,
-    Expires:any,
-    PromoCode:string
-  }
+ 
 }

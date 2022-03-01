@@ -20,6 +20,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CustomDialogComponent } from './Components/custom-dialog/custom-dialog.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AddRestaurantComponent } from './Components/add-restaurant/add-restaurant.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ConfirmRestComponent,
     TableComponent,
     CustomDialogComponent,
+    AddRestaurantComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AngularFireStorageModule,
     FontAwesomeModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     RestaurantService,
