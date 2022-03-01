@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-res-details',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./res-details.component.css']
 })
 export class ResDetailsComponent implements OnInit {
-
-  constructor() { }
+  ResId:string|null;
+  constructor(private actRout:ActivatedRoute) {
+   this.ResId= actRout.snapshot.paramMap.get('id');
+  }
 
   ngOnInit(): void {
   }

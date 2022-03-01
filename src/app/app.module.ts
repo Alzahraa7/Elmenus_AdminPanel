@@ -20,6 +20,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CustomDialogComponent } from './Components/custom-dialog/custom-dialog.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ResDetailsComponent } from './Components/res-details/res-details.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ConfirmRestComponent,
     TableComponent,
     CustomDialogComponent,
+    ResDetailsComponent,
   ],
   imports: [
     BrowserModule,
