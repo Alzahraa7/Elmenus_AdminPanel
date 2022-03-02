@@ -19,26 +19,31 @@
         </div>
 
         <div class="offset-2 col-8 offset-2 CardForm" [hidden]="addedFlage == true">
-            <h3 style="background-color: wheat; color:#e32207">Add New Restaurant</h3>
+            <h3 style="color:#e32207;">Add New Restaurant</h3>
 
             <form class="m-3" [formGroup]="addResForm">
 
-                <div class="text-center">
-                    <img class="imgEdit" [src]="imgageSelectedSrc" width="210px" height="200px"
-                        (click)="imageUpload.click()">
+                <div class="d-flex">
+                    <div >
+                        <img class="imgEdit" [src]="imgageSelectedSrc" width="210px" height="200px"
+                            (click)="imageUpload.click()">
+                    </div>
+    
+                    <div>
+                        <img class="imgEdit" [src]="logoSelectedSrc" width="210px" height="200px"
+                            (click)="logoUpload.click()">
+                    </div>
                 </div>
+                
 
                 <div class="mb-3">
                     <label for="resImage" class="form-label">Upload Res Image</label>
-                    <input type="file" #imageUpload formControlName="ImageURL" class="form-control" name="resImage"
+                    <input type="file" #imageUpload formControlName="ImageURL" class="form-control text-danger"  name="resImage"
                         id="resImage" [class.is-invalid]="ImageURL?.invalid && ImageURL?.touched"
                         [class.is-valid]="ImageURL?.valid" (change)="showSrc($event)">
                 </div>
 
-                <div class="text-center">
-                    <img class="imgEdit" [src]="logoSelectedSrc" width="210px" height="200px"
-                        (click)="logoUpload.click()">
-                </div>
+                
 
                 <div class="mb-3">
                     <label for="resLogo" class="form-label">Upload Rest Logo</label>

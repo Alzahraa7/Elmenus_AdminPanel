@@ -98,7 +98,7 @@ export class AddRestaurantComponent implements OnInit {
               logoRef.getDownloadURL().subscribe((url)=>{
                 newRestaurant.ImageLogo = url;
                 console.log(newRestaurant.ImageLogo);
-                // this.RestaurantServer.addRestaurant(newRestaurant);
+                this.RestaurantServer.addRestaurant(newRestaurant);
                 // alert("added")
                   this.router.navigate(['/Restaurants']);
                
