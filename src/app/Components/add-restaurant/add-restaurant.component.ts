@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { IRestaurant } from 'src/app/Model/irestaurant';
 import { RestaurantService } from 'src/app/Service/restaurant.service';
@@ -16,10 +17,17 @@ export class AddRestaurantComponent implements OnInit {
   logoSelectedSrc: string = "assets/click.webp";
   selectedImage:any = null;
   selectedLogo:any;
+  moodList: string[];
+  addedFlage: boolean = false;
+
   @ViewChild('moodInput') moodInput !: ElementRef;
   @ViewChild('typeInput') typeInput !: ElementRef;
 
-  constructor(private fb: FormBuilder, private RestaurantServer: RestaurantService, private storage: AngularFireStorage) {
+  constructor(private fb: FormBuilder,
+              private RestaurantServer: RestaurantService,
+              private storage: AngularFireStorage,
+              private router: Router
+              ) {
 
     this.addResForm = fb.group({
       ResName: ['', [Validators.required, Validators.minLength(3)]],
@@ -32,6 +40,16 @@ export class AddRestaurantComponent implements OnInit {
       Mood: fb.array(['']),
       Type: fb.array([''])
     })
+
+    this.moodList = [
+     "Coffeeshops",
+     "Work Or Study",
+     "Casual Dining",
+     "Hidden Gems",
+     "Food with a View",
+     "Romantic",
+     "Fancy Dining"
+    ]
    }
 
 
@@ -61,6 +79,7 @@ export class AddRestaurantComponent implements OnInit {
   }
 
   addRestaurant(){
+    this.addedFlage = true;
     
     let newRestaurant : IRestaurant = this.addResForm.value as IRestaurant;
     
@@ -79,8 +98,10 @@ export class AddRestaurantComponent implements OnInit {
               logoRef.getDownloadURL().subscribe((url)=>{
                 newRestaurant.ImageLogo = url;
                 console.log(newRestaurant.ImageLogo);
-                this.RestaurantServer.addRestaurant(newRestaurant);
-                alert("added")
+                // this.RestaurantServer.addRestaurant(newRestaurant);
+                // alert("added")
+                  this.router.navigate(['/Restaurants']);
+               
                 this.resetForm();
               })
             })
