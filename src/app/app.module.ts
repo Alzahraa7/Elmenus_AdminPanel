@@ -15,7 +15,8 @@ import { AngularFireStorageModule  } from "@angular/fire/storage";
 // import { AngularFireStorageModule  } from "angularfire2/storage";
 import { RestaurantsComponent } from './Components/restaurants/restaurants.component';
 
-import {FormsModule ,ReactiveFormsModule} from '@angular/forms'
+import {FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { ProfileComponent } from './Components/profile/profile.component'
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {FormsModule ,ReactiveFormsModule} from '@angular/forms'
     NavbarComponent,
     FooterComponent,
     RestaurantsComponent,
+    ProfileComponent,
 
   ],
   imports: [

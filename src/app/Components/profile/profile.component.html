@@ -1,0 +1,48 @@
+<div class="contrainer body">
+    <div class="row person">
+        
+        <div class="col-3">
+            <img src="assets/admin.jpg" class="adminImg">
+        </div>
+        <div class="col-6 person_det">
+            <h2>John Deo</h2>
+            <p style="display: inline;">Johndeo@gmail.com</p><span> - Administrator</span>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-primary saveBtn"><i class="fa-solid fa-check"></i> Save</button>
+        </div>
+
+        <p style="font-size: 1.5rem; color: rgb(46, 45, 45); margin-top: 3%; margin-left: 5%;">Account</p>
+        <hr>
+
+        <div class="row" style="margin-left: 5%; margin-bottom: 0%;">
+  
+            <div class="col-3">
+                <label for="name" style="top: 18%;">User Name:</label>
+                <br>
+                <label for="email" style="top: 45%;">Email:</label>
+                <br>
+                <label for="password" style="top: 70%;">password:</label>           
+            </div>
+
+            <form class="col-9" [formGroup]="myForm">
+                <div class="user-details">
+                    <div class="input-box">
+                        <input id="name" type="text" formControlName="name" class="form-control">
+                        <span class="error" *ngIf="name?.invalid && name?.touched">Name must be more than 4 letters</span>
+                    </div>
+                    <div class="input-box">
+                        <input id="email" type="email" formControlName="email" class="form-control">
+                        <span class="error" *ngIf="email?.invalid && email?.touched">Email not valid</span>
+                    </div>
+                    <div class="input-box">
+                        <input id="password" type="password" formControlName="password" class="form-control">
+                        <span class="error" *ngIf="password?.invalid && password?.touched">Password must contains Letters or numbers what is length more than 6</span>
+                    </div>
+                </div>
+            </form>
+        
+        </div> 
+    </div>
+
+</div>
