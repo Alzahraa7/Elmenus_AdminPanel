@@ -12,6 +12,7 @@ export class RestaurantService {
   constructor(public firestore:AngularFirestore) {
     //this.Rests = firestore.collection('Restaurant').valueChanges();
     this.RestaurantCollec = firestore.collection('Restaurant' , ref=> ref.orderBy('ResName','asc'));
+     
     this.Rests = this.RestaurantCollec.snapshotChanges().pipe(map(changes=>{
       return changes.map(res=>{
         const data = res.payload.doc.data() as IRestaurant;

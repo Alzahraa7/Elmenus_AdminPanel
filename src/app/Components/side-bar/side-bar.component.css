@@ -3,7 +3,7 @@
 }
 
 mat-toolbar {
-background: #d42913da;
+background: #C3311E;
     color: white;
 }
 
@@ -12,7 +12,7 @@ mat-sidenav {
     width: 205px;
     overflow-x: hidden;
     border-right: none;
-    background: #d42913da;
+    background: #C3311E;
     color: white;
     border-radius: 10px;
     padding: 16px;
@@ -56,7 +56,7 @@ mat-sidenav-container {
     justify-content: flex-start;
     font-size: 1rem;
     
-    color: #d42913da;
+    color: #C3311E;
     background-color: #FFFFFF;
    
 }
@@ -74,14 +74,14 @@ mat-divider {
 .btn.dropdown-toggle{
     width: fit-content;
     color:#FFFFFF ;
-    background-color: #d42913da;
+    background-color: #C3311E;
     padding-right: 10px;
 }
 
 
 .dropdown-toggle{
     color:#FFFFFF ;
-    background-color: #d42913da;
+    background-color: #C3311E;
 }
 
 .dropdown-menu{
@@ -89,12 +89,12 @@ mat-divider {
 }
 
 .dropdown-item{
-    color:#d42913da ;
+    color:#C3311E ;
     background-color: #FFFFFF;
 }
 
 .dropdown-item:hover{
-    color:#d42a13f5 ;
+    color:#C3311E ;
     background-color: #dddee6f1;
 }
 

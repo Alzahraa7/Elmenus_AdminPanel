@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {SideBarComponent} from './Components/side-bar/side-bar.component'
+import { SideBarComponent } from './Components/side-bar/side-bar.component'
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { FooterComponent } from './Components/footer/footer.component';
-
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire"; 
 import { AngularFirestoreModule , AngularFirestore } from "@angular/fire/firestore";
@@ -26,6 +24,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SideBarService } from './Service/side-bar.service';
+import { AdminService } from './Service/admin.service';
+import { AdminsComponent } from './Components/admin-components/admins-list/admins.component';
+import { AdminsAddComponent } from './Components/admin-components/admins-add/admins-add.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -40,6 +42,8 @@ import { SideBarService } from './Service/side-bar.service';
     TableComponent,
     CustomDialogComponent,
     SideBarComponent,
+    AdminsComponent,
+    AdminsAddComponent,
 
   
   ],
@@ -59,11 +63,13 @@ import { SideBarService } from './Service/side-bar.service';
     MatDividerModule,
     MatIconModule,
     MatToolbarModule,  
+    FormsModule,
   ],
   providers: [
     RestaurantService,
     AngularFirestore,
     SideBarService,
+    AdminService,
   ],
   bootstrap: [AppComponent]
 })

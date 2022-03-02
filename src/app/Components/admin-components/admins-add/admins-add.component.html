@@ -1,0 +1,19 @@
+<div class="container col-8 mt-3">
+  <form name="productForm" (ngSubmit)="onSubmit()">
+    <h3>Please fill the form below to add new admin.</h3>
+    <div class="mb-3">
+      <label for="adminName" class="form-label">• Admin's Name</label>
+      <input required type="text" class="form-control" id="adminName" placeholder="Admin Name..." name="adminName" [(ngModel)]="admin.adminName" />
+    </div>
+    <div class="mb-3">
+      <label for="adminEmail" class="form-label">• Admin's Email</label>
+      <input required type="email" class="form-control" name="adminEmail" placeholder="Admin Email..."  [(ngModel)]="admin.adminEmail" id="adminEmail" />
+    </div>
+    <div class="mb-3">
+      <label for="adminPassword" class="form-label">• Admin's Password</label>
+      <input required type="password" class="form-control" name="adminPassword" placeholder="Admin Password..." [(ngModel)]="admin.adminPassword" id="adminPassword" />
+    </div>
+    <button [disabled]="invalid===false" type="submit" value="Submit" class="btn" >Add Admin <span style="font-weight:bolder;">+</span></button>
+  </form>
+  
+</div>
