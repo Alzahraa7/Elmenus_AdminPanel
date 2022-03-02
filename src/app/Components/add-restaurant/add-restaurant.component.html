@@ -88,7 +88,7 @@
                 <div formArrayName="Mood" *ngFor="let mood of Mood.controls; let i = index">
                     <label for="{{'mood' + i+1}}" class="form-label mb-1">Res Mood</label>
                     <div class="d-flex">
-                        <input #moodInput type="text" [formControlName]="i" class="form-control" name="mood"
+                        <input #moodInput required type="text" [formControlName]="i" class="form-control" name="mood"
                             id="{{'mood' + i+1}}">
 
                         <button class="btn btn-danger" [ngStyle]="{'display': i == 0 ? 'none': 'flex'}"

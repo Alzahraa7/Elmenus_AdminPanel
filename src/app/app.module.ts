@@ -20,8 +20,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CustomDialogComponent } from './Components/custom-dialog/custom-dialog.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { AddRestaurantComponent } from './Components/add-restaurant/add-restaurant.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddRestaurantComponent } from './Components/add-restaurant/add-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ConfirmRestComponent,
     TableComponent,
     CustomDialogComponent,
-    AddRestaurantComponent,
+    AddRestaurantComponent
   ],
   imports: [
     BrowserModule,
