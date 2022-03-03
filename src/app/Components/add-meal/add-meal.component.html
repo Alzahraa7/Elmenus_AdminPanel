@@ -1,1 +1,178 @@
-<p>add-meal works!</p>
+<div class="container mt-5 CardForm">
+    <h3>Add New meal</h3>
+    <form class="m-3" [formGroup]="addMealForm">
+      <!-----------------------------------------Description------------------------------>
+      <div class="mb-3">
+        <label for="Description" class="form-label">Description</label>
+        <input
+          type="text"
+          formControlName="Description"
+          class="form-control"
+          id="Description"
+          name="Description"
+          [class.is-invalid]="Description?.touched && Description?.invalid"
+          [class.is-valid]="Description?.valid"
+        />
+        <div
+          class="alert alert-danger"
+          [hidden]="Description?.valid || Description?.untouched"
+        >
+          <small *ngIf="Description?.errors?.['required']">
+            Description is required !
+          </small>
+          <small *ngIf="Description?.errors?.['minlength']">
+            Description must be at least 10 Charcters !
+          </small>
+        </div>
+      </div>
+      <!----------------------------------------ProName--------------------------------------->
+      <div class="mb-3">
+        <label for="ProName" class="form-label">Product Name</label>
+        <input
+          type="text"
+          formControlName="ProName"
+          class="form-control"
+          id="ProName"
+          name="ProName"
+          [class.is-invalid]="ProName?.touched && ProName?.invalid"
+          [class.is-valid]="ProName?.valid"
+        />
+        <div
+          class="alert alert-danger"
+          [hidden]="ProName?.valid || ProName?.untouched"
+        >
+          <small *ngIf="ProName?.errors?.['required']">
+            ProName is required !
+          </small>
+          <small *ngIf="ProName?.errors?.['minlength']">
+            ProName must be at least 5 Charcters !
+          </small>
+        </div>
+      </div>
+      <!-----------------------------------------ProImg----------------------------------------->
+      <div class="mb-3">
+        <label for="ProImg" class="form-label">Product Image</label>
+        <input
+          type="file"
+          formControlName="ProImg"
+          class="form-control"
+          id="ProImg"
+          name="ProImg"
+          [class.is-invalid]="ProImg?.touched && ProImg?.invalid"
+          [class.is-valid]="ProImg?.valid"
+        />
+        <div
+          class="alert alert-danger"
+          [hidden]="ProImg?.valid || ProImg?.untouched"
+        >
+          <small *ngIf="ProImg?.errors?.['required']">
+            ProImg is required !
+          </small>
+        </div>
+      </div>
+      <!------------------------------------------Size------------------------------------------->
+      <div class="d-flex justify-content-end">
+        <button
+          class="btn"
+          (click)="addNewSize()"
+          style="background-color: #e32207; color: white"
+        >
+          Add Size
+        </button>
+      </div>
+  
+      <div *ngFor="let size of Size.controls; let i = index" formArrayName="Size">
+        <div [formGroupName]="i">
+          <div class="input-field mb-3">
+            <label> Size {{ i + 1 }}</label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              formControlName="Name"
+            >
+              <option selected>Open this select Size</option>
+              <option value="Regular">Regular</option>
+              <option value="Meduim">Meduim</option>
+              <option value="Large">Large</option>
+              <option value="Combo">Combo</option>
+              <option value="200gm Sandwitch">200gm</option>
+              <option value="400gm Sandwitch">400gm</option>
+            </select>
+            <input
+              class="form-control mt-2"
+              type="number"
+              required
+              placeholder="Enter Price of Size"
+              formControlName="Price"
+              [class.is-invalid]="
+                Size.controls[i].get('Price')?.touched &&
+                Size.controls[i].get('Price')?.invalid
+              "
+              [class.is-valid]="Size.controls[i].get('Price')?.valid"
+            />
+            <button
+              type="button"
+              class="btn btn-danger"
+              [hidden]="i == 0"
+              (click)="removeSize(i)"
+            >
+              -
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--------------------------------------------------extras--------------------------------------->
+      <div class="mt-2 d-flex justify-content-end">
+          <button
+            class="btn"
+            (click)="addNewExtra()"
+            style="background-color: #e32207; color: white"
+          >
+            Add Extra
+          </button>
+        </div>
+    
+        <div *ngFor="let extra of Extras.controls; let i = index" formArrayName="Extras">
+          <div [formGroupName]="i">
+            <div class="input-field mb-3">
+              <label> Extra {{ i + 1 }}</label>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                formControlName="Name"
+              >
+                <option selected>Open this select Size</option>
+                <option value="Spicy">Spicy</option>
+                <option value="Mashroom">Mashroom</option>
+                <option value="shidar cheese">shidar cheese</option>
+                
+              </select>
+              <input
+                class="form-control mt-2"
+                type="number"
+                required
+                placeholder="Enter Price of Extra"
+                formControlName="Price"
+                [class.is-invalid]="
+                Extras.controls[i].get('Price')?.touched &&
+                Extras.controls[i].get('Price')?.invalid
+                "
+                [class.is-valid]="Extras.controls[i].get('Price')?.valid"
+              />
+              <button
+                type="button"
+                class="btn btn-danger"
+                [hidden]="i == 0"
+                (click)="removeExtra(i)"
+              >
+                -
+              </button>
+            </div>
+          </div>
+        </div>
+      
+      <div class="d-flex justify-content-end mt-4">
+          <button class="btn btn-success" [disabled]="addMealForm.invalid" type="submit" (click)="SubmitMeal()">Add</button>
+      </div>
+    </form>
+  </div>

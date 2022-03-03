@@ -26,6 +26,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import { AddMealComponent } from './Components/add-meal/add-meal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,9 @@ import { AddMealComponent } from './Components/add-meal/add-meal.component';
     MatDividerModule,
     MatTabsModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     RestaurantService,

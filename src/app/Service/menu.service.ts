@@ -75,4 +75,16 @@ export class MenuService {
         }));
     return this.MenusCatSelected;
   }
+
+  addMeal(Meal:any,idRest:string,idMenu:string,NameMealcoll:string){
+   let CatID = this.firestore.createId()
+    this.firestore
+      .collection('Restaurant')
+      .doc(idRest)
+      .collection<any>('Menu')
+      .doc(idMenu)
+      .collection<any>(NameMealcoll)
+      .doc(CatID)
+      .set(Meal);
+  }
 }

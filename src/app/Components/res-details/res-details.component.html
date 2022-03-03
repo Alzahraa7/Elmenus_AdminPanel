@@ -65,9 +65,7 @@
           <div *ngFor="let Menu of Menus;let i = index">
             <mat-option *ngFor="let m of Menu.Name" [value]="m">{{m}}</mat-option>
           </div>
-          <div class="d-flex justify-content-end">
-            <button class="btn rounded-circle addBut"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
-          </div>
+          
         </mat-select>
       </mat-form-field>
           <div class="conatiner m-3" *ngFor="let Menu of MenuCatSelected ">
@@ -101,6 +99,10 @@
                 </div>
               </mat-expansion-panel>
             </mat-accordion>
+            
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="btn rounded-circle addBut" (click)="addMeal(Menus[0].MenuID)"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
           </div>
 
     </mat-tab>
