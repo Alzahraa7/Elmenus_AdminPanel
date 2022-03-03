@@ -34,7 +34,7 @@ export class AdminsAddComponent implements OnInit {
     this.addAdminForm = this.FormService.group({
       adminName: ['', [Validators.required,Validators.minLength(3)]],
       adminEmail:['',[Validators.required,Validators.email]],
-      adminPassword:['',[Validators.required,Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{6,}$")]],
+      adminPassword:['',[Validators.required,Validators.pattern("")]],
      
     });
 
