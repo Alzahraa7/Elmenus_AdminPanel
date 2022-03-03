@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validator, Validators } from '@angular/forms';
+import { IAdmin } from 'src/app/Model/IAdmin';
+import { AuthService } from 'src/app/Service/auth.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -7,18 +9,57 @@ import { FormControl, FormGroup, Validator, Validators } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
-  myForm = new FormGroup({
+
+  editForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     email: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z1-9]{3,}@[A-za-z]{3,}\.(com|net|edu|org)')]),
-    password: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z1-9]{6,}')])
-  })
-  get name(){return this.myForm.get('name')}
-  get email(){return this.myForm.get('email')}
-  get password(){return this.myForm.get('password')}
+    password: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z1-9]{5,}')]),
 
-  constructor() { }
+  })
+  get name(){return this.editForm.get('name')}
+  get email(){return this.editForm.get('email')}
+  get password(){return this.editForm.get('password')}
+
+
+
+
+  userEmail: any;
+  admins!: IAdmin[];
+  constructor(private firebaseService: AuthService) { 
+    this.firebaseService.getAdmins().subscribe(admins =>{
+      console.log(admins);
+      this.admins = admins;
+
+    this.userEmail = localStorage.getItem('email')?.slice(1,-1);
+    // console.log('from profile  '+ this.userEmail);
+
+      for(let admin of admins){
+        console.log("this is admin data "+admin.adminName);
+        console.log("this is admin data "+admin.adminEmail);
+        console.log("this is admin data "+admin.adminPassword);
+
+
+        if(admin.adminEmail === this.userEmail){
+          this.editForm.setValue({
+            name : admin.adminName,
+            email: admin.adminEmail,
+            password: admin.adminPassword,
+          })
+        }
+        
+      }
+      
+    })
+
+    
+  }
+
+  
 
   ngOnInit(): void {
+ 
+    
+
   }
 
 }

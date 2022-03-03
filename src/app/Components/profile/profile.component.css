@@ -36,7 +36,7 @@
 
 .person_det p{
     font-size: 1.5rem;
-    color: blue;
+    color: #e32207;
  
 }
 
@@ -63,7 +63,7 @@ label{
     width: 77%;
     height: 38px;
     margin: 2%;
-    
+    padding-left: 1%;
 }
 
 .input-box span{

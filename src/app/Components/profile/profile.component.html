@@ -4,12 +4,18 @@
         <div class="col-3">
             <img src="assets/admin.jpg" class="adminImg">
         </div>
+
         <div class="col-6 person_det">
-            <h2>John Deo</h2>
-            <p style="display: inline;">Johndeo@gmail.com</p><span> - Administrator</span>
+            <div  *ngFor="let admin of admins">
+            <h2 *ngIf="admin.adminEmail === userEmail">{{admin.adminName}}</h2>
+            <p style="display: inline;" *ngIf="admin.adminEmail === userEmail">{{admin.adminEmail}}<span> - Administrator</span></p>
+            </div>
+            
+            <!-- <h2>John Deo</h2>
+            <p style="display: inline;">Johndeo@gmail.com</p><span> - Administrator</span> -->
         </div>
         <div class="col-3">
-            <button class="btn btn-primary saveBtn"><i class="fa-solid fa-check"></i> Save</button>
+            <button class="btn btn-danger saveBtn" style="background-color: #e32207;"><i class="fa-solid fa-check"></i> Save</button>
         </div>
 
         <p style="font-size: 1.5rem; color: rgb(46, 45, 45); margin-top: 3%; margin-left: 5%;">Account</p>
@@ -17,15 +23,17 @@
 
         <div class="row" style="margin-left: 5%; margin-bottom: 0%;">
   
-            <div class="col-3">
-                <label for="name" style="top: 18%;">User Name:</label>
+            <div class="col-3">  
+                <label for="name" style="top: 24%;">User Name:</label>
                 <br>
                 <label for="email" style="top: 45%;">Email:</label>
                 <br>
-                <label for="password" style="top: 70%;">password:</label>           
+                <label for="password" style="top: 60%;">password:</label>           
             </div>
 
-            <form class="col-9" [formGroup]="myForm">
+            <form class="col-9" [formGroup]="editForm">
+                <a href="#"><i class="fa-solid fa-pen-to-square" style="font-size: 1.5rem; position: relative; left: 91%; top: 4%; color: #e32207;"></i></a>
+                <fieldset disabled>
                 <div class="user-details">
                     <div class="input-box">
                         <input id="name" type="text" formControlName="name" class="form-control">
@@ -40,9 +48,18 @@
                         <span class="error" *ngIf="password?.invalid && password?.touched">Password must contains Letters or numbers what is length more than 6</span>
                     </div>
                 </div>
+            </fieldset>
             </form>
         
         </div> 
     </div>
+
+    <!-- <div class="col-3">
+        <ul *ngFor="let admin of admins">
+            <li>{{admin.adminName}}</li>
+            <li>{{admin.adminEmail}}</li>
+            <li>{{admin.adminPassword}}</li>
+        </ul>
+    </div> -->
 
 </div>
