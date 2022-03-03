@@ -40,4 +40,9 @@ export class RestaurantService {
     const ref = this.firestore.doc(`Restaurant/${id}`);
     ref.delete();
   }
+
+  updateRes(Res: IRestaurant){
+    const ref = this.firestore.doc(`Restaurant/${Res.ResPushID}`);
+    ref.update(Res);
+  }
 }

@@ -6,15 +6,49 @@
       </div>
     </div>
     <div class="col-10">
-      <div class="d-flex flex-column textDiv2">
-        <p><span class="textDiv">Name: </span> {{Restaurant?.ResName}}  <button class="btn mse-2"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-        <p><span class="textDiv">Owner: </span>  {{Restaurant?.OwnerName}}  <button class="btn mse-2"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-        <p><span class="textDiv">Phone: </span>  {{Restaurant?.Phone}}  <button class="btn mse-2"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-        <p><span class="textDiv">Mood: </span>  {{Restaurant?.Mood}}  <button class="btn mse-2"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-        <p><span class="textDiv">Type: </span>  {{Restaurant?.Type}}  <button class="btn mse-2"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+      <div class="d-flex flex-column textDiv2" >
+        <p><span class="textDiv">Name: </span> <span>{{Restaurant?.ResName}}</span>  <button class="btn mse-2" (click)="updateBasicRes(1)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+        <input #ResNameInput [hidden]="!NameFlag" type="text" class="form-control m-0 p-0" value="{{Restaurant?.ResName}}"
+        style="width: 30%; position: relative; bottom: 10px"> 
+
+        <p><span class="textDiv">Owner: </span>  <span>{{Restaurant?.OwnerName}}</span>  <button class="btn mse-2" (click)="updateBasicRes(2)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+        <input #ownerNameInput [hidden]="!ownerFlg" type="text" class="form-control m-0 p-0" value="{{Restaurant?.OwnerName}}"
+        style="width: 30%; position: relative; bottom: 10px"> 
+
+        <p><span class="textDiv">Phone: </span>  <span>{{Restaurant?.Phone}}</span>  <button class="btn mse-2" (click)="updateBasicRes(3)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+        <input #PhoneInput [hidden]="!phoneFlag" type="text" class="form-control m-0 p-0" value="{{Restaurant?.Phone}}"
+        style="width: 30%;position: relative; bottom: 10px"> 
+
+        <p><span class="textDiv">Mood: </span> <span> {{Restaurant?.Mood}} </span>  <button class="btn mse-2" (click)="updateBasicRes(4)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+        <div *ngFor="let mood of changedMood; let i = index" class="d-flex" style="width: 30%; position: relative; bottom: 10px" >
+          <input  [hidden]="!moodFlag" #MoodInput type="text" class="form-control my-1 p-0" value="{{mood}}"
+        id="{{i}}" (change)="saveUpdateMood(MoodInput.value, i)"> 
+        <button  [hidden]="!moodFlag" class="btn my-1" style="background-color: #e32207; color: white;" (click)="deleteMood(MoodInput.value)">-</button>
+        
+      </div>
+      <small class="text-danger" [hidden]="!errorShow" style="position: relative; bottom: 10px;" >you must filled this field first!!</small>
+
+      <button class="btn btn-success" [hidden]="!moodFlag" style="width: 100px;" (click)="addNewMood()">Add Mood</button>
+
+        <p><span class="textDiv">Type: </span>  <span>{{Restaurant?.Type}} </span> <button class="btn mse-2" (click)="updateBasicRes(5)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+        <div *ngFor="let type of changedType; let i = index" class="d-flex" style="width: 30%; border-color: #e32207; position: relative; bottom: 10px">
+          <input #TypeInput [hidden]="!typeFlag" type="text" class="form-control my-1 p-0" value="{{type}}"
+           (change)="saveUpdateType(TypeInput.value, i)"> 
+          
+          <button  [hidden]="!typeFlag" class="btn my-1" style="background-color: #e32207; color: white;" (click)="deleteType(TypeInput.value)">-</button>
+        
+        </div>
+        <small class="text-danger" [hidden]="!errorTypeShow" style="position: relative; bottom: 10px;" >you must filled this field first!!</small>
+
+      <button class="btn btn-success" [hidden]="!typeFlag" style="width: 100px;" (click)="addNewType()">Add Type</button>
+
+
+        <button class="btn btnClass my-2" [hidden]="!NameFlag && !ownerFlg && !phoneFlag && !moodFlag && !typeFlag" (click)="updateRes()">Update</button>
+     
       </div>
     </div>
   </div>
+
   <mat-divider class="mt-3 mb-3"></mat-divider>
   <mat-tab-group class="tabDiv" mat-align-tabs="center" color="warn" backgroundColor="warn" animationDuration="1000ms">
     <mat-tab label="Branches">
