@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OffersAddComponent } from './Components/offers-add/offers-add.component';
+import { OffersService } from './Service/offers.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { OffersAddComponent } from './Components/offers-add/offers-add.component
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    OffersService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

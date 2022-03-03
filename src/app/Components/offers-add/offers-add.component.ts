@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IOffers } from 'src/app/Model/offers';
+import { OffersService } from 'src/app/Service/offers.service';
 
 @Component({
   selector: 'app-offers-add',
@@ -10,11 +11,14 @@ import { IOffers } from 'src/app/Model/offers';
 })
 export class OffersAddComponent implements OnInit {
 
+  offers!: IOffers[];
+
   addOfferForm: FormGroup;
   constructor(
     private FormService: FormBuilder,
     private router: Router,
-    private activeRoute: ActivatedRoute) {
+    private activeRoute: ActivatedRoute,
+    private offersService:OffersService) {
       this.addOfferForm = this.FormService.group({
         Description:['', [Validators.required, Validators.minLength(10)]],
         Expires: ['', [Validators.required]],
@@ -23,6 +27,11 @@ export class OffersAddComponent implements OnInit {
     }
 
   ngOnInit() {
+
+   this.offersService.getAdmins().subscribe((res:any) =>{
+    this.offers = res;
+    console.log(this.offers)
+   })
   }
 
   get Description(){
