@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faEdit, faPlus,faTrash } from '@fortawesome/free-solid-svg-icons';
 import { IBranches } from 'src/app/Model/branches';
@@ -9,6 +11,7 @@ import { BranchesService } from 'src/app/Service/branches.service';
 import { MenuService } from 'src/app/Service/menu.service';
 import { OffersService } from 'src/app/Service/offers.service';
 import { RestaurantService } from 'src/app/Service/restaurant.service';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 
 @Component({
   selector: 'app-res-details',
@@ -28,7 +31,7 @@ export class ResDetailsComponent implements OnInit {
   plusIcon= faPlus;
   editIcon = faEdit;
   faTrash = faTrash;
-  constructor(private actRout:ActivatedRoute, private restSrvs:RestaurantService, private brancessrvs:BranchesService, private offerSrvs:OffersService, private menuSrvs:MenuService,private router:Router){
+  constructor(private _snackBar: MatSnackBar,private actRout:ActivatedRoute, private restSrvs:RestaurantService, private brancessrvs:BranchesService, private offerSrvs:OffersService, private menuSrvs:MenuService,private router:Router,public dialog: MatDialog){
    this.ResId= actRout.snapshot.paramMap.get('id');
   }
 
@@ -58,6 +61,14 @@ export class ResDetailsComponent implements OnInit {
       }
     });
   }
+  openSnackBar(message: string) {
+    this._snackBar.open(message,"",{
+      horizontalPosition:"end",
+      verticalPosition:"top",
+      panelClass:['bg-success','text-white'],
+      duration:2000
+    });
+  }
 
   sendSelected(val:any){
     console.log(val);
@@ -70,9 +81,16 @@ export class ResDetailsComponent implements OnInit {
     console.log(this.selected)
     this.router.navigate(['\addMeal',id,this.ResId,this.selected])
   }
+  
   deleteMeal(id:string){
-      console.log(id)
-      this.menuSrvs.deleteMeal(this.ResId,this.Menus[0].MenuID,this.selected,id)
+    let dialogRef = this.dialog.open(CustomDialogComponent,{
+      data:{mess:`Are you sure you want to delete this Meal ?`}
+    });
+    dialogRef.afterClosed().subscribe(i=>{
+      if(i.data){
+        this.menuSrvs.deleteMeal(this.ResId,this.Menus[0].MenuID,this.selected,id);
+        this.openSnackBar(`You have deleted this meal`)
+      }
+    })
   }
-
 }

@@ -79,21 +79,21 @@ export class MenuService {
   }
 
   addMeal(Meal:IMenuCat,idRest:string,idMenu:string,NameMealcoll:string){
-   let CatID = this.firestore.createId()
-   console.log(CatID)
+   let ID = this.firestore.createId()
+   console.log(ID)
     this.firestore
       .collection('Restaurant')
       .doc(idRest)
       .collection<any>('Menu')
       .doc(idMenu)
       .collection<any>(NameMealcoll)
-      .doc(CatID)
+      .doc(ID)
       .set(Meal);
   }
   deleteMeal(ResID:any,MenuID:string,NameCat:string,MealID:string){
     console.log(ResID,MenuID,NameCat,MealID)
     this.MealDoc = this.firestore.doc(`Restaurant/${ResID}/Menu/${MenuID}/${NameCat}/${MealID}`);
-    // this.MealDoc.delete();
+    this.MealDoc.delete();
 
   }
 }
