@@ -25,6 +25,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
+import { AddMealComponent } from './Components/add-meal/add-meal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import {MatSelectModule} from '@angular/material/select';
     TableComponent,
     CustomDialogComponent,
     ResDetailsComponent,
+    AddMealComponent,
   ],
   imports: [
     BrowserModule,
