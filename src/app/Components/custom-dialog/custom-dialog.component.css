@@ -1,0 +1,15 @@
+.dialogBox{
+    border-radius: 20px;
+}
+.btnOk{
+
+    background-color:#DA4835 ;
+    color:#FFFFFF;
+    box-shadow: 0px 0px 5px 0.5px  #DA4835;
+}
+
+.btnOk{
+    background-color:#DA4835 ;
+    color:#FFFFFF;
+    box-shadow: 0px 0px 5px 2px  #DA4835;
+}

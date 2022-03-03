@@ -27,7 +27,8 @@ import { SideBarService } from './Service/side-bar.service';
 import { AdminService } from './Service/admin.service';
 import { AdminsComponent } from './Components/admin-components/admins-list/admins.component';
 import { AdminsAddComponent } from './Components/admin-components/admins-add/admins-add.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -64,6 +65,7 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatToolbarModule,  
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     RestaurantService,

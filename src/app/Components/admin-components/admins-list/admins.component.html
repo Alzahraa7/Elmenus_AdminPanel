@@ -15,12 +15,12 @@
             <td>{{admin.adminEmail}}</td>
             <td>
                <button class="btn btnDelete" (click)="deleteAdminBtn(admin.adminPushID!,admin.adminName)"><fa-icon [icon]="faDelete"></fa-icon> </button>
-               <button class="btn btnEdit" (click)="editAdminBtn(admin.adminPushID!,admin.adminName)"><fa-icon [icon]="faEdit"></fa-icon> </button>
+               <button class="btn btnEdit" [routerLink]="['/addAdmin',admin.adminPushID]" (click)="editAdminBtn(admin.adminPushID!,admin.adminName)"><fa-icon [icon]="faEdit"></fa-icon> </button>
             </td>
          
         </tr>
       </tbody>
     </table>
-    <h3 *ngIf="admins.length == 0"> No Admins Found !</h3>
+    <h3 *ngIf="admins === undefined"> No Admins Found !</h3>
   </div>
 </div>
