@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreCollectionGroup } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreCollectionGroup, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map, Observable, of } from 'rxjs';
 import { IMenu, IMenuCat } from '../Model/menu';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class MenuService {
   MenuCollecCat!: AngularFirestoreCollectionGroup<IMenuCat>;
   MenusCat:any;
   MenusCatSelected:any;
+  MealDoc: AngularFirestoreDocument<IMenuCat> | undefined;
   constructor(public firestore: AngularFirestore) {
   }
   /*
@@ -76,8 +78,9 @@ export class MenuService {
     return this.MenusCatSelected;
   }
 
-  addMeal(Meal:any,idRest:string,idMenu:string,NameMealcoll:string){
+  addMeal(Meal:IMenuCat,idRest:string,idMenu:string,NameMealcoll:string){
    let CatID = this.firestore.createId()
+   console.log(CatID)
     this.firestore
       .collection('Restaurant')
       .doc(idRest)
@@ -86,5 +89,11 @@ export class MenuService {
       .collection<any>(NameMealcoll)
       .doc(CatID)
       .set(Meal);
+  }
+  deleteMeal(ResID:any,MenuID:string,NameCat:string,MealID:string){
+    console.log(ResID,MenuID,NameCat,MealID)
+    this.MealDoc = this.firestore.doc(`Restaurant/${ResID}/Menu/${MenuID}/${NameCat}/${MealID}`);
+    this.MealDoc.delete();
+
   }
 }

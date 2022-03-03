@@ -78,9 +78,13 @@ export class AddMealComponent implements OnInit {
     this.Extras.removeAt(extraIndex);
   }
   SubmitMeal(){
-    let Meal: any = this.addMealForm.value as any;
+    let Meal: IMenuCat = this.addMealForm.value as IMenuCat;
     this.MenuService.addMeal(Meal,this.IDRest,this.IDMenu,this.NameMenuColl);
     alert("Add success");
+    this.restForm();
+  }
+  restForm(){
+    this.addMealForm.reset()
   }
 
 }

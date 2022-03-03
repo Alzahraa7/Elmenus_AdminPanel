@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faPlus,faTrash } from '@fortawesome/free-solid-svg-icons';
 import { IBranches } from 'src/app/Model/branches';
 import { IRestaurant } from 'src/app/Model/irestaurant';
 import { IMenu, IMenuCat } from 'src/app/Model/menu';
@@ -27,6 +27,7 @@ export class ResDetailsComponent implements OnInit {
   panelOpenState = false;
   plusIcon= faPlus;
   editIcon = faEdit;
+  faTrash = faTrash;
   constructor(private actRout:ActivatedRoute, private restSrvs:RestaurantService, private brancessrvs:BranchesService, private offerSrvs:OffersService, private menuSrvs:MenuService,private router:Router){
    this.ResId= actRout.snapshot.paramMap.get('id');
   }
@@ -64,10 +65,14 @@ export class ResDetailsComponent implements OnInit {
       this.MenuCatSelected = i;
     })
   }
-  addMeal(id:any){
+  addMeal(id:string){
     console.log(this.ResId,id)
     console.log(this.selected)
     this.router.navigate(['\addMeal',id,this.ResId,this.selected])
+  }
+  deleteMeal(id:string){
+      console.log(id)
+      this.menuSrvs.deleteMeal(this.ResId,this.Menus[0].MenuID,this.selected,id)
   }
 
 }

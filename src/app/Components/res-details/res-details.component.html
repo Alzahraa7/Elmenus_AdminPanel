@@ -73,6 +73,7 @@
               <mat-expansion-panel (opened)="panelOpenState = true"
                                    (closed)="panelOpenState = false">
                 <mat-expansion-panel-header class="accordionDiv">
+                  <button class="btn mse-2" (click)="deleteMeal(Menu.CatID)"><fa-icon [icon]="faTrash" class="text-danger"></fa-icon></button>
                   <mat-panel-title >
                     {{Menu.ProName}}
                   </mat-panel-title>
