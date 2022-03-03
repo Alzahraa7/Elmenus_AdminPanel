@@ -1,0 +1,38 @@
+<div class="container Details my-3">
+  <header class="p-2 my-2">
+    <h4>
+      Details Job of <span style="color: #636161">{{ NameJob }}</span>
+    </h4>
+  </header>
+  <div *ngFor="let job of Job; let i = index">
+    <div>
+      <h2>Decription :</h2>
+      <p class="JobDES">{{ job.Description }}</p>
+      <hr />
+    </div>
+    <div>
+      <h2>Location:</h2>
+      <p>{{ job.Location }}</p>
+      <hr />
+    </div>
+
+    <div>
+      <h2>Requirements:</h2>
+      <span>
+        <ul>
+          <li *ngFor="let req of job.Requirements">{{ req }}</li>
+        </ul>
+      </span>
+      <hr />
+    </div>
+
+    <div>
+      <h2>Responsibilities:</h2>
+      <span>
+        <ul>
+          <li *ngFor="let res of job.Responsibilities">{{ res }}</li>
+        </ul>
+      </span>
+    </div>
+  </div>
+</div>

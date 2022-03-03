@@ -6,14 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideBarComponent } from './Components/side-bar/side-bar.component'
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { FooterComponent } from './Components/footer/footer.component';
-import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule , AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
 import { RestaurantsComponent } from './Components/restaurants/restaurants.component'
 import { TableComponent } from './Components/table/table.component'
 import { RestaurantService } from './Service/restaurant.service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomDialogComponent } from './Components/custom-dialog/custom-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -27,10 +25,15 @@ import { AdminService } from './Service/admin.service';
 import { AdminsComponent } from './Components/admin-components/admins-list/admins.component';
 import { AdminsAddComponent } from './Components/admin-components/admins-add/admins-add.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-
+import { ListCareerComponent } from './Components/list-career/list-career.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { JobDetailsComponent } from './Components/job-details/job-details.component';
+import { AddCareerComponent } from './Components/add-career/add-career.component';
+import { AddJobComponent } from './Components/add-job/add-job.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
-  declarations: [
+  declarations:[
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -41,19 +44,19 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     ConfirmRestComponent,
     AdminsComponent,
     AdminsAddComponent,
-
-
-  ],
+    ListCareerComponent,
+    JobDetailsComponent,
+    AddCareerComponent,
+    AddJobComponent
+],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
     BrowserAnimationsModule,
     AngularFireStorageModule,
     FontAwesomeModule,
     MatDialogModule,
-    MatSnackBarModule,
     MatSidenavModule,
     MatButtonModule,
     MatButtonModule,

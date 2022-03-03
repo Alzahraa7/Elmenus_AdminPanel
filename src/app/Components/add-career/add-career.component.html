@@ -1,0 +1,92 @@
+<div class="container mt-5" style="box-shadow: 5px 2px 10px 2px grey !important;
+border-radius: 20px !important;padding: 12px 0;">
+  <h3 style="text-align: center; color: #e32207">Add New Career</h3>
+  <form [formGroup]="addCareerForm" class="m-3">
+    <!----------------------------------------Name Career------------------------------------------->
+    <div class="mb-3">
+      <label for="Name" class="form-label">Name</label>
+      <input
+        type="text"
+        formControlName="Name"
+        class="form-control"
+        id="Name"
+        name="name"
+        [class.is-invalid]="NameCareer?.touched && NameCareer?.invalid"
+        [class.is-valid]="NameCareer?.valid"
+      />
+      <div
+        class="alert alert-danger"
+        [hidden]="NameCareer?.valid || NameCareer?.untouched"
+      >
+        <small *ngIf="NameCareer?.errors?.['required']">
+          Name Of Career is required !
+        </small>
+        <small *ngIf="NameCareer?.errors?.['minlength']">
+          Name of Career at least 4 letters
+        </small>
+      </div>
+    </div>
+    <!----------------------------------------Jobs---------------------------------------------------->
+    <button
+    class="btn me-3"
+    (click)="addNewJob()"
+    style="background-color: #e32207; color: white"
+  >
+    Add Job
+  </button>
+  <div
+    *ngFor="let Job of Jobs.controls; let i = index"
+    formArrayName="Jobs"
+  >
+    <div [formGroupName]="i">
+      <div class="input-field mb-3">
+        <label> Job {{ i + 1 }}</label>
+        <input
+          class="form-control mb-2"
+          type="text"
+          placeholder="Enter your Name Job"
+          formControlName="Name"
+          [class.is-invalid]="Jobs.controls[i].get('Name')?.touched && Jobs.controls[i].get('Name')?.invalid"
+          [class.is-valid]="Jobs.controls[i].get('Name')?.valid"
+        />
+        <input
+          class="form-control mt-2"
+          type="text"
+          placeholder="Enter your Address Job"
+          formControlName="Address"
+          [class.is-invalid]="Jobs.controls[i].get('Address')?.touched && Jobs.controls[i].get('Address')?.invalid"
+          [class.is-valid]="Jobs.controls[i].get('Address')?.valid"
+        />
+        <button
+          type="button"
+          class="btn btn-danger "
+          [hidden]="i == 0"
+          (click)="removeJob(i)"
+        >
+          -
+        </button>
+        </div>
+        </div>
+  </div>
+    <!-------------------------------------------------------Add-------------------------------->
+    <div class="d-flex justify-content-end mt-2" >
+      <button
+       [disabled]="addCareerForm.invalid"
+        type="submit"
+        class="btn btn-success"
+        (click)="SubmitDepartment()"
+      >
+        Add
+      </button>
+      <button
+      [disabled]="addCareerForm.invalid"
+       type="submit"
+       class="btn btn-secondary ms-2"
+       (click)="UpdateDepartment()"
+     >
+       Update
+     </button>
+  </div>
+  
+  </form>
+</div>

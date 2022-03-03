@@ -1,0 +1,195 @@
+<div
+  class="container mt-5"
+  style="
+    background: rgb(255, 255, 255);
+    box-shadow: 5px 2px 10px 2px grey !important;
+    border-radius: 20px !important;
+    padding: 12px 0;
+  "
+>
+  <h3 style="text-align: center; color: #e32207">Add Details Of Job</h3>
+  <form [formGroup]="addJobForm" class="m-3">
+    <!----------------------------------------Description Job------------------------------------------->
+    <div class="mb-3">
+      <label for="Name" class="form-label">Description</label>
+      <input
+        placeholder="Description your Job at least in 100 words"
+        type="text"
+        formControlName="Description"
+        class="form-control"
+        id="Name"
+        name="name"
+        [class.is-invalid]="Description?.touched && Description?.invalid"
+        [class.is-valid]="Description?.valid"
+      />
+      <div
+        class="alert alert-danger"
+        [hidden]="Description?.valid || Description?.untouched"
+      >
+        <small *ngIf="Description?.errors?.['required']">
+          Description Of Job is required !
+        </small>
+        <small *ngIf="Description?.errors?.['minlength']">
+          Name of Job at least 100 letters
+        </small>
+      </div>
+    </div>
+    <!-----------------------------------------Location------------------------------------------>
+    <div class="mb-3">
+      <label for="Name" class="form-label">Location</label>
+      <input
+        placeholder="Enter Location of Job"
+        type="text"
+        formControlName="Location"
+        class="form-control"
+        id="Name"
+        name="name"
+        [class.is-invalid]="Location?.touched && Location?.invalid"
+        [class.is-valid]="Location?.valid"
+      />
+      <div
+        class="alert alert-danger"
+        [hidden]="Location?.valid || Location?.untouched"
+      >
+        <small *ngIf="Location?.errors?.['required']">
+          Location Of Job is required !
+        </small>
+        <small *ngIf="Location?.errors?.['minlength']">
+          Location of Job at least 5 letters
+        </small>
+      </div>
+    </div>
+    <!------------------------------------------------Requirments--------------------------->
+    <div class="d-flex justify-content-end">
+      <button
+        class="btn btn-secondary"
+        (click)="addRequirment()"
+        style="background-color: #e32207; color: white"
+      >
+        Add Requirment
+      </button>
+    </div>
+
+    <div
+      *ngFor="let Require of Requirements.controls; let i = index"
+      formArrayName="Requirements"
+    >
+      <div>
+        <div class="input-field mb-3">
+          <label> Requirment {{ i + 1 }}</label>
+          <input
+            required
+            #ReqInput
+            [formControlName]="i"
+            class="form-control"
+            type="text"
+            placeholder="Enter your Requirement"
+        
+            [class.is-invalid]="
+              Requirements.controls[i]?.touched &&
+              Requirements.controls[i]?.invalid
+            "
+            [class.is-valid]="Requirements.controls[i]?.valid"
+          />
+          <button
+            type="button"
+            class="btn btn-danger"
+            [hidden]="i == 0"
+            (click)="removeRequirment(i)"
+          >
+            -
+          </button>
+
+          <div
+            class="alert alert-danger"
+            [hidden]="
+              Requirements.controls[i]?.valid ||
+              Requirements.controls[i]?.untouched
+            "
+          >
+            <small *ngIf="Requirements.controls[i]?.errors?.['required']">
+              Requirement Of Job is required !
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-----------------------------------------Responsabilities---------------------------->
+    <div class="d-flex justify-content-end">
+      <button
+      class="btn"
+      (click)="addRespons()"
+      style="background-color: #e32207; color: white"
+    >
+      Add Responsibility
+    </button>
+  </div>
+    
+  <div
+  *ngFor="let Respons of Responsibilities.controls; let i = index"
+  formArrayName="Responsibilities"
+>
+  <div>
+    <div class="input-field mb-3">
+      <label> Responsibility {{ i + 1 }}</label>
+      <input
+        required
+        #ReqInput
+        [formControlName]="i"
+        class="form-control"
+        type="text"
+        placeholder="Enter your Requirement"
+    
+        [class.is-invalid]="
+        Responsibilities.controls[i]?.touched &&
+        Responsibilities.controls[i]?.invalid
+        "
+        [class.is-valid]="Responsibilities.controls[i]?.valid"
+      />
+      <button
+        type="button"
+        class="btn btn-danger"
+        [hidden]="i == 0"
+        (click)="removeRespons(i)"
+      >
+        -
+      </button>
+
+      <div
+        class="alert alert-danger"
+        [hidden]="
+        Responsibilities.controls[i]?.valid ||
+        Responsibilities.controls[i]?.untouched
+        "
+      >
+        <small *ngIf="Responsibilities.controls[i]?.errors?.['required']">
+          Responsibility Of Job is required !
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-------------------------------------add ------------------------------------------->
+
+    <div class="d-flex justify-content-end mt-2">
+      <button
+        [disabled]="addJobForm.invalid"
+        type="submit"
+        class="btn btn-success"
+        (click)="SubmitJob()"
+      >
+        Add
+      </button>
+      <button
+        [disabled]="addJobForm.invalid"
+        type="submit"
+        class="btn btn-secondary ms-2"
+        (click)="UpdateJob()"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</div>

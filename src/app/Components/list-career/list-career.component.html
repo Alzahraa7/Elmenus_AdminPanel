@@ -1,0 +1,214 @@
+<div class="container">
+  
+  <div class="my-3 d-flex justify-content-between ">
+    <select
+      class="mb-3 mt-1 me-5 py-2"
+      (change)="saveValue($event)"
+      style="
+        background: #fff;
+        box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
+        border: #e32207;
+        border-radius: 8px;
+      "
+    >
+      <option *ngFor="let c of Careers; let i = index" [value]="i">
+        {{ c.Name }}
+      </option>
+    </select>
+    <button
+      type="button"
+      class="btn btn-success py-1"
+      (click)="addCareer()"
+    >
+       Department <fa-icon
+       [icon]="faCirclePlus"
+       class=""
+       
+     ></fa-icon>
+    </button>
+    
+  </div>
+  <div
+    style="
+      background: rgb(255, 255, 255);
+      box-shadow: 5px 2px 10px 2px grey !important;
+      border-radius: 20px !important;
+      margin-bottom: 12px;
+    "
+    class="p-2 d-flex justify-content-between"
+  >
+    <h4>
+      Jobs List of
+      <span style="color: #636161">{{ Careers[index2].Name }}</span>
+    </h4>
+    <h4>
+      <fa-icon
+        [icon]="faTrash"
+        class="me-4"
+        style="color: #e32207"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      ></fa-icon>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-dark" id="exampleModalLabel">
+                Delete Career
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body text-dark">
+              Are you sure delete this Department?
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+                (click)="deleteCareer(Careers[index2])"
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <fa-icon
+        [icon]="faEdit"
+        class=""
+        (click)="EditCareer(Careers[index2].id)"
+      ></fa-icon>
+    </h4>
+  </div>
+
+  <div
+    style="
+      overflow-x: auto;
+      color: white;
+      background-color: white;
+      box-shadow: 5px 2px 10px 2px grey !important;
+
+      border-radius: 20px !important;
+    "
+  >
+    <table class="table table-hover">
+      <thead style="background-color: #e32207; color: white">
+        <tr>
+          <th>Job Name</th>
+          <th>Address</th>
+          <th>View Details</th>
+          <th>Edit / Delete</th>
+          <th>Add Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of Careers[index2].Jobs; let i = index">
+          <td>{{ job.Name }}</td>
+          <td>{{ job.Address }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger ms-2"
+              style="background-color: #e32207"
+              (click)="JobDetails(job.Name)"
+            >
+              Details
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-success me-2" (click)="UpdateJob(job.Name)">
+              <fa-icon
+                [icon]="faEdit"
+                class=""
+              ></fa-icon>
+            </button>
+
+            <button class="btn btn-danger"  data-bs-toggle="modal"
+            data-bs-target="#DeleteJobModal">
+              <fa-icon
+                [icon]="faTrash"
+                class=""
+               
+              ></fa-icon>
+            </button>
+            <div
+              class="modal fade"
+              id="DeleteJobModal"
+              tabindex="-1"
+              aria-labelledby="DeleteJobModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="DeleteJobModalLabel">
+                      Delete Job
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body text-dark">
+                    Are you sure delete Collection of this Job?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      data-bs-dismiss="modal"
+                      (click)="deleteJob($event, job.Name, Careers[index2])"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <button
+              class="btn btn-success ms-3"
+              (click)="
+                AddJobDetails(Careers[index2].id, Careers[index2].Jobs[i].Name)
+              "
+            >
+              <fa-icon
+                [icon]="faCirclePlus"
+                style="text-align: center"
+              ></fa-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
