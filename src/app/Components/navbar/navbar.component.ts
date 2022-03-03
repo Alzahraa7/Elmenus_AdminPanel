@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SideBarService } from 'src/app/Service/side-bar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,20 +7,7 @@ import { SideBarService } from 'src/app/Service/side-bar.service';
 })
 export class NavbarComponent implements OnInit {
 
-                  //SIDE BAR SERVICE
-  constructor(private sidebar:SideBarService) { }
-  
-
-  //SIDE BAR FUNCTION
-  toggleActive:boolean = false;
-
-	toggleSideBar() {
-		this.toggleActive = !this.toggleActive;
-		this.sidebar.toggle();
-
-    console.log('Clicked');
-	}
-	
+  constructor() { }
 
   ngOnInit(): void {
   }

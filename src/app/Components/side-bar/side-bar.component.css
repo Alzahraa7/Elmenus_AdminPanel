@@ -3,16 +3,16 @@
 }
 
 mat-toolbar {
-background: #d42913da;
+background: #E32207;
     color: white;
 }
 
 mat-sidenav {
     margin: 16px;
-    width: 205px;
+    width: 200px;
     overflow-x: hidden;
     border-right: none;
-    background: #d42913da;
+    background: #E32207;
     color: white;
     border-radius: 10px;
     padding: 16px;
@@ -20,7 +20,7 @@ mat-sidenav {
 }
 
 .content {
-    height: calc(100vh - 98px);
+    height: fit-content;
     border-radius: 10px;
     margin: 16px;
     margin-left: 32px;
@@ -36,7 +36,7 @@ mat-sidenav {
 mat-sidenav-container {
     position: relative;
     z-index: 55;
-    height: calc(100vh - 65px);
+    height: 500px
 }
 
 .menu-button {
@@ -56,7 +56,7 @@ mat-sidenav-container {
     justify-content: flex-start;
     font-size: 1rem;
     
-    color: #d42913da;
+    color: #E32207;
     background-color: #FFFFFF;
    
 }
@@ -74,14 +74,14 @@ mat-divider {
 .btn.dropdown-toggle{
     width: fit-content;
     color:#FFFFFF ;
-    background-color: #d42913da;
+    background-color: #E32207;
     padding-right: 10px;
 }
 
 
 .dropdown-toggle{
     color:#FFFFFF ;
-    background-color: #d42913da;
+    background-color: #E32207;
 }
 
 .dropdown-menu{
@@ -89,13 +89,103 @@ mat-divider {
 }
 
 .dropdown-item{
-    color:#d42913da ;
+    color:#E32207 ;
     background-color: #FFFFFF;
 }
 
 .dropdown-item:hover{
-    color:#d42a13f5 ;
-    background-color: #dddee6f1;
+    color:#E32207 ;
+    background-color: #FFFFFF;
 }
+
+
+.accordion-item{
+    width:auto;
+    height: auto;
+    background-color: #E32207;
+    color: #FFFFFF;
+    border:none;
+
+}
+
+.accordion-button{
+    background-color: #E32207;
+    color: #FFFFFF;
+    padding-bottom: 0;
+    border:none;
+
+}
+
+.accordion-button::after{
+    display: none;
+
+}
+
+
+.accordion-button.collapsed::after{
+    display: none;
+}
+
+.accordion-body{
+    padding: 5px;
+    background-color: #FFFFFF;
+    color:#E32207;
+    border:none;
+    border-radius: 20px;
+    outline-width: 1px;
+    outline-color: #f55641;
+    text-align: center;
+ 
+}
+
+.collapsing {
+    transition: height 0.6s;
+}
+
+h3{
+    margin:0;
+    padding: 5px;
+    border-radius: 15px;
+    text-align: center;
+    border-bottom: 1px solid #e4deda ;
+    transition: all;
+    transition-duration: 0.3s;
+}
+
+h3:hover{
+    background-color: #e4deda;
+    cursor: pointer;
+    
+}
+
+/* Button Parent Element */
+.mat-drawer-inner-container.ng-tns-c37-0{
+    position: relative;
+}
+.mat-drawer-content.mat-sidenav-content.ng-star-inserted{
+    position: relative;
+}
+
+/* Button Element */
+.mat-focus-indicator.mat-icon-button.mat-button-base{
+    position: absolute;
+    z-index: 5100;
+    background-color: #E32207;
+    color: #FFFFFF;
+    top:20px;
+    width: 100px;
+    border-radius: 20px;
+    top:16px;
+    left:-50px;
+    padding-right: 10px;
+    text-align: end;
+}
+
+/* The whole side bar */
+.mat-drawer-opened{
+    box-shadow: none;
+}
+
+
 
 

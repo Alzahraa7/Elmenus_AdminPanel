@@ -1,62 +1,67 @@
-<mat-toolbar>
-  
+
+
+<mat-sidenav-container>
+
   <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
     <mat-icon *ngIf="sidenav.opened">close</mat-icon>
   </button>
-  reponsice side bar
-</mat-toolbar>
 
-<mat-sidenav-container>
+  <mat-sidenav #sidenav ="matSidenav"  class="mat-elevation-z8" mode="side" closed>
 
-  <mat-sidenav #sidenav ="matSidenav"  class="mat-elevation-z8" mode="over" opened>
-  
-    <span class="dropdown mx-2">
-
-      <button class="btn dropdown-toggle " type="button" id="triggerId" data-bs-toggle="dropdown">
-          <mat-icon>person</mat-icon>
-          <span>Restaurants</span>
-      </button>
-
-      <div class="dropdown-menu" aria-labelledby="triggerId">
-          <a class="dropdown-item" href="#" id="dropDownItem">Restaurants List</a>
-          <a class="dropdown-item" href="#"  id="dropDownItem">Add Restaurant</a>
-          <a class="dropdown-item " href="#"  id="dropDownItem">Accept Restaurant</a>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <mat-icon> fastfood</mat-icon>
+            <span>Restaurants</span>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <h3>Restaurants List</h3>
+            <h3>Add Restaurants</h3>
+            <h3>Confirm Restaurants</h3>
+          </div>
+        </div>
       </div>
-
-    </span>
-
-    <mat-divider></mat-divider>
-
-    <span class="dropdown mx-2">
-
-      <button class="btn dropdown-toggle " type="button" id="triggerId" data-bs-toggle="dropdown">
-          <mat-icon>person</mat-icon>
-          <span>Careers</span>
-      </button>
-
-      <div class="dropdown-menu" aria-labelledby="triggerId">
-          <a class="dropdown-item" href="#" id="dropDownItem">Careers List</a>
-          <a class="dropdown-item" href="#"  id="dropDownItem">Add Career</a>
+      <mat-divider></mat-divider>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <mat-icon>person</mat-icon>
+            <span>Admins</span>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <h3>Admins List</h3>
+            <h3>Add Admin</h3>
+          </div>
+        </div>
       </div>
-
-    </span>
-
-    <mat-divider></mat-divider>
-
-    <span class="dropdown mx-2">
-
-      <button class="btn dropdown-toggle " type="button" id="triggerId" data-bs-toggle="dropdown">
-          <mat-icon>person</mat-icon>
-          <span>Admin</span>
-      </button>
-
-      <div class="dropdown-menu" aria-labelledby="triggerId">
-          <a class="dropdown-item" href="#" id="dropDownItem">Admins List</a>
-          <a class="dropdown-item" href="#"  id="dropDownItem">Add Admin</a>
+      <mat-divider></mat-divider>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <mat-icon>work</mat-icon>
+            <span>Careers</span>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <h3>Careers List</h3>
+            <h3>Add Career</h3>
+          </div>
+        </div>
       </div>
+    </div>
 
-    </span>
+    
+    
   </mat-sidenav>
  
 
