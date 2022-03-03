@@ -143,7 +143,7 @@
             </mat-accordion>
             
           </div>
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-end" *ngIf="selected">
             <button class="btn rounded-circle addBut" (click)="addMeal(Menus[0].MenuID)"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
           </div>
 
