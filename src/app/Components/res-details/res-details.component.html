@@ -28,7 +28,7 @@
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header class="accordionDiv">
               <mat-panel-title >
-                {{branch.LocName}} 
+                {{branch.LocName}}
               </mat-panel-title>
             </mat-expansion-panel-header>
             <p> <b>Location: </b>{{branch.LocName}} <button class="btn mse-2"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
@@ -61,13 +61,13 @@
     <mat-tab label="Menu">
       <mat-form-field appearance="fill" class="d-flex justify-content-end m-2">
         <mat-label>Select Category</mat-label>
-        <mat-select [(value)]="selected"  disableRipple>
+        <mat-select (selectionChange)="sendSelected(selected)"  [(value)]="selected"  disableRipple>
           <div *ngFor="let Menu of Menus;let i = index">
-            <mat-option  *ngFor="let m of Menu.Name" [value]="m">{{m}}</mat-option>
+            <mat-option *ngFor="let m of Menu.Name" [value]="m">{{m}}</mat-option>
           </div>
         </mat-select>
       </mat-form-field>
-          <div class="conatiner m-3" *ngFor="let Menu of MenuCatout ">
+          <div class="conatiner m-3" *ngFor="let Menu of MenuCatSelected ">
             <mat-accordion multi='false'>
               <mat-expansion-panel (opened)="panelOpenState = true"
                                    (closed)="panelOpenState = false">
@@ -75,7 +75,7 @@
                   <mat-panel-title >
                     {{Menu.ProName}}
                   </mat-panel-title>
-                </mat-expansion-panel-header> 
+                </mat-expansion-panel-header>
                 <div class="d-flex flex-row">
                   <div class="m-3">
                   <img [src]="Menu.ProImg" width="150px" height="150px" class="rounded-3" />

@@ -21,6 +21,7 @@ export class ResDetailsComponent implements OnInit {
   Offers:IOffers[]|undefined;
   Menus!:IMenu[];
   MenuCatout:IMenuCat[]=[];
+  MenuCatSelected:IMenuCat[]=[];
   ResId:string|null = null;
   selected = '';
   panelOpenState = false;
@@ -50,7 +51,6 @@ export class ResDetailsComponent implements OnInit {
         this.menuSrvs.getMenuCat(this.Menus[0].Name[j]).subscribe((MenuCat:IMenuCat[])=>{
           for(let i = 0 ; i< MenuCat.length; i++){
             this.MenuCatout.push(MenuCat[i])
-            this.MenuCatout[i].Name = this.Menus[0].Name[j]
           }
           console.log(this.MenuCatout)
         })
@@ -58,8 +58,11 @@ export class ResDetailsComponent implements OnInit {
     });
   }
 
-  /*catSelectVal(val:any){
-    console.log(val)
-  }*/
-  
+  sendSelected(val:any){
+    console.log(val);
+    this.menuSrvs.getMenuCatSelected(val).subscribe(i=>{
+      this.MenuCatSelected = i;
+    })
+  }
+
 }

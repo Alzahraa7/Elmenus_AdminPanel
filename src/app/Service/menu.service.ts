@@ -11,6 +11,7 @@ export class MenuService {
   Menus: any;
   MenuCollecCat!: AngularFirestoreCollectionGroup<IMenuCat>;
   MenusCat:any;
+  MenusCatSelected:any;
   constructor(public firestore: AngularFirestore) {
   }
   /*
@@ -61,5 +62,17 @@ export class MenuService {
         }));
       //}
     return this.MenusCat;
+  }
+
+  getMenuCatSelected(selected:string):Observable<IMenuCat[]>{
+    this.MenuCollecCat = this.firestore.collectionGroup(`${selected}`);
+        this.MenusCatSelected = this.MenuCollecCat.snapshotChanges().pipe(map(changes => {
+          return changes.map( res => {
+            const data = res.payload.doc.data();
+            data.CatID = res.payload.doc.id;
+            return data;
+          })
+        }));
+    return this.MenusCatSelected;
   }
 }
