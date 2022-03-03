@@ -93,7 +93,7 @@ export class MenuService {
   deleteMeal(ResID:any,MenuID:string,NameCat:string,MealID:string){
     console.log(ResID,MenuID,NameCat,MealID)
     this.MealDoc = this.firestore.doc(`Restaurant/${ResID}/Menu/${MenuID}/${NameCat}/${MealID}`);
-    this.MealDoc.delete();
+    // this.MealDoc.delete();
 
   }
 }
