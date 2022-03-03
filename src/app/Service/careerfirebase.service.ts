@@ -13,16 +13,16 @@ import { IJob } from '../Model/ijob';
 })
 export class CareerfirebaseService {
   private dbPath = '/Careers';
-  CareersRef: any;
-  Careers: any;
-  Jobs: any;
+  CareersRef: ICareer[]|any;
+  Careers:ICareer[]|any;
+  Jobs: IJob[]|any;
   IdJob: string = '';
-  ID: any;
-  JobData: any;
+  ID: string="";
+  JobData: IJob[]|undefined;
   careersCollection: AngularFirestoreCollection<ICareer> | undefined;
-  jobDoc: AngularFirestoreDocument<any> | undefined;
+  jobDoc: AngularFirestoreDocument<IJob> | undefined;
   CareerDoc: AngularFirestoreDocument<ICareer> | undefined;
-  CareerDocID: any;
+  CareerDocID: string="";
   constructor(private db: AngularFirestore ) {
     // this.Careers = this.db.collection('Careers').valueChanges();
     this.Jobs = this.db
@@ -70,7 +70,7 @@ export class CareerfirebaseService {
   getJobs() {
     return this.Jobs;
   }
-  deleteJob(job: any, Career: any) {
+  deleteJob(job: IJob, Career: ICareer) {
     this.db
       .collectionGroup(`${job}`)
       .snapshotChanges()
@@ -83,7 +83,7 @@ export class CareerfirebaseService {
           });
         })
       )
-      .subscribe((jobs: any) => {
+      .subscribe((jobs: IJob[]) => {
         this.IdJob = jobs[0].id;
         console.log(Career.id);
         this.jobDoc = this.db.doc(`Careers/${Career.id}/${job}/${this.IdJob}`);
@@ -91,7 +91,7 @@ export class CareerfirebaseService {
         console.log(`Careers/${Career.id}/${job}/${this.IdJob}`);
       });
   }
-  deleteCareer(Career: any) {
+  deleteCareer(Career: ICareer) {
     this.CareerDoc = this.db.doc(`Careers/${Career.id}`);
      this.CareerDoc.delete();
   }
@@ -100,9 +100,9 @@ export class CareerfirebaseService {
     this.CareersRef.add({ ...Career });
   }
 
-  getJobID(Job: any) {
+  getJobID(NameJob: string) {
     return this.db
-      .collectionGroup(`${Job}`)
+      .collectionGroup(`${NameJob}`)
       .snapshotChanges()
       .pipe(
         map((changes: any) => {
@@ -118,12 +118,12 @@ export class CareerfirebaseService {
     return this.db.doc(`Careers/${ID}`).ref.get();
   }
 
-  UpdateCareer(Career: any, id: string) {
+  UpdateCareer(Career: ICareer, id: string) {
     console.log(Career.id);
     this.CareerDoc = this.db.doc(`Careers/${id}`);
     this.CareerDoc.update(Career);
   }
- UpdateJob(JobDtails:any,NameJob:string, idJob:string ){
+ UpdateJob(JobDtails:IJob,NameJob:string, idJob:string ){
   console.log(JobDtails);
   this.CareerDoc = this.db.doc(`${NameJob}/${idJob}`);
   this.CareerDoc.update(JobDtails);

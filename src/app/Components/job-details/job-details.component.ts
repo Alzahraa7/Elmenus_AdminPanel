@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IJob } from 'src/app/Model/ijob';
 import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
 })
 export class JobDetailsComponent implements OnInit {
   NameJob:string="";
-  Job:any
+  Job:IJob[]|undefined
   constructor(private activeRoute:ActivatedRoute,
     private careerService:CareerfirebaseService) { }
 
@@ -18,7 +19,6 @@ export class JobDetailsComponent implements OnInit {
       this.NameJob=String(paramMap.get('Name'));
       this.careerService.getJobID(this.NameJob).subscribe((job:any)=>{
         this.Job= job
-        console.log(this.Job[0])
       })
       
 

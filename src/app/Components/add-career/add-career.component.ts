@@ -18,7 +18,7 @@ import { ICareer } from 'src/app/Model/icareer';
 export class AddCareerComponent implements OnInit {
   addCareerForm: FormGroup;
   IDCareer:string="";
-  UpdateCareer:any
+  UpdateCareer:ICareer|any
   constructor(
     private FormService: FormBuilder,
     private careerService: CareerfirebaseService,

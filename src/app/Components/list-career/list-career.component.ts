@@ -10,7 +10,7 @@ import { ICareer } from 'src/app/Model/icareer';
   styleUrls: ['./list-career.component.css']
 })
 export class ListCareerComponent implements OnInit {
-   Careers:any;
+   Careers:ICareer[]|any;
    index2:number=0;
    faCoffee = faCoffee;
    faTrash=faTrashAlt;
@@ -19,7 +19,7 @@ export class ListCareerComponent implements OnInit {
   constructor(private careerService:CareerfirebaseService,private router:Router,) { }
   
   ngOnInit(): void {
-    this.careerService.getAllCareers().subscribe((career: any)=>{
+    this.careerService.getAllCareers().subscribe((career: ICareer[])=>{
       console.log(career[0].id)
       this.Careers = career
     

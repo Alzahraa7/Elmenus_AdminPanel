@@ -47,15 +47,11 @@ export class AddJobComponent implements OnInit {
   
     this.activeRoute.paramMap.subscribe((paramMap)=>{
       this.NameJob=String(paramMap.get('NameJob'));
-      this.careerService.getJobID(this.NameJob).subscribe((job:any)=>{
+      this.careerService.getJobID(this.NameJob).subscribe((job:IJob)=>{
         this.CollectionJob= job
         console.log(this.CollectionJob[0].Responsibilities)
-        this.addJobForm.setValue({
-          Description:this.CollectionJob[0].Description,
-          Location:this.CollectionJob[0].Location,
-          Requirements:[this.CollectionJob[0].Requirements],
-          Responsibilities:[this.CollectionJob[0].Responsibilities]
-        })
+        this.fillJob(this.CollectionJob[0])
+      
       })
       
 
@@ -101,6 +97,15 @@ export class AddJobComponent implements OnInit {
     this.careerService.UpdateJob(JobDetails,this.NameJob,this.CollectionJob.id);
     alert("Update Successfully!")
     this.restForm();
+
+  }
+  fillJob(JobCollection:IJob){
+    this.addJobForm.setValue({
+      Description:JobCollection.Description,
+      Location:JobCollection.Location,
+      Requirements:[JobCollection.Requirements],
+      Responsibilities:[JobCollection.Responsibilities]
+    })
 
   }
   restForm(){
