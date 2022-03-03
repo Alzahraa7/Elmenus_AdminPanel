@@ -8,12 +8,8 @@ import { RestaurantsComponent } from './Components/restaurants/restaurants.compo
 const routes: Routes = [
   {path:'ResDetails/:id',component:ResDetailsComponent},
   {path:'Restaurants',component:RestaurantsComponent},
-<<<<<<< HEAD
-  {path:'',component:RestaurantsComponent}
-
-=======
+  {path:'',component:RestaurantsComponent},
   {path:'addMeal/:idRes/:idMen/:NameColl',component:AddMealComponent}
->>>>>>> 3d987ee20444aaac6e35c4c92e90ae0a97478e5c
 ];
 
 @NgModule({
