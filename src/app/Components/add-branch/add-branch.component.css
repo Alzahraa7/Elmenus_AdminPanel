@@ -1,0 +1,18 @@
+.CardForm {
+  box-shadow: 2px 2px 10px 2px grey !important;
+  border-radius: 20px !important;
+  padding: 12px 0;
+  margin: auto;
+  width: 80%;
+}
+.CardForm h3{
+    text-align: center;
+    color: #ffffff;
+}
+.h3div{
+  background-color: var(--first-color);
+  border-radius: 20px !important;
+  box-shadow: 1px 1px 5px 1px grey !important;
+  width: 80%;
+  margin: auto;
+}

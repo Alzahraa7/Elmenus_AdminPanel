@@ -9,7 +9,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component'
 import { FooterComponent } from './Components/footer/footer.component';
 
 import { environment } from 'src/environments/environment';
-import { AngularFireModule } from "@angular/fire"; 
+import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule , AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
 import { ConfirmRestComponent } from './Components/confirm-rest/confirm-rest.component';
@@ -25,6 +25,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
+import { AddBranchComponent } from './Components/add-branch/add-branch.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,7 @@ import {MatSelectModule} from '@angular/material/select';
     TableComponent,
     CustomDialogComponent,
     ResDetailsComponent,
+    AddBranchComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatDividerModule,
     MatTabsModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     RestaurantService,

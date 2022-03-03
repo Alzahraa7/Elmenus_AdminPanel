@@ -9,8 +9,9 @@ import { IBranches } from '../Model/branches';
 export class BranchesService {
   BranchesCollec!:AngularFirestoreCollection<IBranches>;
   Branches:any;
+  IsSubmit:boolean =false;
   constructor(public firestore:AngularFirestore) {
-    
+
   }
 
   getBranches(ResId:string|null):Observable<IBranches[]>{
@@ -24,4 +25,11 @@ export class BranchesService {
     }));
     return this.Branches;
   }
+
+  addBranch(newBranch:IBranches,ResId:string|null){
+    this.BranchesCollec = this.firestore.collection(`Restaurant/${ResId}/Branches`);
+    this.BranchesCollec.add(newBranch);
+    this.IsSubmit = true;
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { IBranches } from 'src/app/Model/branches';
@@ -9,6 +9,7 @@ import { BranchesService } from 'src/app/Service/branches.service';
 import { MenuService } from 'src/app/Service/menu.service';
 import { OffersService } from 'src/app/Service/offers.service';
 import { RestaurantService } from 'src/app/Service/restaurant.service';
+import { AddBranchComponent } from '../add-branch/add-branch.component';
 
 @Component({
   selector: 'app-res-details',
@@ -23,10 +24,13 @@ export class ResDetailsComponent implements OnInit {
   MenuCatout:IMenuCat[]=[];
   MenuCatSelected:IMenuCat[]=[];
   ResId:string|null = null;
+  formBranch=false;
+  submitted:boolean=true;
   selected = '';
   panelOpenState = false;
   plusIcon= faPlus;
   editIcon = faEdit;
+  @ViewChild(AddBranchComponent) form!:AddBranchComponent;
   constructor(private actRout:ActivatedRoute, private restSrvs:RestaurantService, private brancessrvs:BranchesService, private offerSrvs:OffersService, private menuSrvs:MenuService){
    this.ResId= actRout.snapshot.paramMap.get('id');
   }
@@ -63,6 +67,19 @@ export class ResDetailsComponent implements OnInit {
     this.menuSrvs.getMenuCatSelected(val).subscribe(i=>{
       this.MenuCatSelected = i;
     })
+  }
+
+  disappearForm(val:boolean){
+    this.submitted= val;
+
+  }
+  appearForm(val:boolean){
+    this.formBranch = val;
+    this.form.clickAdd=true;
+  }
+
+  updateFiledBranch(branch:IBranches,branchField:string){
+    console.log(branch,branchField);
   }
 
 }
