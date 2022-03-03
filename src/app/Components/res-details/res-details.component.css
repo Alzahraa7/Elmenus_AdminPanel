@@ -32,3 +32,13 @@ img{
   background-color: var(--first-color) ;
   color:white;
 }
+
+.btnClass{
+  width: 100px;
+  color: #e32207;
+  background-color: wheat;
+}
+.btnClass:hover{
+  color: wheat;
+  background-color: #e32207;
+}

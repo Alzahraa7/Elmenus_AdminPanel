@@ -6,7 +6,9 @@ import { RestaurantsComponent } from './Components/restaurants/restaurants.compo
 
 const routes: Routes = [
   {path:'ResDetails/:id',component:ResDetailsComponent},
-  {path:'Restaurants',component:RestaurantsComponent}
+  {path:'Restaurants',component:RestaurantsComponent},
+  {path:'',component:RestaurantsComponent}
+
 ];
 
 @NgModule({
