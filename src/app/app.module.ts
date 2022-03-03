@@ -11,15 +11,14 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddCollectionBranchesComponent } from './Components/add-collection-branches/add-collection-branches.component';
-import { AddCollectionOffersComponent } from './Components/add-collection-offers/add-collection-offers.component';
-import { AddMealComponent } from './Components/add-meal/add-meal.component';
+import { OffersAddComponent } from './Components/offers-add/offers-add.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    AddCollectionBranchesComponent,
-    AddCollectionOffersComponent,
-    AddMealComponent
+  
+    OffersAddComponent,
+  
   ],
   imports: [
     BrowserModule,
