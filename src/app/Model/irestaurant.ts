@@ -10,6 +10,7 @@ export interface IRestaurant {
   Type:string[],
   IsActivated:boolean,
   Branches:{
+    BranchId:string,
     Address:string,
     LocName:string,
     Workinghours:string

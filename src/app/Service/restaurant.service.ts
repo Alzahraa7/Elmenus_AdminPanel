@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore'
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { IRestaurant } from '../Model/irestaurant';
 
 @Injectable({
@@ -22,6 +22,11 @@ export class RestaurantService {
   }
 
   getRestaurants():Observable<IRestaurant[]>{
+    return this.Rests;
+  }
+
+  getRestById(id:string|null):Observable<IRestaurant>{
+    this.Rests= this.firestore.doc(`Restaurant/${id}`).valueChanges();
     return this.Rests;
   }
 

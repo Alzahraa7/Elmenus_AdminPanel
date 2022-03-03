@@ -1,0 +1,34 @@
+img{
+    box-shadow: 2px 2px 4px grey ;
+}
+
+.textDiv{
+  font-size: large;
+  font-weight: bold;
+  color: var(--first-color);
+}
+.textDiv2{
+  font-size:16px;
+  font-weight: bold;
+}
+
+.tabDiv{
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px gray;
+}
+
+.accordionDiv{
+  font-weight: bolder;
+}
+.addBut{
+  background-color: rgb(255, 246, 246) ;
+  box-shadow: 2px 2px 4px var(--first-color);
+  color:var(--first-color);
+  margin:10px;
+}
+
+.addBut:hover{
+  box-shadow: 0px 0px 0px grey;
+  background-color: var(--first-color) ;
+  color:white;
+}

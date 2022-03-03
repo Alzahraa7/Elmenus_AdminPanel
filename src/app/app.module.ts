@@ -21,7 +21,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CustomDialogComponent } from './Components/custom-dialog/custom-dialog.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ResDetailsComponent } from './Components/res-details/res-details.component';
-
+import {MatDividerModule} from '@angular/material/divider';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +45,11 @@ import { ResDetailsComponent } from './Components/res-details/res-details.compon
     AngularFireStorageModule,
     FontAwesomeModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDividerModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatSelectModule
   ],
   providers: [
     RestaurantService,
