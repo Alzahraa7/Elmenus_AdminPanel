@@ -1,0 +1,38 @@
+<div class="contAll" *ngIf="!isSignIn">
+
+    <div class="logIn_Form">
+        <div class="logCont">
+            <img src="https://www.elmenus.com/public/img/elmenusLogo.svg" alt="elmenus logo">
+
+            <form class="form" [formGroup]="myForm" (ngSubmit)="onSubmit(logEmail.value, logPassword.value)">
+                <div class="user-details">
+                    <div class="input-box">
+                        <input type="email" formControlName="email" class="form-control" placeholder="Email" #logEmail style="border-radius: 7px 7px 0px 0px;">
+                        <i class="fa-solid fa-user" ></i>
+                        <span class="error" *ngIf="email?.invalid && email?.touched">Email not valid</span>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" formControlName="password" class="form-control" placeholder="Password" #logPassword style="margin-top: 1%; border-radius: 0px 0px 7px 7px;">
+                        <i class="fa-solid fa-lock"></i>
+                        <span class="error" *ngIf="password?.invalid && password?.touched">Password must contains Letters or numbers what is length more than 6</span>
+                    </div>
+                </div>
+                <div class="button mt-3">
+                <input type="submit" value="Log In" class="btn" [disabled]="myForm.invalid">
+                </div>
+                
+                <div class="ForgotPass">
+                <p><a href="#">Forgot password?</a></p>
+               
+                </div>
+            </form>
+            
+        </div>
+
+    </div>
+</div>
+
+<app-navbar *ngIf="isSignIn" (isLogOut)="handleLogOut()"></app-navbar>
+<app-profile *ngIf="isSignIn" (isLogOut)="handleLogOut()"></app-profile>
+
+

@@ -31,6 +31,13 @@ import { JobDetailsComponent } from './Components/job-details/job-details.compon
 import { AddCareerComponent } from './Components/add-career/add-career.component';
 import { AddJobComponent } from './Components/add-job/add-job.component';
 import { environment } from 'src/environments/environment';
+import { LogInComponent } from './Components/log-in/log-in.component';
+// import { AngularFireStorageModule  } from "angularfire2/storage";
+import { ProfileComponent } from './Components/profile/profile.component'
+import {AngularFireAuthModule } from '@angular/fire/auth'
+import { AuthService } from './Service/auth.service';
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 
 @NgModule({
   declarations:[
@@ -47,7 +54,9 @@ import { environment } from 'src/environments/environment';
     ListCareerComponent,
     JobDetailsComponent,
     AddCareerComponent,
-    AddJobComponent
+    AddJobComponent,
+    ProfileComponent,
+    LogInComponent,
 ],
   imports: [
     BrowserModule,
@@ -65,11 +74,13 @@ import { environment } from 'src/environments/environment';
     MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireAuthModule
   ],
   providers: [
     RestaurantService,
     AngularFirestore,
     AdminService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
