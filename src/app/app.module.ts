@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideBarComponent } from './Components/side-bar/side-bar.component'
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { FooterComponent } from './Components/footer/footer.component';
-
 import { environment } from 'src/environments/environment';
-import { AngularFireModule } from "@angular/fire"; 
+import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule , AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
 import { RestaurantsComponent } from './Components/restaurants/restaurants.component'
@@ -25,8 +23,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ConfirmRestComponent } from './Components/confirm-rest/confirm-rest.component';
-
-
+import { AdminService } from './Service/admin.service';
+import { AdminsComponent } from './Components/admin-components/admins-list/admins.component';
+import { AdminsAddComponent } from './Components/admin-components/admins-add/admins-add.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -39,8 +39,10 @@ import { ConfirmRestComponent } from './Components/confirm-rest/confirm-rest.com
     CustomDialogComponent,
     SideBarComponent,
     ConfirmRestComponent,
+    AdminsComponent,
+    AdminsAddComponent,
 
-  
+
   ],
   imports: [
     BrowserModule,
@@ -57,11 +59,14 @@ import { ConfirmRestComponent } from './Components/confirm-rest/confirm-rest.com
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
-    MatToolbarModule,  
+    MatToolbarModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     RestaurantService,
     AngularFirestore,
+    AdminService,
   ],
   bootstrap: [AppComponent]
 })

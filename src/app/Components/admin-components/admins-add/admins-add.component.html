@@ -1,0 +1,86 @@
+
+<!-----------------------------------------Add Admin From------------------------------>
+
+<div class="container mt-5 CardForm">
+  <h3>Add New meal</h3>
+  <form class="m-3" [formGroup]="addAdminForm">
+    <div class="mb-3">
+      <label for="adminName" class="form-label">Admin Name:</label>
+      <input
+        type="text"
+        formControlName="adminName"
+        class="form-control"
+        id="adminName"
+        name="adminName"
+        [class.is-invalid]="adminName?.touched && adminName?.invalid"
+        [class.is-valid]="adminName?.valid"
+      />
+      <div
+        class="alert alert-danger"
+        [hidden]="adminName?.valid || adminName?.untouched"
+      >
+        <small *ngIf="adminName?.errors?.['required']">
+          Admin Name is required !
+        </small>
+        <small *ngIf="adminName?.errors?.['minlength']">
+          Admin Name must be at least 3 Charcters !
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="adminEmail" class="form-label">Admin Email:</label>
+      <input
+        type="email"
+        formControlName="adminEmail"
+        class="form-control"
+        id="adminEmail"
+        name="adminEmail"
+        [class.is-invalid]="adminEmail?.touched && adminEmail?.invalid"
+        [class.is-valid]="adminEmail?.valid"
+      />
+      <div
+        class="alert alert-danger"
+        [hidden]="adminEmail?.valid || adminEmail?.untouched"
+      >
+        <small *ngIf="adminEmail?.errors?.['required']">
+          Admin Email is required !
+        </small>
+        <small *ngIf="adminEmail?.errors?.['email']">
+          Entered Email in't a valid email format ! !
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="adminPassword" class="form-label">Admin Password:</label>
+      <input
+        type="password"
+        formControlName="adminPassword"
+        class="form-control"
+        id="adminPassword"
+        name="adminPassword"
+        [class.is-invalid]="adminPassword?.touched && adminPassword?.invalid"
+        [class.is-valid]="adminPassword?.valid"
+      />
+      <div
+        class="alert alert-danger"
+        [hidden]="adminPassword?.valid || adminPassword?.untouched"
+      >
+        <small *ngIf="adminPassword?.errors?.['required']">
+          Password is required !
+        </small>
+        <small *ngIf="adminPassword?.errors?.['pattern']">
+          Password too weak !
+        </small>
+      </div>
+    </div>
+
+    <div class="d-flex  mt-4">
+      <button class="btn me-3" [disabled]="addAdminForm.invalid" type="submit" (click)="onSubmitAdmin()">Add Admin <b>+</b></button>
+      <button class="btn" [disabled]="addAdminForm.invalid" type="submit" (click)="onUpdate()">Update Admin</button>
+
+    </div>
+
+  </form>
+</div>    

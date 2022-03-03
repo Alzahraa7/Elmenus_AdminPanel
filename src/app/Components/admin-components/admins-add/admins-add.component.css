@@ -1,0 +1,38 @@
+.container.mt-5.CardForm{
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 5px rgba(216, 225, 228, 0.849);
+    padding: 10px;
+}
+
+h3{
+    color:#FFFFFF;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: #DA4835;
+    padding: 5px;
+    text-align: center;
+    box-shadow: 0px 0px 5px 0.5px  #DA4835;
+}
+
+.btn{
+    background-color:#DA4835 ;
+    color:#FFFFFF;
+    box-shadow: 0px 0px 5px 0.5px  #DA4835;
+}
+
+.btn:hover{
+    background-color:#DA4835 ;
+    color:#FFFFFF;
+    box-shadow: 0px 0px 5px 2px  #DA4835;
+}
+
+.form-label{
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+
+}
+
+.form-control{
+    box-shadow: 0px 0px 5px 0.5px  #DA4835;
+}

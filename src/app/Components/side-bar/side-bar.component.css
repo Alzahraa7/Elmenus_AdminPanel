@@ -3,7 +3,7 @@
 }
 
 mat-toolbar {
-background: #E32207;
+background: #C3311E;
     color: white;
 }
 
@@ -12,7 +12,7 @@ mat-sidenav {
     width: 200px;
     overflow-x: hidden;
     border-right: none;
-    background: #E32207;
+    background: #C3311E;
     color: white;
     border-radius: 10px;
     padding: 16px;
@@ -55,10 +55,10 @@ mat-sidenav-container {
     align-items: center;
     justify-content: flex-start;
     font-size: 1rem;
-    
-    color: #E32207;
+
+    color: #C3311E;
     background-color: #FFFFFF;
-   
+
 }
 
 mat-divider {
@@ -74,14 +74,14 @@ mat-divider {
 .btn.dropdown-toggle{
     width: fit-content;
     color:#FFFFFF ;
-    background-color: #E32207;
+    background-color: #C3311E;
     padding-right: 10px;
 }
 
 
 .dropdown-toggle{
     color:#FFFFFF ;
-    background-color: #E32207;
+    background-color: #C3311E;
 }
 
 .dropdown-menu{
@@ -89,13 +89,13 @@ mat-divider {
 }
 
 .dropdown-item{
-    color:#E32207 ;
+    color:#C3311E ;
     background-color: #FFFFFF;
 }
 
 .dropdown-item:hover{
-    color:#E32207 ;
-    background-color: #FFFFFF;
+    color:#C3311E ;
+    background-color: #dddee6f1;
 }
 
 
@@ -135,7 +135,7 @@ mat-divider {
     outline-width: 1px;
     outline-color: #f55641;
     text-align: center;
- 
+
 }
 
 .collapsing {
@@ -155,7 +155,7 @@ h3{
 h3:hover{
     background-color: #e4deda;
     cursor: pointer;
-    
+
 }
 
 /* Button Parent Element */
