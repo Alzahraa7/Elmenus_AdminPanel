@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { IAdmin } from '../Model/admin';
 import { map, Observable, of } from 'rxjs';
 import { IOffers } from '../Model/offers';
+import { IRestaurant } from '../Model/restaurant';
 
 
 
@@ -14,49 +15,81 @@ export class OffersService {
 
   offersCollection!:AngularFirestoreCollection<IOffers>;
   offers : any;
+  
+  offersArr:IOffers[]|any;
 
   offerDocument!:AngularFirestoreDocument<IOffers>;
   offer:any;
 
-  constructor(public firestore:AngularFirestore) {
-    this.offersCollection = firestore.collection('Offers');
+  RestaurantCollec!:AngularFirestoreCollection<IRestaurant>;
+  Rests:any;
 
-    this.offers = this.offersCollection.snapshotChanges().pipe(map(changes=>{
-      return changes.map(adm=>{
-        const data = adm.payload.doc.data() as IOffers;
-        data.OffersPushID = adm.payload.doc.id;
-        return data
+  rest:any;
+
+  constructor(public firestore:AngularFirestore) {
+    
+
+    this.RestaurantCollec = firestore.collection('Restaurant')
+    this.Rests = this.RestaurantCollec.snapshotChanges().pipe(map(changes=>{
+      return changes.map(res=>{
+        const data = res.payload.doc.data() as IRestaurant;
+        data.ResPushID = res.payload.doc.id;
+        return data;
       })
-    }));
+    }))
+   
+
+    
+
+    this.offersArr =this.firestore
+    .collectionGroup('Offers')
+    .snapshotChanges()
+    .pipe(
+      map((changes:any)=>{
+        return changes.map((o:any)=>{
+          const data = o.payload.doc.data() as any;
+          data.id = o.payload.doc.id;
+          return data;
+        })
+      })
+    );
+
+    this.offersArr.subscribe((res:any)=>console.log(res))
+  
 
 
    }
 
-   getAdmins() {
+   getRestaurants():Observable<IRestaurant[]>{
+    return this.Rests;
+  }
+
+
+  getRestaurant(ResPushID:string|null):Observable<IRestaurant>{
+    this.rest = this.firestore.doc(`Restaurants/${ResPushID}`).valueChanges();
+    return this.rest
+  }
+
+   getOffers() {
     return this.offers;
   }
 
-  getAdmin(adminPushID:string|null):Observable<IAdmin>{
-    this.offer = this.firestore.doc(`Admins/${adminPushID}`).valueChanges();
+  getOffer(adminPushID:string|null):Observable<IOffers>{
+    this.offer = this.firestore.doc(`Offers/${adminPushID}`).valueChanges();
     return this.offer
   }
 
-  addAdmin(admin:IAdmin) {
-    // this.offersCollection.add(admin)
+  addOffer(offer:IOffers,paramResId:string) {
+    this.getRestaurant(paramResId).subscribe((res)=>{
+      
+    })
+    this.offersCollection.add(offer)
   }
 
-  updateAdmin(adminName:string,adminEmail:string,adminPassword:string,adminPushID:string){
+  addRestaurant(restaurant: IRestaurant){
   
-    this.offerDocument = this.firestore.doc(`Admins/${adminPushID}`)
-    
-    // this.offerDocument.update({adminName:adminName})
-    // this.offerDocument.update({adminEmail:adminEmail})
-    // this.offerDocument.update({adminPassword:adminPassword})
-  }
-
-  deleteAdmin(adminPushID:string) {
-    this.offerDocument =this.firestore.doc(`Admins/${adminPushID}`)
-    this.offerDocument.delete();
+    this.Rests = this.firestore.collection('Restaurant');
+    this.Rests.add({ ...restaurant });
   }
 }
 

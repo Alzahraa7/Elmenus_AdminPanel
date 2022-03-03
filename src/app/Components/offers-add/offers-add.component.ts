@@ -12,6 +12,7 @@ import { OffersService } from 'src/app/Service/offers.service';
 export class OffersAddComponent implements OnInit {
 
   offers!: IOffers[];
+  paramResId:any;
 
   addOfferForm: FormGroup;
   constructor(
@@ -24,11 +25,20 @@ export class OffersAddComponent implements OnInit {
         Expires: ['', [Validators.required]],
         PromoCode:['',[Validators.required,Validators.minLength(5)]]
       });
+
+      activeRoute.paramMap.subscribe((paramMap) => {
+
+        this.paramResId = paramMap.get('name');
+        
+      })
+
+
+      
     }
 
   ngOnInit() {
 
-   this.offersService.getAdmins().subscribe((res:any) =>{
+   this.offersService.getOffers().subscribe((res:any) =>{
     this.offers = res;
     console.log(this.offers)
    })
@@ -45,8 +55,11 @@ export class OffersAddComponent implements OnInit {
   }
 
   SubmitOffer(){
-    let Offer: IOffers = this.addOfferForm.value as IOffers;
-    console.log(Offer)
+    let newOffer: IOffers = this.addOfferForm.value as IOffers;
+    console.log(newOffer)
+
+    this.offersService.addOffer(newOffer,this.paramResId)
+
   }
 
 }
