@@ -34,8 +34,13 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
             <p> <b>Location: </b>{{branch.LocName}} <button class="btn mse-2" (click)="updateFiledBranch(branch,'LocName')"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+            <div *ngIf="editState">
+              
+            </div>
             <p> <b>Address: </b>{{branch.Address}} <button class="btn mse-2" (click)="updateFiledBranch(branch,'Address')"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+
             <p> <b>Working Hours: </b>{{branch.Workinghours}}  <button class="btn mse-2" (click)="updateFiledBranch(branch,'Workinghours')"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+
           </mat-expansion-panel>
         </mat-accordion>
       </div>

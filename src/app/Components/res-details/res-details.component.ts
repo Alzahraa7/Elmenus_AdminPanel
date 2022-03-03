@@ -30,6 +30,7 @@ export class ResDetailsComponent implements OnInit {
   panelOpenState = false;
   plusIcon= faPlus;
   editIcon = faEdit;
+  editState:boolean = false;
   @ViewChild(AddBranchComponent) form!:AddBranchComponent;
   constructor(private actRout:ActivatedRoute, private restSrvs:RestaurantService, private brancessrvs:BranchesService, private offerSrvs:OffersService, private menuSrvs:MenuService){
    this.ResId= actRout.snapshot.paramMap.get('id');
@@ -79,6 +80,7 @@ export class ResDetailsComponent implements OnInit {
   }
 
   updateFiledBranch(branch:IBranches,branchField:string){
+    this.editState =true
     console.log(branch,branchField);
   }
 

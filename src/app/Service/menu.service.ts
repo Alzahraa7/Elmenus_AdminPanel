@@ -55,7 +55,7 @@ export class MenuService {
           let arr: IMenuCat[] = [];
           return changes.map( res => {
             const data = res.payload.doc.data();
-            //console.log(data)
+            console.log(data)
             data.CatID = res.payload.doc.id;
             return data;
           })
