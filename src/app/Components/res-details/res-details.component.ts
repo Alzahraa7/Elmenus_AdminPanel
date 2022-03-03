@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { faEdit, faPlus,faTrash } from '@fortawesome/free-solid-svg-icons';
 import { IBranches } from 'src/app/Model/branches';
 import { IRestaurant } from 'src/app/Model/irestaurant';
 import { IMenu, IMenuCat } from 'src/app/Model/menu';
@@ -10,6 +12,7 @@ import { MenuService } from 'src/app/Service/menu.service';
 import { OffersService } from 'src/app/Service/offers.service';
 import { RestaurantService } from 'src/app/Service/restaurant.service';
 import { AddBranchComponent } from '../add-branch/add-branch.component';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 
 @Component({
   selector: 'app-res-details',
@@ -30,11 +33,13 @@ export class ResDetailsComponent implements OnInit {
   panelOpenState = false;
   plusIcon= faPlus;
   editIcon = faEdit;
+  faTrash = faTrash;
   editState:boolean = false;
   @ViewChild(AddBranchComponent) form!:AddBranchComponent;
-  constructor(private actRout:ActivatedRoute, private restSrvs:RestaurantService, private brancessrvs:BranchesService, private offerSrvs:OffersService, private menuSrvs:MenuService){
-   this.ResId= actRout.snapshot.paramMap.get('id');
-  }
+  private _snackBar: any;
+  constructor(private router:Router,public dialog: MatDialog, _snackBar: MatSnackBar,private actRout:ActivatedRoute, private restSrvs:RestaurantService, private brancessrvs:BranchesService, private offerSrvs:OffersService, private menuSrvs:MenuService){
+  this.ResId= actRout.snapshot.paramMap.get('id');
+}
 
   ngOnInit(): void {
     this.actRout.paramMap.subscribe(param=>{
@@ -62,6 +67,14 @@ export class ResDetailsComponent implements OnInit {
       }
     });
   }
+  openSnackBar(message: string) {
+    this._snackBar.open(message,"",{
+      horizontalPosition:"end",
+      verticalPosition:"top",
+      panelClass:['bg-success','text-white'],
+      duration:2000
+    });
+  }
 
   sendSelected(val:any){
     console.log(val);
@@ -84,4 +97,21 @@ export class ResDetailsComponent implements OnInit {
     console.log(branch,branchField);
   }
 
+  addMeal(id:string){
+    console.log(this.ResId,id)
+    console.log(this.selected)
+    this.router.navigate(['\addMeal',id,this.ResId,this.selected])
+  }
+
+  deleteMeal(id:string){
+    let dialogRef = this.dialog.open(CustomDialogComponent,{
+      data:{mess:`Are you sure you want to delete this Meal ?`}
+    });
+    dialogRef.afterClosed().subscribe(i=>{
+      if(i.data){
+        this.menuSrvs.deleteMeal(this.ResId,this.Menus[0].MenuID,this.selected,id);
+        this.openSnackBar(`You have deleted this meal`)
+      }
+    })
+  }
 }

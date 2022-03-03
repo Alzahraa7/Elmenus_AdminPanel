@@ -27,6 +27,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import { AddBranchComponent } from './Components/add-branch/add-branch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddMealComponent } from './Components/add-meal/add-meal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CustomDialogComponent,
     ResDetailsComponent,
     AddBranchComponent,
+    AddMealComponent,
   ],
   imports: [
     BrowserModule,
