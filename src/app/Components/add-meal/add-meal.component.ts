@@ -31,8 +31,8 @@ export class AddMealComponent implements OnInit {
   ngOnInit(): void {
     
     this.activeRoute.paramMap.subscribe((paramMap) => {
-      this.IDRest = String(paramMap.get('idRes'));
-      this.IDMenu = String(paramMap.get('idMen'));
+      this.IDMenu = String(paramMap.get('idRes'));
+      this.IDRest = String(paramMap.get('idMen'));
       this.NameMenuColl = String(paramMap.get('NameColl'))
       console.log(this.IDRest,this.IDMenu,this.NameMenuColl);
     });
