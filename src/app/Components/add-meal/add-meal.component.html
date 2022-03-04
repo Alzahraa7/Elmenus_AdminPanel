@@ -55,13 +55,14 @@
     <div class="mb-3">
       <label for="ProImg" class="form-label">Product Image</label>
       <input
-        type="string"
+        type="file"
         formControlName="ProImg"
         class="form-control"
         id="ProImg"
         name="ProImg"
         [class.is-invalid]="ProImg?.touched && ProImg?.invalid"
         [class.is-valid]="ProImg?.valid"
+        (change)="ShowSrcImage($event)"
       />
       <div
         class="alert alert-danger"
