@@ -54,6 +54,12 @@ export class ResDetailsComponent implements OnInit {
   @ViewChild('TypeInput') typeInput !: ElementRef;
   @ViewChild('NameMenu') NameMenu !:ElementRef;
   @ViewChild('NameMenuColl') NameMenuCollec !:ElementRef;
+  @ViewChild('MenuSize') MenuSize !:ElementRef
+  //update Offer date
+  flagPromoCode = false;
+  flagOfferDesc = false;
+  flagExpireDate = false;
+
   faTrash = faTrash;
   editStateLoc:boolean = false;
   editStateAdd:boolean = false;
@@ -61,6 +67,12 @@ export class ResDetailsComponent implements OnInit {
 
   faTrashAlt=faTrashAlt;
   editState:boolean = false;
+  flagMenuDes:boolean=false
+  flagMenuExtraName:boolean=false;
+  flagMenuExtraPrice:boolean=false;
+  flagMenuSizeName:boolean=false;
+  flagMenuSizePrice:boolean=false;
+  addExtra:object={}
   @ViewChild(AddBranchComponent) form!:AddBranchComponent;
   constructor(
     private _snackBar: MatSnackBar,
@@ -158,7 +170,6 @@ export class ResDetailsComponent implements OnInit {
   }
   // shrouk --> UPdate Basic Res
   updateBasicRes(ResNumber: any) {
-    // this.NameFlag = this.NameFlag ? false : true;
     console.log(ResNumber)
     switch (ResNumber) {
       case 1:
@@ -182,34 +193,22 @@ export class ResDetailsComponent implements OnInit {
   }
 
   saveUpdateMood(updateMood: string, index: number) {
-    // console.log(this.Restaurant?.Mood)
     this.changedMood[index] = updateMood;
-    // this.changedMood = this.Restaurant?.Mood ? this.Restaurant?.Mood : [];
-    // this.changedMood = [...this.changedMood, test];
-    // console.log(this.changedMood);
   }
   saveUpdateType(updateType: string, index: number) {
     this.changedType[index] = updateType;
   }
 
   updateRes() {
-    // let test = []
-    // console.log(this.moodInput.nativeElement.value)
-    console.log(this.changedMood)
-    // console.log(this.changedType)
-    // test.push(this.moodInput.nativeElement.value)
-    // console.log(this.Restaurant?.Mood)
     let updateRes: IRestaurant = this.Restaurant as IRestaurant;
 
     updateRes.ResPushID = this.ResId ? this.ResId : "";
     updateRes.ResName = this.resNameInput.nativeElement.value;
     updateRes.OwnerName = this.ownerNameInput.nativeElement.value;
     updateRes.Phone = this.phoneInput.nativeElement.value;
-    // updateRes.Mood = this.moodInput.nativeElement.value;
     updateRes.Mood = this.changedMood;
     updateRes.Type = this.changedType;
     this.restSrvs.updateRes(updateRes);
-    // alert("updated")
   }
 
 
@@ -231,7 +230,6 @@ export class ResDetailsComponent implements OnInit {
     }
     else{
       this.changedMood.push('')
-      // this.updateRes();
     }
 
   }
@@ -252,11 +250,45 @@ export class ResDetailsComponent implements OnInit {
       this.errorTypeShow = true;
     }else{
       this.changedType.push('')
-      // this.updateRes();
     }
 
   }
 
+  //shrouk -> update offer
+  updateStateOffer(offerNumber: number){
+    switch (offerNumber){
+      case 1:
+        this.flagPromoCode = this.flagPromoCode ? false : true;
+        break;
+      case 2:
+        this.flagOfferDesc = this.flagOfferDesc ? false : true;
+        break;
+      case 3:
+        this.flagExpireDate = this.flagExpireDate ? false : true;
+        break;
+      default:
+        break;
+    }
+  } 
+
+  updateOffers(offer: IOffers){
+    this.offerSrvs.updateOffer(this.ResId, offer);
+    this.openSnackBar(`You have updated branch to ${offer.PromoCode}`);
+  }
+
+  deleteOffer(offer: IOffers){
+    let dialogRef = this.dialog.open(CustomDialogComponent,{
+      data:{mess:`Are you sure you want to delete ${offer.PromoCode} Offer ?`}
+    });
+    dialogRef.afterClosed().subscribe(i=>{
+      if(i.data){
+        this.offerSrvs.deleteOffer(this.ResId,offer);
+        this.openSnackBar(`You have deleted ${offer.PromoCode} Offer`);
+      }
+    })
+  }
+
+// menu
   addMeal(id:string){
     console.log(this.ResId,id)
     console.log(this.selected)
@@ -327,6 +359,45 @@ export class ResDetailsComponent implements OnInit {
     })
 
   }
+  updateStateMenu(State: number){
+    switch (State){
+      case 1:
+        this.flagMenuDes = this.flagMenuDes ? false : true;
+        break;
+      case 2:
+       this.flagMenuExtraName = this.flagMenuExtraName ? false:true
+       this.flagMenuExtraPrice = this.flagMenuExtraPrice ? false:true
+        break;
+      case 3:
+       this.flagMenuSizeName = this.flagMenuSizeName ? false:true
+       this.flagMenuSizePrice = this.  flagMenuSizePrice ? false:true
+        break;
+      default:
+        break;
+    }
+  } 
 
+  updateMenu(Menu:IMenuCat){
+    this.menuSrvs.updateMeal(Menu,this.ResId,this.selected,this.Menus[0].MenuID)
+    this.openSnackBar(`You have Updated this Category Collection`)
+
+  }
+  DeleteSize(Menu:IMenuCat,index:number){
+      console.log(Menu,index)
+      Menu.Size.splice(index,1)
+      this.updateMenu(Menu)
+  }
+  DeleteExtra(Menu:IMenuCat,index:number){
+    Menu.Extras.splice(index,1)
+    this.updateMenu(Menu)
+  }
+  addNewExtra(Menu:IMenuCat){
+    Menu.Extras.push({Name:'',Price:0})
+    
+  }
+  addNewSize(Menu:IMenuCat){
+    Menu.Extras.push({Name:'',Price:0})
+  }
+  
 
 }

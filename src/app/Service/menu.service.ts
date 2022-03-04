@@ -154,4 +154,8 @@ export class MenuService {
     });
 
   }
+  updateMeal(Menu:IMenuCat,ResID:any,CollectionName:string,CollectionMenuID:string){
+    let ref = this.firestore.doc(`Restaurant/${ResID}/Menu/${CollectionMenuID}/${CollectionName}/${Menu.CatID}`);
+      ref.update(Menu);
+  }
 }

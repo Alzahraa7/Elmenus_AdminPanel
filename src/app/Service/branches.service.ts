@@ -31,7 +31,7 @@ export class BranchesService {
     this.BranchesCollec.add(newBranch);
     this.IsSubmit = true;
   }
-
+ 
   updateBranch(branch:IBranches,ResId:string|null){
     const ref = this.firestore.doc(`Restaurant/${ResId}/Branches/${branch.BranchId}`);
     ref.update(branch)
