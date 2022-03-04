@@ -9,8 +9,8 @@ export const environment = {
     authDomain: "elmenusclone.firebaseapp.com",
     projectId: "elmenusclone",
     storageBucket: "elmenusclone.appspot.com",
-    messagingSenderId: "57271621220",
-    appId: "1:57271621220:web:ff707ce3b18b1b76db7171"
+    appId: "1:57271621220:web:ff707ce3b18b1b76db7171",
+    measurementId: "G-GT1JVN96RD"
   }
 };
 

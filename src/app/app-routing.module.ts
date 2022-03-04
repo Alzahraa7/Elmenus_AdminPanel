@@ -6,19 +6,25 @@ import { AddJobComponent } from './Components/add-job/add-job.component';
 import { JobDetailsComponent } from './Components/job-details/job-details.component';
 import { ListCareerComponent } from './Components/list-career/list-career.component';
 import { RestaurantsComponent } from './Components/restaurants/restaurants.component';
+import { AddMealComponent } from './Components/add-meal/add-meal.component';
+import { ConfirmRestComponent } from './Components/confirm-rest/confirm-rest.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { ResDetailsComponent } from './Components/res-details/res-details.component';
 
 const routes: Routes = [
 
   {path:'Careers', component:ListCareerComponent},
   {path:'addAdmin/:name',component:AdminsAddComponent},
   {path:'JobDetails/:Name',component:JobDetailsComponent},
-  {path:'Restaurants',component:RestaurantsComponent},
   {path:'addCareer',component:AddCareerComponent},
   {path:'addCareer/:id',component:AddCareerComponent},
   {path:'addJob/:NameJob',component:AddJobComponent},
-  {path:'addJob/:id/:Name',component:AddJobComponent}
-];
-
+  {path:'addJob/:id/:Name',component:AddJobComponent},
+  {path:'ResDetails/:id',component:ResDetailsComponent},
+  {path:'Restaurants',component:RestaurantsComponent},
+  {path:'addMeal/:idRes/:idMen/:NameColl',component:AddMealComponent},
+  {path:'',component:DashboardComponent},
+]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

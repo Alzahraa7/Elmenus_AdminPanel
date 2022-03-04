@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideBarComponent } from './Components/side-bar/side-bar.component'
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { FooterComponent } from './Components/footer/footer.component';
+import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
+import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule , AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
@@ -30,15 +32,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { JobDetailsComponent } from './Components/job-details/job-details.component';
 import { AddCareerComponent } from './Components/add-career/add-career.component';
 import { AddJobComponent } from './Components/add-job/add-job.component';
-import { environment } from 'src/environments/environment';
 import { LogInComponent } from './Components/log-in/log-in.component';
 // import { AngularFireStorageModule  } from "angularfire2/storage";
 import { ProfileComponent } from './Components/profile/profile.component'
 import {AngularFireAuthModule } from '@angular/fire/auth'
 import { AuthService } from './Service/auth.service';
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
-
-
+import { ResDetailsComponent } from './Components/res-details/res-details.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSelectModule} from '@angular/material/select';
+import { AddBranchComponent } from './Components/add-branch/add-branch.component';
+import { AddMealComponent } from './Components/add-meal/add-meal.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 @NgModule({
   declarations:[
     AppComponent,
@@ -57,6 +63,10 @@ import { AuthService } from './Service/auth.service';
     AddJobComponent,
     ProfileComponent,
     LogInComponent,
+    ResDetailsComponent,
+    AddBranchComponent,
+    AddMealComponent,
+    DashboardComponent,
 ],
   imports: [
     BrowserModule,
@@ -74,13 +84,22 @@ import { AuthService } from './Service/auth.service';
     MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatSnackBarModule,
+    MatDividerModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireAnalyticsModule
   ],
   providers: [
     RestaurantService,
     AngularFirestore,
     AdminService,
-    AuthService
+    AuthService,
+    ScreenTrackingService
   ],
   bootstrap: [AppComponent]
 })
