@@ -8,10 +8,11 @@ import { AuthService } from 'src/app/Service/auth.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  admins!: IAdmin[];
+  adminToEdit!: IAdmin;
 
   editForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z1-9]{3,}@[A-za-z]{3,}\.(com|net|edu|org)')]),
     password: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z1-9]{5,}')]),
 
@@ -20,11 +21,11 @@ export class ProfileComponent implements OnInit {
   get email(){return this.editForm.get('email')}
   get password(){return this.editForm.get('password')}
 
-
+  
 
 
   userEmail: any;
-  admins!: IAdmin[];
+  
   constructor(private firebaseService: AuthService) { 
     this.firebaseService.getAdmins().subscribe(admins =>{
       console.log(admins);
@@ -34,32 +35,34 @@ export class ProfileComponent implements OnInit {
     // console.log('from profile  '+ this.userEmail);
 
       for(let admin of admins){
-        console.log("this is admin data "+admin.adminName);
-        console.log("this is admin data "+admin.adminEmail);
-        console.log("this is admin data "+admin.adminPassword);
-
-
+        // console.log("this is admin data "+admin.adminName);
+        // console.log("this is admin data "+admin.adminEmail);
+        // console.log("this is admin data "+admin.adminPassword);
         if(admin.adminEmail === this.userEmail){
           this.editForm.setValue({
             name : admin.adminName,
             email: admin.adminEmail,
             password: admin.adminPassword,
           })
-        }
-        
-      }
-      
+        }       
+      }     
     })
-
-    
   }
 
+  disableForm: boolean = true;
+
+  editAdminBtn(event: any, admin: IAdmin){
+    this.disableForm = false;
+    this.adminToEdit = admin;
+  }
+
+  updateAdmin(admin: IAdmin){
+    this.firebaseService.updateAdmin(admin);
+    this.disableForm = true;
+
+  }
   
 
-  ngOnInit(): void {
- 
-    
-
-  }
+  ngOnInit(): void {}
 
 }

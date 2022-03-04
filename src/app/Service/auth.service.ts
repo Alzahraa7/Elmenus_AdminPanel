@@ -8,7 +8,7 @@ import {IAdmin} from '../Model/IAdmin'
   providedIn: 'root'
 })
 export class AuthService {
-
+  adminDocument!: AngularFirestoreDocument<IAdmin>;
   
   //get admins from firestore
   adminCollection!: AngularFirestoreCollection<IAdmin>;
@@ -19,7 +19,7 @@ export class AuthService {
     this.admins = this.angFirStr.collection('Admins').snapshotChanges().pipe(map((changes: any)=>{
       return changes.map((a: any)=>{
         const data = a.payload.doc.data() as any;
-        data.Name = a.payload.doc.Name;
+        data.id = a.payload.doc.id;
         return data;
       });
     }))
@@ -46,6 +46,11 @@ export class AuthService {
   logOut(){
     this.firebaseAuth.signOut()
     localStorage.removeItem('user')
+  }
+
+  updateAdmin(admin: IAdmin){
+    this.adminDocument = this.angFirStr.doc(`admins/${admin.adminPushID}`);
+    this.adminDocument.update(admin);
   }
 
   
