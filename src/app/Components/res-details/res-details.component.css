@@ -32,7 +32,12 @@ img{
   background-color: var(--first-color) ;
   color:white;
 }
-
+.addBut .trash{
+  color:red
+}
+.addBut .trash:hover{
+     color: white;
+}
 .btnClass{
   width: 100px;
   color: #e32207;

@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faEdit, faPlus,faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faPlus,faTrash,faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { IBranches } from 'src/app/Model/branches';
 import { IRestaurant } from 'src/app/Model/irestaurant';
 import { IMenu, IMenuCat } from 'src/app/Model/menu';
@@ -13,6 +13,7 @@ import { OffersService } from 'src/app/Service/offers.service';
 import { RestaurantService } from 'src/app/Service/restaurant.service';
 import { AddBranchComponent } from '../add-branch/add-branch.component';
 import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-res-details',
@@ -33,7 +34,9 @@ export class ResDetailsComponent implements OnInit {
   panelOpenState = false;
   plusIcon = faPlus;
   editIcon = faEdit;
-
+  enterName:boolean=false;
+  enterMenuColl:boolean=false;
+  Menu:IMenu={ Name:[],MenuID:''}as IMenu
   //Update Data
   NameFlag = false;
   ownerFlg = false;
@@ -49,11 +52,15 @@ export class ResDetailsComponent implements OnInit {
   @ViewChild('PhoneInput') phoneInput !: ElementRef;
   @ViewChild('MoodInput') moodInput !: ElementRef;
   @ViewChild('TypeInput') typeInput !: ElementRef;
+  @ViewChild('NameMenu') NameMenu !:ElementRef;
+  @ViewChild('NameMenuColl') NameMenuCollec !:ElementRef;
   faTrash = faTrash;
   editStateLoc:boolean = false;
   editStateAdd:boolean = false;
   editStateWH:boolean = false;
 
+  faTrashAlt=faTrashAlt;
+  editState:boolean = false;
   @ViewChild(AddBranchComponent) form!:AddBranchComponent;
   constructor(
     private _snackBar: MatSnackBar,
@@ -63,7 +70,8 @@ export class ResDetailsComponent implements OnInit {
     private offerSrvs: OffersService,
     private menuSrvs: MenuService,
     public dialog: MatDialog,
-    private router:Router
+    private router:Router,
+    private location:Location
     ) {
 
     this.ResId = actRout.snapshot.paramMap.get('id');
@@ -105,7 +113,7 @@ export class ResDetailsComponent implements OnInit {
       horizontalPosition:"end",
       verticalPosition:"top",
       panelClass:['bg-success','text-white'],
-      duration:2000
+      duration:3000
     });
   }
 
@@ -261,6 +269,59 @@ export class ResDetailsComponent implements OnInit {
         this.openSnackBar(`You have deleted this meal`)
       }
     })
+  }
+  EnterName(){
+      this.enterName=!this.enterName
+      
+  }
+  SaveMenu(){
+    console.log(this.NameMenu.nativeElement.value)
+    let NameMenuValue=this.NameMenu.nativeElement.value;
+    if(NameMenuValue.length !=0 ){
+        this.Menus[0].Name.push(NameMenuValue)
+        this.NameMenu.nativeElement.value = ''
+        console.log(this.Menus[0].Name)
+        console.log(this.Menus[0])
+        this.menuSrvs.addNameMenu(this.Menus[0],this.ResId)
+        this.openSnackBar("Add Menu Category Collection Successfully!")
+    }
+    else{
+      this.openSnackBar("you must be fill input first !")
+    }
+    
+  }
+  addMenuCollection(){
+    this.enterMenuColl = !this.enterMenuColl
+   
+  }
+  SaveMenuCollection(){
+
+    let NameMenuCollecValue = this.NameMenuCollec.nativeElement.value;
+    if(NameMenuCollecValue.length !=0){
+      this.Menu.Name.push(NameMenuCollecValue)
+      this.NameMenuCollec.nativeElement.value = ''
+      this.menuSrvs.addMenuCollec(this.ResId,this.Menu)
+      this.openSnackBar("Add Collection Menu Successfully!")
+    }
+    else{
+      this.openSnackBar("you must be fill input first !")
+    }
+    
+
+  }
+  DeleteMenuCollection(){
+    let dialogRef = this.dialog.open(CustomDialogComponent,{
+      data:{mess:`Are you sure you want to delete this Category Collection ?`}
+    });
+    dialogRef.afterClosed().subscribe(i=>{
+      if(i.data){
+        let  indexDelete = this.Menus[0].Name.indexOf(this.selected)
+        this.Menus[0].Name.splice(indexDelete,1)
+        this.menuSrvs.deleteMenuCollec(this.ResId,this.Menus[0],this.selected)
+        this.openSnackBar(`You have deleted this Category Collection`)
+      }
+    })
+   
   }
 
 
