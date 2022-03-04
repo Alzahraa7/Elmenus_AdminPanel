@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMenuCat } from 'src/app/Model/menu';
 import { MenuService } from 'src/app/Service/menu.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-meal',
@@ -15,10 +17,13 @@ export class AddMealComponent implements OnInit {
   IDRest:string="";
   IDMenu:string="";
   NameMenuColl:string="";
+
   constructor(private FormService: FormBuilder,
     private router: Router,
     private activeRoute: ActivatedRoute,
-    private MenuService:MenuService) {
+    private MenuService:MenuService,
+    private _snackBar: MatSnackBar,
+    private location:Location) {
       this.addMealForm = FormService.group({
         Description:['', [Validators.required, Validators.minLength(10)]],
         ProName: ['', [Validators.required,Validators.minLength(5)]],
@@ -27,6 +32,14 @@ export class AddMealComponent implements OnInit {
         Extras:FormService.array([],[Validators.required]),
       });
      }
+     openSnaker(message:string){
+      this._snackBar.open(message,"",{
+        horizontalPosition:"center",
+        verticalPosition:"top",
+        panelClass:['bg-success','text-white'],
+        duration:2000
+      });
+    }
 
   ngOnInit(): void {
     
@@ -80,11 +93,14 @@ export class AddMealComponent implements OnInit {
   SubmitMeal(){
     let Meal: IMenuCat = this.addMealForm.value as IMenuCat;
     this.MenuService.addMeal(Meal,this.IDRest,this.IDMenu,this.NameMenuColl);
-    alert("Add success");
+    this.openSnaker("Add Meal Successfully!");
     this.restForm();
+    this.location.back()
+
   }
   restForm(){
     this.addMealForm.reset()
   }
+  
 
 }

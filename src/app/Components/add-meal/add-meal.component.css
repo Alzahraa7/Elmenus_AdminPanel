@@ -6,5 +6,24 @@
   }
   .CardForm h3{
       text-align: center; 
-      color: #e32207;
+      color: #ffffff;
+  }
+  .h3div{
+    background-color: var(--first-color);
+    border-radius: 20px !important;
+    box-shadow: 1px 1px 5px 1px grey !important;
+    width: 80%;
+    margin: auto;
+  }
+  .addBut{
+    background-color: rgb(255, 246, 246) ;
+    box-shadow: 2px 2px 4px var(--first-color);
+    color:var(--first-color);
+    margin:10px;
+  }
+  
+  .addBut:hover{
+    box-shadow: 0px 0px 0px grey;
+    background-color: var(--first-color) ;
+    color:white;
   }

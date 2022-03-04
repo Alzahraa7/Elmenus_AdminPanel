@@ -13,6 +13,7 @@ import { OffersService } from 'src/app/Service/offers.service';
 import { RestaurantService } from 'src/app/Service/restaurant.service';
 import { AddBranchComponent } from '../add-branch/add-branch.component';
 import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-res-details',
@@ -52,7 +53,7 @@ export class ResDetailsComponent implements OnInit {
   @ViewChild('MoodInput') moodInput !: ElementRef;
   @ViewChild('TypeInput') typeInput !: ElementRef;
   @ViewChild('NameMenu') NameMenu !:ElementRef;
-  @ViewChild('NameMenuColl') NameMenuColl !:ElementRef;
+  @ViewChild('NameMenuColl') NameMenuCollec !:ElementRef;
   faTrash = faTrash;
   faTrashAlt=faTrashAlt;
   editState:boolean = false;
@@ -65,7 +66,8 @@ export class ResDetailsComponent implements OnInit {
     private offerSrvs: OffersService,
     private menuSrvs: MenuService,
     public dialog: MatDialog,
-    private router:Router
+    private router:Router,
+    private location:Location
     ) {
 
     this.ResId = actRout.snapshot.paramMap.get('id');
@@ -107,7 +109,7 @@ export class ResDetailsComponent implements OnInit {
       horizontalPosition:"end",
       verticalPosition:"top",
       panelClass:['bg-success','text-white'],
-      duration:2000
+      duration:3000
     });
   }
 
@@ -255,28 +257,52 @@ export class ResDetailsComponent implements OnInit {
   }
   SaveMenu(){
     console.log(this.NameMenu.nativeElement.value)
-    this.Menus[0].Name.push(this.NameMenu.nativeElement.value)
-    this.NameMenu.nativeElement.value=''
-    console.log(this.Menus[0].Name)
-    console.log(this.Menus[0])
-    this.menuSrvs.addNameMenu(this.Menus[0],this.ResId)
+    let NameMenuValue=this.NameMenu.nativeElement.value;
+    if(NameMenuValue.length !=0 ){
+        this.Menus[0].Name.push(NameMenuValue)
+        this.NameMenu.nativeElement.value = ''
+        console.log(this.Menus[0].Name)
+        console.log(this.Menus[0])
+        this.menuSrvs.addNameMenu(this.Menus[0],this.ResId)
+        this.openSnackBar("Add Menu Category Collection Successfully!")
+    }
+    else{
+      this.openSnackBar("you must be fill input first !")
+    }
+    
   }
   addMenuCollection(){
     this.enterMenuColl = !this.enterMenuColl
    
   }
   SaveMenuCollection(){
-    this.Menu.Name.push(this.NameMenuColl.nativeElement.value)
-    this.NameMenuColl.nativeElement.value=''
-    console.log(this.Menu)
-    this.menuSrvs.addMenuCollec(this.ResId,this.Menu)
+
+    let NameMenuCollecValue = this.NameMenuCollec.nativeElement.value;
+    if(NameMenuCollecValue.length !=0){
+      this.Menu.Name.push(NameMenuCollecValue)
+      this.NameMenuCollec.nativeElement.value = ''
+      this.menuSrvs.addMenuCollec(this.ResId,this.Menu)
+      this.openSnackBar("Add Collection Menu Successfully!")
+    }
+    else{
+      this.openSnackBar("you must be fill input first !")
+    }
+    
+
   }
   DeleteMenuCollection(){
-   let  indexDelete = this.Menus[0].Name.indexOf(this.selected)
-    console.log(indexDelete)
-    console.log()
-    this.Menus[0].Name.splice(indexDelete,1)
-    this.menuSrvs.deleteMenuCollec(this.ResId,this.Menus[0],this.selected)
+    let dialogRef = this.dialog.open(CustomDialogComponent,{
+      data:{mess:`Are you sure you want to delete this Category Collection ?`}
+    });
+    dialogRef.afterClosed().subscribe(i=>{
+      if(i.data){
+        let  indexDelete = this.Menus[0].Name.indexOf(this.selected)
+        this.Menus[0].Name.splice(indexDelete,1)
+        this.menuSrvs.deleteMenuCollec(this.ResId,this.Menus[0],this.selected)
+        this.openSnackBar(`You have deleted this Category Collection`)
+      }
+    })
+   
   }
 
 
