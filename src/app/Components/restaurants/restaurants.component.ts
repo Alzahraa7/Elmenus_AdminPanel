@@ -34,6 +34,7 @@ export class RestaurantsComponent implements OnInit {
 
   saveDeletedResID(id:any){
     this.RestaurantDeletedID = id;
+
   }
 
   deleteRes(){

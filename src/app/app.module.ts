@@ -33,7 +33,6 @@ import { JobDetailsComponent } from './Components/job-details/job-details.compon
 import { AddCareerComponent } from './Components/add-career/add-career.component';
 import { AddJobComponent } from './Components/add-job/add-job.component';
 import { LogInComponent } from './Components/log-in/log-in.component';
-// import { AngularFireStorageModule  } from "angularfire2/storage";
 import { ProfileComponent } from './Components/profile/profile.component'
 import {AngularFireAuthModule } from '@angular/fire/auth'
 import { AuthService } from './Service/auth.service';
@@ -45,6 +44,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { AddBranchComponent } from './Components/add-branch/add-branch.component';
 import { AddMealComponent } from './Components/add-meal/add-meal.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { AddRestaurantComponent } from './Components/add-restaurant/add-restaurant.component';
+
 @NgModule({
   declarations:[
     AppComponent,
@@ -67,7 +68,8 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
     AddBranchComponent,
     AddMealComponent,
     DashboardComponent,
-],
+    AddRestaurantComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -91,8 +93,8 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
     MatExpansionModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule,
-    AngularFireAnalyticsModule
+    AngularFireAnalyticsModule,
+    FormsModule
   ],
   providers: [
     RestaurantService,

@@ -10,9 +10,11 @@ import { AddMealComponent } from './Components/add-meal/add-meal.component';
 import { ConfirmRestComponent } from './Components/confirm-rest/confirm-rest.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { ResDetailsComponent } from './Components/res-details/res-details.component';
+import { AddRestaurantComponent } from './Components/add-restaurant/add-restaurant.component';
 
 const routes: Routes = [
-
+  { path: 'Restaurants', component: RestaurantsComponent},
+  { path: 'addRestaurant', component: AddRestaurantComponent},
   {path:'Careers', component:ListCareerComponent},
   {path:'addAdmin/:name',component:AdminsAddComponent},
   {path:'JobDetails/:Name',component:JobDetailsComponent},
@@ -24,7 +26,8 @@ const routes: Routes = [
   {path:'Restaurants',component:RestaurantsComponent},
   {path:'addMeal/:idRes/:idMen/:NameColl',component:AddMealComponent},
   {path:'',component:DashboardComponent},
-]
+];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

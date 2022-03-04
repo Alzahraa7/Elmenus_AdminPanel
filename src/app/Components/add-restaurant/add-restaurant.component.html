@@ -1,0 +1,131 @@
+<div class="container mt-5 ">
+    <div class="row">
+        <!-- 
+        <div class="text-danger">
+            <div>
+                {{ addResForm.value | json}}
+            </div>
+        </div> -->
+
+        <!-- <div class="text-danger">
+            <div>
+                {{ Mood?.errors | json}}
+            </div>
+        </div> -->
+
+
+        <div class="alert alert-success text-center" role="alert" [hidden]="addedFlage == false">
+            This Restaurant is Added Successfuly
+        </div>
+
+        <div class=" CardForm " [hidden]="addedFlage == true">
+            <div class="h3div">           
+                 <h3 >Add New Restaurant</h3>
+            </div>
+
+            <form class="m-3" [formGroup]="addResForm">
+
+                <div class="d-flex justify-content-center">
+                    <div >
+                        <img class="imgEdit" [src]="imgageSelectedSrc" width="210px" height="200px"
+                            (click)="imageUpload.click()">
+                    </div>
+    
+                    <div>
+                        <img class="imgEdit" [src]="logoSelectedSrc" width="210px" height="200px"
+                            (click)="logoUpload.click()">
+                    </div>
+                </div>
+                
+
+                <div class="mb-3">
+                    <label for="resImage" class="form-label">Upload Res Image</label>
+                    <input type="file" #imageUpload formControlName="ImageURL" class="form-control text-danger"  name="resImage"
+                        id="resImage" [class.is-invalid]="ImageURL?.invalid && ImageURL?.touched"
+                        [class.is-valid]="ImageURL?.valid" (change)="showSrc($event)">
+                </div>
+
+                
+
+                <div class="mb-3">
+                    <label for="resLogo" class="form-label">Upload Rest Logo</label>
+                    <input type="file" #logoUpload formControlName="ImageLogo" class="form-control" name="resLogo"
+                        id="resLogo" [class.is-invalid]="ImageLogo?.invalid && ImageLogo?.touched"
+                        [class.is-valid]="ImageLogo?.valid" (change)="showLogoSrc($event)">
+                </div>
+
+                <div class="mb-3">
+                    <label for="resName" class="form-label">Restaurant Name</label>
+                    <input type="text" formControlName="ResName" class="form-control" name="resName" id="resName"
+                        [class.is-invalid]="ResName?.invalid && ResName?.touched" [class.is-valid]="ResName?.valid">
+                    <div class="text-danger" [hidden]="ResName?.valid || ResName?.untouched">
+                        <small *ngIf="ResName?.errors?.['required']">Restaurant Name is Required</small>
+                        <small *ngIf="ResName?.errors?.['minlength']">Restaurant Name must be more than three
+                            letters</small>
+                    </div>
+                </div>
+
+
+
+
+                <div class="mb-3">
+                    <label for="ownerName" class="form-label">Owner Name</label>
+                    <input type="text" formControlName="OwnerName" class="form-control" name="ownerName" id="ownerName"
+                        [class.is-invalid]="OwnerName?.invalid && OwnerName?.touched"
+                        [class.is-valid]="OwnerName?.valid">
+                </div>
+
+                <div class="mb-3">
+                    <label for="rate" class="form-label">Restaurant Rate</label>
+                    <input type="number" formControlName="Rate" class="form-control" name="rate" id="rate"
+                        [class.is-invalid]="Rate?.invalid && Rate?.touched" [class.is-valid]="Rate?.valid">
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Restaurant Phone</label>
+                    <input type="number" formControlName="Phone" class="form-control" name="phone" id="phone"
+                        [class.is-invalid]="Phone?.invalid && Phone?.touched" [class.is-valid]="Phone?.valid">
+                </div>
+
+                <div formArrayName="Mood" *ngFor="let mood of Mood.controls; let i = index">
+                    <label for="{{'mood' + i+1}}" class="form-label mb-1">Res Mood</label>
+                    <div class="d-flex">
+                        <input #moodInput required type="text" [formControlName]="i" class="form-control" name="mood"
+                            id="{{'mood' + i+1}}">
+
+                        <button class="btn btn-danger" [ngStyle]="{'display': i == 0 ? 'none': 'flex'}"
+                            (click)="deleteMood(i)">-</button>
+                    </div>
+                </div>
+                <button class="btn my-1 addBut"  (click)="addMood()">Add
+                    Mood</button>
+
+
+                <div formArrayName="Type" *ngFor="let type of Type.controls; let i = index">
+                    <label for="{{'type' + i+1}}" class="form-label">Res Type</label>
+                    <div class="d-flex">
+                        <input #typeInput type="text" [formControlName]="i" class="form-control" name="type"
+                            id="{{'type' + i+1}}">
+                        <button class="btn btn-danger" [ngStyle]="{'display': i == 0 ? 'none': 'flex'}"
+                            (click)="deleteType(i)">-</button>
+
+                    </div>
+
+                </div>
+                <button class="btn my-1 addBut"  (click)="addType()">Add
+                    Type</button>
+
+
+                <br>
+             <div class="d-flex justify-content-center">
+                <button [disabled]="addResForm.invalid" class="btn my-2 addBut"
+                (click)="addRestaurant()">Add
+               Restaurant</button>
+             </div>
+                
+
+            </form>
+        </div>
+    </div>
+
+</div>

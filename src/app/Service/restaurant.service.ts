@@ -44,6 +44,11 @@ export class RestaurantService {
 
   updateRes(Res: IRestaurant){
     const ref = this.firestore.doc(`Restaurant/${Res.ResPushID}`);
-    ref.update(Res);
+    ref.update(Res);}
+    
+  addRestaurant(restaurant: IRestaurant){
+    // console.log(restaurant)
+    this.Rests = this.firestore.collection('Restaurant');
+    this.Rests.add({ ...restaurant });
   }
 }
