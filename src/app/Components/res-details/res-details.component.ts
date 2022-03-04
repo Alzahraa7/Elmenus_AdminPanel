@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faEdit, faPlus,faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faPlus,faTrash,faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { IBranches } from 'src/app/Model/branches';
 import { IRestaurant } from 'src/app/Model/irestaurant';
 import { IMenu, IMenuCat } from 'src/app/Model/menu';
@@ -33,7 +33,9 @@ export class ResDetailsComponent implements OnInit {
   panelOpenState = false;
   plusIcon = faPlus;
   editIcon = faEdit;
-
+  enterName:boolean=false;
+  enterMenuColl:boolean=false;
+  Menu:IMenu={ Name:[],MenuID:''}as IMenu
   //Update Data
   NameFlag = false;
   ownerFlg = false;
@@ -49,7 +51,10 @@ export class ResDetailsComponent implements OnInit {
   @ViewChild('PhoneInput') phoneInput !: ElementRef;
   @ViewChild('MoodInput') moodInput !: ElementRef;
   @ViewChild('TypeInput') typeInput !: ElementRef;
+  @ViewChild('NameMenu') NameMenu !:ElementRef;
+  @ViewChild('NameMenuColl') NameMenuColl !:ElementRef;
   faTrash = faTrash;
+  faTrashAlt=faTrashAlt;
   editState:boolean = false;
   @ViewChild(AddBranchComponent) form!:AddBranchComponent;
   constructor(
@@ -243,6 +248,35 @@ export class ResDetailsComponent implements OnInit {
         this.openSnackBar(`You have deleted this meal`)
       }
     })
+  }
+  EnterName(){
+      this.enterName=!this.enterName
+      
+  }
+  SaveMenu(){
+    console.log(this.NameMenu.nativeElement.value)
+    this.Menus[0].Name.push(this.NameMenu.nativeElement.value)
+    this.NameMenu.nativeElement.value=''
+    console.log(this.Menus[0].Name)
+    console.log(this.Menus[0])
+    this.menuSrvs.addNameMenu(this.Menus[0],this.ResId)
+  }
+  addMenuCollection(){
+    this.enterMenuColl = !this.enterMenuColl
+   
+  }
+  SaveMenuCollection(){
+    this.Menu.Name.push(this.NameMenuColl.nativeElement.value)
+    this.NameMenuColl.nativeElement.value=''
+    console.log(this.Menu)
+    this.menuSrvs.addMenuCollec(this.ResId,this.Menu)
+  }
+  DeleteMenuCollection(){
+   let  indexDelete = this.Menus[0].Name.indexOf(this.selected)
+    console.log(indexDelete)
+    console.log()
+    this.Menus[0].Name.splice(indexDelete,1)
+    this.menuSrvs.deleteMenuCollec(this.ResId,this.Menus[0],this.selected)
   }
 
 

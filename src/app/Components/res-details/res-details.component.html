@@ -99,7 +99,18 @@
         </mat-accordion>
       </div>
     </mat-tab>
+    
     <mat-tab label="Menu">
+      <div class="d-flex justify-content-end" *ngIf="Menus[0]==undefined">
+         <div>
+           <button class="btn rounded-circle addBut" (click)="addMenuCollection()"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
+         </div>
+        <div [hidden]="!enterMenuColl"  >
+          <input #ResNameInput type="text" class="form-control mt-3 mx-3 py-1" #NameMenuColl
+          style="width:90%; position: relative; bottom: 10px" >
+          <div class="d-flex justify-content-end mx-3"><button class="btn addBut" (click)="SaveMenuCollection()">Save</button></div> 
+        </div>
+      </div>
       <mat-form-field appearance="fill" class="d-flex justify-content-end m-2">
         <mat-label>Select Category</mat-label>
         <mat-select (selectionChange)="sendSelected(selected)"  [(value)]="selected"  disableRipple>
@@ -107,8 +118,24 @@
             <mat-option *ngFor="let m of Menu.Name" [value]="m">{{m}}</mat-option>
           </div>
           
+          <div [hidden]="!enterName"  >
+            <input #ResNameInput type="text" class="form-control mt-3 mx-3 py-1" #NameMenu
+            style="width:90%; position: relative; bottom: 10px" >
+            <div class="d-flex justify-content-end mx-3"><button class="btn addBut" (click)="SaveMenu()">Save</button></div> 
+          </div>
+         
+           <div class="d-flex justify-content-end">
+              <button class="btn rounded-circle addBut" (click)="EnterName()"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
+          </div>
         </mat-select>
       </mat-form-field>
+      <div class="d-flex justify-content-end me-4"  *ngIf="selected">
+        <button class="btn rounded-circle addBut" (click)="DeleteMenuCollection()">
+           <fa-icon [icon]="faTrashAlt" class="trash"></fa-icon>
+        </button>
+      </div>
+      
+
           <div class="conatiner m-3" *ngFor="let Menu of MenuCatSelected ">
             <mat-accordion multi='false'>
               <mat-expansion-panel (opened)="panelOpenState = true"

@@ -14,6 +14,7 @@ export class MenuService {
   MenusCat:any;
   MenusCatSelected:any;
   MealDoc: AngularFirestoreDocument<IMenuCat> | undefined;
+  MenuCollecDoc:AngularFirestoreDocument<IMenuCat>|undefined
   constructor(public firestore: AngularFirestore) {
   }
   /*
@@ -78,14 +79,14 @@ export class MenuService {
     return this.MenusCatSelected;
   }
 
-  addMeal(Meal:IMenuCat,idRest:string,idMenu:string,NameMealcoll:string){
+  addMeal(Meal:IMenuCat,RestID:string,MenuID:string,NameMealcoll:string){
    let ID = this.firestore.createId()
    console.log(ID)
     this.firestore
       .collection('Restaurant')
-      .doc(idRest)
+      .doc(RestID)
       .collection<any>('Menu')
-      .doc(idMenu)
+      .doc(MenuID)
       .collection<any>(NameMealcoll)
       .doc(ID)
       .set(Meal);
@@ -94,6 +95,48 @@ export class MenuService {
     console.log(ResID,MenuID,NameCat,MealID)
     this.MealDoc = this.firestore.doc(`Restaurant/${ResID}/Menu/${MenuID}/${NameCat}/${MealID}`);
     this.MealDoc.delete();
+
+  }
+  addNameMenu(Menu:IMenu,ResID:any){
+    const ref = this.firestore.doc(`Restaurant/${ResID}/Menu/${Menu.MenuID}`);
+    ref.update(Menu);
+  }
+  addMenuCollec(RestID:any,MenuCollec:IMenu){
+    let ID = this.firestore.createId()
+    MenuCollec.MenuID=ID;
+    console.log(ID)
+     this.firestore
+       .collection('Restaurant')
+       .doc(RestID)
+       .collection<any>('Menu').doc(ID).set(MenuCollec)
+
+  }
+  deleteMenuCollec(ResID:any,Menu:IMenu,CollectionName:string){
+    
+
+    this.firestore
+    .collection(`Restaurant/${ResID}/Menu/${Menu.MenuID}/${CollectionName}`)
+    .snapshotChanges()
+    .pipe(
+      map((changes: any) => {
+        return changes.map((a: any) => {
+          const data = a.payload.doc.data() as any;
+          data.CatID = a.payload.doc.id;
+          return data;
+        });
+      })
+    )
+    .subscribe((Menus: IMenuCat[]) => {
+      for (let i = 0; i < Menus.length; i++) {
+        let CollectionMenuID = Menus[i].CatID;
+        this.MenuCollecDoc = this.firestore.doc(`Restaurant/${ResID}/Menu/${Menu.MenuID}/${CollectionName}/${CollectionMenuID}`);
+        this.MenuCollecDoc.delete();
+      }
+     
+      let ref = this.firestore.doc(`Restaurant/${ResID}/Menu/${Menu.MenuID}`);
+      ref.update(Menu);
+      
+    });
 
   }
 }
