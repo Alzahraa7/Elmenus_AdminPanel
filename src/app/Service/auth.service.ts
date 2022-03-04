@@ -46,6 +46,7 @@ export class AuthService {
   logOut(){
     this.firebaseAuth.signOut()
     localStorage.removeItem('user')
+    localStorage.removeItem('email')
   }
 
   

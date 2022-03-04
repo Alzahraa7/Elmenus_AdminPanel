@@ -1,74 +1,61 @@
 <nav class="navbar navbar-expand-lg navbar d-lg-block d-none">
-    <div class="container-fluid row m-0 ">
-        <div class="col-3 py-2 m-0">
-            <img src="assets/elmenusphoto.svg" alt="Elmenuns Logo" width="40%">
-        </div>
-        <div class="offset-5 col-4">
-            <ul class="listStyle m-0 py-3">
-                <li class="py-4">
-                    <a routerLink="Restaurants" routerLinkActive="active">Restaurants</a>
-                </li>
-                <li class="py-4">
-                    <a href="#">Careers</a>
-                </li>
-
-                <span class="dropdown mx-2">
-                    <button class="btn dropdown-toggle " type="button" id="triggerId" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="background-color: #e32207; color: white;">
-                        <i class="fas fa-user-alt"></i>
-
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="triggerId">
-                        <a class="dropdown-item" href="#" style="color: #e32207; cursor: auto;"><!--{{navUser}}--><i
-                                class="far fa-grin-stars"></i> </a>
-                        <a class="dropdown-item " href="#" (click)="logOut()"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </div>
-                
-                </span>
-                
-
-            </ul>
-
-
-            
-
-        </div>
+  <div class="container-fluid row m-0 ">
+    <div class="col-3 py-2 m-0">
+      <a routerLink=""> <img src="assets/elmenusphoto.svg" alt="Elmenuns Logo" width="40%"></a>
     </div>
+    <div class="offset-5 col-4">
+      <ul class="listStyle m-0 py-3">
+        <li class="py-4">
+          <a routerLink="Restaurants" routerLinkActive="active">Restaurants</a>
+        </li>
+        <li class="py-4">
+          <a routerLink="Careers">Careers</a>
+        </li>
+
+        <button mat-button [matMenuTriggerFor]="menu" style="background-color: #e32207; color: white;"> <i class="fas fa-user-alt"></i></button>
+        <mat-menu #menu="matMenu">
+          <a class="dropdown-item" routerLink="Profile" style="color: #e32207; cursor: auto;">{{navUser}}<i
+            class="far fa-grin-stars"></i> </a>
+        <a class="dropdown-item " routerLink="Login" (click)="logOut()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </mat-menu>
+      </ul>
+    </div>
+  </div>
 </nav>
 
 
 <nav class="navbar navbar-expand-lg navbar d-lg-none d-md-block">
-    <div class="container-fluid " style="display: flex; flex-direction: row;">
+  <div class="container-fluid " style="display: flex; flex-direction: row;">
 
 
 
-        <div class="py-2">
-            <img src="assets/elmenus_logo.png" alt="Elmenuns Logo" width="20%">
-        </div>
-
-        <div class=" mx-2">
-            <button class="btn " style="background-color: #e32207; color: white;"  data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <i class="fas fa-bars"></i>
-
-            </button>
-
-        </div>
+    <div class="py-2">
+      <img src="assets/elmenus_logo.png" alt="Elmenuns Logo" width="20%">
     </div>
+
+    <div class=" mx-2">
+      <button class="btn " style="background-color: #e32207; color: white;" data-bs-toggle="collapse"
+        href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fas fa-bars"></i>
+
+      </button>
+
+    </div>
+  </div>
 </nav>
 
 <div class="collapse d-lg-none" id="collapseExample">
-    <div class="card card-body">
-        <ul class="listStyleSm ">
-            <li>
-                <i class="fas fa-hamburger"></i>  Restaurant
-            </li>
-            <li>
-                <i class="fas fa-edit "></i> Careers
-            </li>
-            <li>
-                <i class="fas fa-sign-out-alt"></i>  Logout
-            </li>
-        </ul>
-    </div>
+  <div class="card card-body">
+    <ul class="listStyleSm ">
+      <li>
+        <i class="fas fa-hamburger"></i> Restaurant
+      </li>
+      <li>
+        <i class="fas fa-edit "></i> Careers
+      </li>
+      <li>
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </li>
+    </ul>
   </div>
-
+</div>

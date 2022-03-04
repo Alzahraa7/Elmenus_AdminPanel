@@ -9,6 +9,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire";
+import {MatMenuModule} from '@angular/material/menu';
 import { AngularFirestoreModule , AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireStorageModule, BUCKET  } from "@angular/fire/storage";
 import { RestaurantsComponent } from './Components/restaurants/restaurants.component'
@@ -45,6 +46,8 @@ import { AddBranchComponent } from './Components/add-branch/add-branch.component
 import { AddMealComponent } from './Components/add-meal/add-meal.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { AddRestaurantComponent } from './Components/add-restaurant/add-restaurant.component';
+import { MainUIComponent } from './Components/main-ui/main-ui.component';
+import { UiformComponent } from './Components/uiform/uiform.component';
 
 @NgModule({
   declarations:[
@@ -68,7 +71,9 @@ import { AddRestaurantComponent } from './Components/add-restaurant/add-restaura
     AddBranchComponent,
     AddMealComponent,
     DashboardComponent,
-    AddRestaurantComponent
+    AddRestaurantComponent,
+    MainUIComponent,
+    UiformComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +99,8 @@ import { AddRestaurantComponent } from './Components/add-restaurant/add-restaura
     MatSelectModule,
     FormsModule,
     AngularFireAnalyticsModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule
   ],
   providers: [
     RestaurantService,

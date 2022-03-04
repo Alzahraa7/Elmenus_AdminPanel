@@ -3,8 +3,12 @@
 }
 
 mat-toolbar {
-background: #C3311E;
+background: var(--first-color);
     color: white;
+}
+
+a{
+text-decoration-line: none;
 }
 
 mat-sidenav {
@@ -12,7 +16,7 @@ mat-sidenav {
     width: 200px;
     overflow-x: hidden;
     border-right: none;
-    background: #C3311E;
+    background: #E32207;
     color: white;
     border-radius: 10px;
     padding: 16px;

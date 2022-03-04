@@ -10,16 +10,16 @@ import { AuthService } from 'src/app/Service/auth.service';
 })
 export class NavbarComponent implements OnInit {
  
-  /*user: any;
-  navUser: string;*/
+  user: any;
+  navUser: string;
   @Output() isLogOut = new EventEmitter<void>()
 
   constructor(public firebaseService: AuthService) {
 
-    /*this.user = localStorage.getItem('email')
-    // console.log("from Nav" + this.user);
+    this.user = localStorage.getItem('email')
+     console.log("from Nav" + this.user);
     this.navUser = this.user?.slice(1).split("@")[0];
-    this.navUser = this.navUser[0].toUpperCase() + this.navUser?.slice(1);*/
+    this.navUser = this.navUser[0].toUpperCase() + this.navUser?.slice(1);
     
   }
 

@@ -1,13 +1,10 @@
 
-
-<mat-sidenav-container>
-
-  <button mat-icon-button (click)="sidenav.toggle()">
+  <button mat-icon-button (click)="sidenav.toggle()" class="position-fixed">
     <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
     <mat-icon *ngIf="sidenav.opened">close</mat-icon>
   </button>
 
-  <mat-sidenav #sidenav ="matSidenav"  class="mat-elevation-z8" mode="side" closed>
+  <mat-sidenav #sidenav ="matSidenav" class="mat-elevation-z8" mode="over" closed>
 
     <div class="accordion" id="accordionExample">
       <div class="accordion-item">
@@ -20,9 +17,9 @@
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            <h3>Restaurants List</h3>
-            <h3>Add Restaurants</h3>
-            <h3>Confirm Restaurants</h3>
+           <a routerLink="/Restaurants"><h3>Restaurants List</h3></a>
+           <a routerLink="/addRestaurant"><h3>Add Restaurants</h3></a>
+           <a routerLink="/confirmRest"><h3>Confirm Restaurants</h3></a>
           </div>
         </div>
       </div>
@@ -37,8 +34,8 @@
         </h2>
         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            <h3>Admins List</h3>
-            <h3>Add Admin</h3>
+            <a routerLink="/listAdmin"><h3>Admins List</h3></a>
+            <a routerLink="/addAdmin"><h3>Add Admin</h3></a>
           </div>
         </div>
       </div>
@@ -53,8 +50,8 @@
         </h2>
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            <h3>Careers List</h3>
-            <h3>Add Career</h3>
+            <a routerLink="/Careers"><h3>Careers List</h3></a>
+            <a routerLink="/addCareer"><h3>Add Career</h3></a>
           </div>
         </div>
       </div>
@@ -65,4 +62,5 @@
   </mat-sidenav>
 
 
-</mat-sidenav-container>
+
+
