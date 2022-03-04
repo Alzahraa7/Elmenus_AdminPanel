@@ -15,7 +15,7 @@ export class OffersService {
 
   offersCollection!:AngularFirestoreCollection<IOffers>;
   offers : any;
-  
+
   offersArr:IOffers[]|any;
 
   offerDocument!:AngularFirestoreDocument<IOffers>;
@@ -27,7 +27,7 @@ export class OffersService {
   rest:any;
 
   constructor(public firestore:AngularFirestore) {
-    
+
 
     this.RestaurantCollec = firestore.collection('Restaurant')
     this.Rests = this.RestaurantCollec.snapshotChanges().pipe(map(changes=>{
@@ -37,9 +37,9 @@ export class OffersService {
         return data;
       })
     }))
-   
 
-    
+
+
 
     this.offersArr =this.firestore
     .collectionGroup('Offers')
@@ -55,8 +55,8 @@ export class OffersService {
     );
 
     this.offersArr.subscribe((res:any)=>console.log(res))
-  
 
+  
 
    }
 
@@ -81,13 +81,13 @@ export class OffersService {
 
   addOffer(offer:IOffers,paramResId:string) {
     this.getRestaurant(paramResId).subscribe((res)=>{
-      
+
     })
     this.offersCollection.add(offer)
   }
 
   addRestaurant(restaurant: IRestaurant){
-  
+
     this.Rests = this.firestore.collection('Restaurant');
     this.Rests.add({ ...restaurant });
   }

@@ -29,11 +29,11 @@ export class OffersAddComponent implements OnInit {
       activeRoute.paramMap.subscribe((paramMap) => {
 
         this.paramResId = paramMap.get('name');
-        
+
       })
 
 
-      
+
     }
 
   ngOnInit() {
