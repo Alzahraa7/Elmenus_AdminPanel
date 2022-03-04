@@ -93,27 +93,48 @@
         </mat-accordion>
       </div>
     </mat-tab>
+
+
     <mat-tab label="Offers">
+      <div class="d-flex justify-content-end">
+        <button class="btn rounded-circle addBut"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
+      </div>
       <div class="conatiner m-3" *ngFor="let offer of Offers ">
         <mat-accordion>
-          <div class="d-flex justify-content-end">
-            <button class="btn rounded-circle addBut"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
-          </div>
+   
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header class="accordionDiv">
+              <button class="btn mse-2" (click)="deleteOffer(offer)" ><fa-icon [icon]="faTrash" class="text-danger"></fa-icon></button>
               <mat-panel-title >
                 {{offer.PromoCode}}
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <p> <b>Promo Code: </b>{{offer.PromoCode}}  <button class="btn mse-2"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-            <p> <b>Offer Description: </b>{{offer.Description}}  <button class="btn mse-2"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-            <p> <b>Expiration: </b>{{offer.Expires?.toDate()| date : 'yyyy-MM-dd HH:mm:ss'}}  <button class="btn mse-2"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+
+            <p> <b>Promo Code: </b>{{offer.PromoCode}}  <button class="btn mse-2" (click)="updateStateOffer(1)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+            <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagPromoCode">
+              <input type="text" [(ngModel)]="offer.PromoCode" value="{{offer.PromoCode}}" class="form-control">
+              <button class="btn btn-success" (click)="updateOffers(offer)">update</button>
+            </div>
+
+            <p> <b>Offer Description: </b>{{offer.Description}}  <button class="btn mse-2" (click)="updateStateOffer(2)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+            <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagOfferDesc">
+              <input type="text" [(ngModel)]="offer.Description" value="{{offer.Description}}" class="form-control">
+              <button class="btn btn-success" (click)="updateOffers(offer)">update</button>
+            </div>
+
+            <p> <b>Expiration: </b>{{offer.Expires}}  <button class="btn mse-2" (click)="updateStateOffer(3)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+            <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagExpireDate">
+              <input type="date" [(ngModel)]="offer.Expires" value="{{offer.Expires}}" class="form-control">
+              <button class="btn btn-success" (click)="updateOffers(offer)">update</button>
+            </div>
+
           </mat-expansion-panel>
         </mat-accordion>
       </div>
     </mat-tab>
     
+
     <mat-tab label="Menu">
       <div class="d-flex justify-content-end" *ngIf="Menus[0]==undefined">
          <div>

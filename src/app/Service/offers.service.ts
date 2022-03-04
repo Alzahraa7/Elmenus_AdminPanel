@@ -22,4 +22,14 @@ export class OffersService {
     }));
     return this.Offers;
   }
+
+  updateOffer(ResId: string | null, offer: IOffers){
+    const ref = this.firestore.doc(`Restaurant/${ResId}/Offers/${offer.OfferId}`);
+    ref.update(offer)
+  }
+
+  deleteOffer(ResId:string|null,offer: IOffers){
+    const ref = this.firestore.doc(`Restaurant/${ResId}/Offers/${offer.OfferId}`);
+    ref.delete();
+  }
 }
