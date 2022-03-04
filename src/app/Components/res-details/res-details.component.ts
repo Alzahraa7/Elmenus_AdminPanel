@@ -377,7 +377,6 @@ export class ResDetailsComponent implements OnInit {
   } 
 
   updateMenu(Menu:IMenuCat){
-    this.ResId,this.Menus[0].MenuID,this.selected
     this.menuSrvs.updateMeal(Menu,this.ResId,this.selected,this.Menus[0].MenuID)
     this.openSnackBar(`You have Updated this Category Collection`)
 
