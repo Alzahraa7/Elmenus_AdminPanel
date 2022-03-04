@@ -47,6 +47,21 @@ export class ProfileComponent implements OnInit {
         }       
       }     
     })
+
+    for(var x= 0; x< 4; x++){
+      console.log(x);
+    }
+
+    for(let x= 0; x< 4; x++){
+      console.log(x);
+    }
+
+    for(let x= 0; x< 4; x++){
+      setTimeout(()=>{
+      console.log(x);
+
+      }, 0)
+    }
   }
 
   disableForm: boolean = true;
@@ -62,6 +77,7 @@ export class ProfileComponent implements OnInit {
 
   }
   
+ 
 
   ngOnInit(): void {}
 
