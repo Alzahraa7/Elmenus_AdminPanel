@@ -18,12 +18,14 @@
             This Restaurant is Added Successfuly
         </div>
 
-        <div class="offset-2 col-8 offset-2 CardForm" [hidden]="addedFlage == true">
-            <h3 style="color:#e32207;">Add New Restaurant</h3>
+        <div class=" CardForm " [hidden]="addedFlage == true">
+            <div class="h3div">           
+                 <h3 >Add New Restaurant</h3>
+            </div>
 
             <form class="m-3" [formGroup]="addResForm">
 
-                <div class="d-flex">
+                <div class="d-flex justify-content-center">
                     <div >
                         <img class="imgEdit" [src]="imgageSelectedSrc" width="210px" height="200px"
                             (click)="imageUpload.click()">
@@ -95,7 +97,7 @@
                             (click)="deleteMood(i)">-</button>
                     </div>
                 </div>
-                <button class="btn my-1" style="background-color: #e32207; color: wheat;" (click)="addMood()">Add
+                <button class="btn my-1 addBut"  (click)="addMood()">Add
                     Mood</button>
 
 
@@ -110,15 +112,17 @@
                     </div>
 
                 </div>
-                <button class="btn my-1" style="background-color: #e32207; color: wheat;" (click)="addType()">Add
+                <button class="btn my-1 addBut"  (click)="addType()">Add
                     Type</button>
 
 
                 <br>
-
-                <button [disabled]="addResForm.invalid" class="btn my-2"
-                    style="margin-left: 40%; background-color: #e32207; color: white;" (click)="addRestaurant()">Add
-                    Restaurant</button>
+             <div class="d-flex justify-content-center">
+                <button [disabled]="addResForm.invalid" class="btn my-2 addBut"
+                (click)="addRestaurant()">Add
+               Restaurant</button>
+             </div>
+                
 
             </form>
         </div>
