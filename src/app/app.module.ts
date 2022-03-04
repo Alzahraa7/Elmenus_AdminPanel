@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { FooterComponent } from './Components/footer/footer.component';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule , AngularFirestore } from "@angular/fire/firestore";
@@ -28,6 +28,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { AddBranchComponent } from './Components/add-branch/add-branch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddMealComponent } from './Components/add-meal/add-meal.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { AddMealComponent } from './Components/add-meal/add-meal.component';
     ResDetailsComponent,
     AddBranchComponent,
     AddMealComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +64,7 @@ import { AddMealComponent } from './Components/add-meal/add-meal.component';
   providers: [
     RestaurantService,
     AngularFirestore,
+    ScreenTrackingService
   ],
   bootstrap: [AppComponent]
 })
