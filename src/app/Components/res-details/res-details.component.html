@@ -2,236 +2,634 @@
   <div class="row mt-3">
     <div class="col-2">
       <div class="imgDiv">
-        <img class="rounded-3" [src]="Restaurant?.ImageLogo" alt="">
+        <img class="rounded-3" [src]="Restaurant?.ImageLogo" alt="" />
       </div>
     </div>
     <div class="col-10">
-      <div class="d-flex flex-column textDiv2" >
-        <p><span class="textDiv">Name: </span> <span>{{Restaurant?.ResName}}</span>  <button class="btn mse-2" (click)="updateBasicRes(1)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-        <input #ResNameInput [hidden]="!NameFlag" type="text" class="form-control m-0 p-0" value="{{Restaurant?.ResName}}"
-        style="width: 30%; position: relative; bottom: 10px">
+      <div class="d-flex flex-column textDiv2">
+        <p>
+          <span class="textDiv">Name: </span>
+          <span>{{ Restaurant?.ResName }}</span>
+          <button class="btn mse-2" (click)="updateBasicRes(1)">
+            <fa-icon [icon]="editIcon"></fa-icon>
+          </button>
+        </p>
+        <input
+          #ResNameInput
+          [hidden]="!NameFlag"
+          type="text"
+          class="form-control m-0 p-0"
+          value="{{ Restaurant?.ResName }}"
+          style="width: 30%; position: relative; bottom: 10px"
+        />
 
-        <p><span class="textDiv">Owner: </span>  <span>{{Restaurant?.OwnerName}}</span>  <button class="btn mse-2" (click)="updateBasicRes(2)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-        <input #ownerNameInput [hidden]="!ownerFlg" type="text" class="form-control m-0 p-0" value="{{Restaurant?.OwnerName}}"
-        style="width: 30%; position: relative; bottom: 10px">
+        <p>
+          <span class="textDiv">Owner: </span>
+          <span>{{ Restaurant?.OwnerName }}</span>
+          <button class="btn mse-2" (click)="updateBasicRes(2)">
+            <fa-icon [icon]="editIcon"></fa-icon>
+          </button>
+        </p>
+        <input
+          #ownerNameInput
+          [hidden]="!ownerFlg"
+          type="text"
+          class="form-control m-0 p-0"
+          value="{{ Restaurant?.OwnerName }}"
+          style="width: 30%; position: relative; bottom: 10px"
+        />
 
-        <p><span class="textDiv">Phone: </span>  <span>{{Restaurant?.Phone}}</span>  <button class="btn mse-2" (click)="updateBasicRes(3)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-        <input #PhoneInput [hidden]="!phoneFlag" type="text" class="form-control m-0 p-0" value="{{Restaurant?.Phone}}"
-        style="width: 30%;position: relative; bottom: 10px">
+        <p>
+          <span class="textDiv">Phone: </span>
+          <span>{{ Restaurant?.Phone }}</span>
+          <button class="btn mse-2" (click)="updateBasicRes(3)">
+            <fa-icon [icon]="editIcon"></fa-icon>
+          </button>
+        </p>
+        <input
+          #PhoneInput
+          [hidden]="!phoneFlag"
+          type="text"
+          class="form-control m-0 p-0"
+          value="{{ Restaurant?.Phone }}"
+          style="width: 30%; position: relative; bottom: 10px"
+        />
 
-        <p><span class="textDiv">Mood: </span> <span> {{Restaurant?.Mood}} </span>  <button class="btn mse-2" (click)="updateBasicRes(4)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-        <div *ngFor="let mood of changedMood; let i = index" class="d-flex" style="width: 30%; position: relative; bottom: 10px" >
-          <input  [hidden]="!moodFlag" #MoodInput type="text" class="form-control my-1 p-0" value="{{mood}}"
-        id="{{i}}" (change)="saveUpdateMood(MoodInput.value, i)">
-        <button  [hidden]="!moodFlag" class="btn my-1" style="background-color: #e32207; color: white;" (click)="deleteMood(MoodInput.value)">-</button>
-
-      </div>
-      <small class="text-danger" [hidden]="!errorShow" style="position: relative; bottom: 10px;" >you must filled this field first!!</small>
-
-      <button class="btn btn-success" [hidden]="!moodFlag" style="width: 100px;" (click)="addNewMood()">Add Mood</button>
-
-        <p><span class="textDiv">Type: </span>  <span>{{Restaurant?.Type}} </span> <button class="btn mse-2" (click)="updateBasicRes(5)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-        <div *ngFor="let type of changedType; let i = index" class="d-flex" style="width: 30%; border-color: #e32207; position: relative; bottom: 10px">
-          <input #TypeInput [hidden]="!typeFlag" type="text" class="form-control my-1 p-0" value="{{type}}"
-           (change)="saveUpdateType(TypeInput.value, i)">
-
-          <button  [hidden]="!typeFlag" class="btn my-1" style="background-color: #e32207; color: white;" (click)="deleteType(TypeInput.value)">-</button>
-
+        <p>
+          <span class="textDiv">Mood: </span>
+          <span> {{ Restaurant?.Mood }} </span>
+          <button class="btn mse-2" (click)="updateBasicRes(4)">
+            <fa-icon [icon]="editIcon"></fa-icon>
+          </button>
+        </p>
+        <div
+          *ngFor="let mood of changedMood; let i = index"
+          class="d-flex"
+          style="width: 30%; position: relative; bottom: 10px"
+        >
+          <input
+            [hidden]="!moodFlag"
+            #MoodInput
+            type="text"
+            class="form-control my-1 p-0"
+            value="{{ mood }}"
+            id="{{ i }}"
+            (change)="saveUpdateMood(MoodInput.value, i)"
+          />
+          <button
+            [hidden]="!moodFlag"
+            class="btn my-1"
+            style="background-color: #e32207; color: white"
+            (click)="deleteMood(MoodInput.value)"
+          >
+            -
+          </button>
         </div>
-        <small class="text-danger" [hidden]="!errorTypeShow" style="position: relative; bottom: 10px;" >you must filled this field first!!</small>
+        <small
+          class="text-danger"
+          [hidden]="!errorShow"
+          style="position: relative; bottom: 10px"
+          >you must filled this field first!!</small
+        >
 
-      <button class="btn btn-success" [hidden]="!typeFlag" style="width: 100px;" (click)="addNewType()">Add Type</button>
+        <button
+          class="btn btn-success"
+          [hidden]="!moodFlag"
+          style="width: 100px"
+          (click)="addNewMood()"
+        >
+          Add Mood
+        </button>
 
+        <p>
+          <span class="textDiv">Type: </span>
+          <span>{{ Restaurant?.Type }} </span>
+          <button class="btn mse-2" (click)="updateBasicRes(5)">
+            <fa-icon [icon]="editIcon"></fa-icon>
+          </button>
+        </p>
+        <div
+          *ngFor="let type of changedType; let i = index"
+          class="d-flex"
+          style="
+            width: 30%;
+            border-color: #e32207;
+            position: relative;
+            bottom: 10px;
+          "
+        >
+          <input
+            #TypeInput
+            [hidden]="!typeFlag"
+            type="text"
+            class="form-control my-1 p-0"
+            value="{{ type }}"
+            (change)="saveUpdateType(TypeInput.value, i)"
+          />
 
-        <button class="btn btnClass my-2" [hidden]="!NameFlag && !ownerFlg && !phoneFlag && !moodFlag && !typeFlag" (click)="updateRes()">Update</button>
+          <button
+            [hidden]="!typeFlag"
+            class="btn my-1"
+            style="background-color: #e32207; color: white"
+            (click)="deleteType(TypeInput.value)"
+          >
+            -
+          </button>
+        </div>
+        <small
+          class="text-danger"
+          [hidden]="!errorTypeShow"
+          style="position: relative; bottom: 10px"
+          >you must filled this field first!!</small
+        >
 
+        <button
+          class="btn btn-success"
+          [hidden]="!typeFlag"
+          style="width: 100px"
+          (click)="addNewType()"
+        >
+          Add Type
+        </button>
+
+        <button
+          class="btn btnClass my-2"
+          [hidden]="
+            !NameFlag && !ownerFlg && !phoneFlag && !moodFlag && !typeFlag
+          "
+          (click)="updateRes()"
+        >
+          Update
+        </button>
       </div>
     </div>
   </div>
 
   <mat-divider class="mt-3 mb-3"></mat-divider>
-  <mat-tab-group class="tabDiv" mat-align-tabs="center" color="warn" backgroundColor="warn" animationDuration="1000ms">
+  <mat-tab-group
+    class="tabDiv"
+    mat-align-tabs="center"
+    color="warn"
+    backgroundColor="warn"
+    animationDuration="1000ms"
+  >
     <mat-tab label="Branches">
       <div class="d-flex justify-content-end">
-        <button class="btn rounded-circle addBut" (click)="appearForm(true)"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
+        <button class="btn rounded-circle addBut" (click)="appearForm(true)">
+          <fa-icon [icon]="plusIcon"></fa-icon>
+        </button>
       </div>
       <div>
-        <app-add-branch [clickAdd]="formBranch" (submitted)="disappearForm($event)"></app-add-branch>
+        <app-add-branch
+          [clickAdd]="formBranch"
+          (submitted)="disappearForm($event)"
+        ></app-add-branch>
       </div>
-      <div class="conatiner m-3" *ngFor="let branch of Branches ">
-        <mat-accordion multi='false'>
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
+      <div class="conatiner m-3" *ngFor="let branch of Branches">
+        <mat-accordion multi="false">
+          <mat-expansion-panel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false"
+          >
             <mat-expansion-panel-header class="accordionDiv">
-              <button class="btn mse-2" (click)="deleteBranch(branch)" ><fa-icon [icon]="faTrash" class="text-danger"></fa-icon></button>
-              <mat-panel-title >
-                    <p>{{branch.LocName}}</p> 
+              <button class="btn mse-2" (click)="deleteBranch(branch)">
+                <fa-icon [icon]="faTrash" class="text-danger"></fa-icon>
+              </button>
+              <mat-panel-title>
+                <p>{{ branch.LocName }}</p>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <p> <b>Location: </b>{{branch.LocName}} <button class="btn mse-2" (click)="editStateLoc = true"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+            <p>
+              <b>Location: </b>{{ branch.LocName }}
+              <button class="btn mse-2" (click)="editStateLoc = true">
+                <fa-icon [icon]="editIcon"></fa-icon>
+              </button>
+            </p>
             <div *ngIf="editStateLoc">
-              <div class="input-group mb-3" style="width: 30%; position: relative; bottom: 10px">
-                <input type="text" [(ngModel)]="branch.LocName" value="{{branch?.LocName}}" class="form-control m-0 p-0" >
-                <button class="btn btn-success" type="button" id="button-addon2" (click)="updateFiledBranch(branch,'LocName')">update</button>
+              <div
+                class="input-group mb-3"
+                style="width: 30%; position: relative; bottom: 10px"
+              >
+                <input
+                  type="text"
+                  [(ngModel)]="branch.LocName"
+                  value="{{ branch?.LocName }}"
+                  class="form-control m-0 p-0"
+                />
+                <button
+                  class="btn btn-success"
+                  type="button"
+                  id="button-addon2"
+                  (click)="updateFiledBranch(branch, 'LocName')"
+                >
+                  update
+                </button>
               </div>
             </div>
-            <p> <b>Address: </b>{{branch.Address}} <button class="btn mse-2" (click)="editStateAdd = true"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+            <p>
+              <b>Address: </b>{{ branch.Address }}
+              <button class="btn mse-2" (click)="editStateAdd = true">
+                <fa-icon [icon]="editIcon"></fa-icon>
+              </button>
+            </p>
             <div *ngIf="editStateAdd">
-              <div class="input-group mb-3" style="width: 30%; position: relative; bottom: 10px">
-                <input type="text" [(ngModel)]="branch.Address" value="{{branch?.Address}}" class="form-control m-0 p-0" >
-                <button class="btn btn-success" type="button" id="button-addon2" (click)="updateFiledBranch(branch,'Address')">update</button>
+              <div
+                class="input-group mb-3"
+                style="width: 30%; position: relative; bottom: 10px"
+              >
+                <input
+                  type="text"
+                  [(ngModel)]="branch.Address"
+                  value="{{ branch?.Address }}"
+                  class="form-control m-0 p-0"
+                />
+                <button
+                  class="btn btn-success"
+                  type="button"
+                  id="button-addon2"
+                  (click)="updateFiledBranch(branch, 'Address')"
+                >
+                  update
+                </button>
               </div>
             </div>
-            <p> <b>Working Hours: </b>{{branch.Workinghours}}  <button class="btn mse-2" (click)="editStateWH = true"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+            <p>
+              <b>Working Hours: </b>{{ branch.Workinghours }}
+              <button class="btn mse-2" (click)="editStateWH = true">
+                <fa-icon [icon]="editIcon"></fa-icon>
+              </button>
+            </p>
             <div *ngIf="editStateWH">
-              <div class="input-group mb-3" style="width: 30%; position: relative; bottom: 10px">
-                <input type="text" [(ngModel)]="branch.Workinghours" value="{{branch?.Workinghours}}" class="form-control m-0 p-0" >
-                <button class="btn btn-success" type="button" id="button-addon2" (click)="updateFiledBranch(branch,'Workinghours')">update</button>
+              <div
+                class="input-group mb-3"
+                style="width: 30%; position: relative; bottom: 10px"
+              >
+                <input
+                  type="text"
+                  [(ngModel)]="branch.Workinghours"
+                  value="{{ branch?.Workinghours }}"
+                  class="form-control m-0 p-0"
+                />
+                <button
+                  class="btn btn-success"
+                  type="button"
+                  id="button-addon2"
+                  (click)="updateFiledBranch(branch, 'Workinghours')"
+                >
+                  update
+                </button>
               </div>
             </div>
           </mat-expansion-panel>
         </mat-accordion>
       </div>
     </mat-tab>
-
 
     <mat-tab label="Offers">
       <div class="d-flex justify-content-end">
-        <button class="btn rounded-circle addBut"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
+        <button class="btn rounded-circle addBut">
+          <fa-icon [icon]="plusIcon"></fa-icon>
+        </button>
       </div>
-      <div class="conatiner m-3" *ngFor="let offer of Offers ">
+      <div class="conatiner m-3" *ngFor="let offer of Offers">
         <mat-accordion>
-   
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
+          <mat-expansion-panel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false"
+          >
             <mat-expansion-panel-header class="accordionDiv">
-              <button class="btn mse-2" (click)="deleteOffer(offer)" ><fa-icon [icon]="faTrash" class="text-danger"></fa-icon></button>
-              <mat-panel-title >
-                {{offer.PromoCode}}
+              <button class="btn mse-2" (click)="deleteOffer(offer)">
+                <fa-icon [icon]="faTrash" class="text-danger"></fa-icon>
+              </button>
+              <mat-panel-title>
+                {{ offer.PromoCode }}
               </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <p> <b>Promo Code: </b>{{offer.PromoCode}}  <button class="btn mse-2" (click)="updateStateOffer(1)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-            <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagPromoCode">
-              <input type="text" [(ngModel)]="offer.PromoCode" value="{{offer.PromoCode}}" class="form-control">
-              <button class="btn btn-success" (click)="updateOffers(offer)">update</button>
+            <p>
+              <b>Promo Code: </b>{{ offer.PromoCode }}
+              <button class="btn mse-2" (click)="updateStateOffer(1)">
+                <fa-icon [icon]="editIcon"></fa-icon>
+              </button>
+            </p>
+            <div
+              class="d-flex"
+              style="width: 30%; position: relative; bottom: 10px"
+              *ngIf="flagPromoCode"
+            >
+              <input
+                type="text"
+                [(ngModel)]="offer.PromoCode"
+                value="{{ offer.PromoCode }}"
+                class="form-control"
+              />
+              <button class="btn btn-success" (click)="updateOffers(offer)">
+                update
+              </button>
             </div>
 
-            <p> <b>Offer Description: </b>{{offer.Description}}  <button class="btn mse-2" (click)="updateStateOffer(2)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-            <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagOfferDesc">
-              <input type="text" [(ngModel)]="offer.Description" value="{{offer.Description}}" class="form-control">
-              <button class="btn btn-success" (click)="updateOffers(offer)">update</button>
+            <p>
+              <b>Offer Description: </b>{{ offer.Description }}
+              <button class="btn mse-2" (click)="updateStateOffer(2)">
+                <fa-icon [icon]="editIcon"></fa-icon>
+              </button>
+            </p>
+            <div
+              class="d-flex"
+              style="width: 30%; position: relative; bottom: 10px"
+              *ngIf="flagOfferDesc"
+            >
+              <input
+                type="text"
+                [(ngModel)]="offer.Description"
+                value="{{ offer.Description }}"
+                class="form-control"
+              />
+              <button class="btn btn-success" (click)="updateOffers(offer)">
+                update
+              </button>
             </div>
 
-            <p> <b>Expiration: </b>{{offer.Expires}}  <button class="btn mse-2" (click)="updateStateOffer(3)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-            <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagExpireDate">
-              <input type="date" [(ngModel)]="offer.Expires" value="{{offer.Expires}}" class="form-control">
-              <button class="btn btn-success" (click)="updateOffers(offer)">update</button>
+            <p>
+              <b>Expiration: </b>{{ offer.Expires }}
+              <button class="btn mse-2" (click)="updateStateOffer(3)">
+                <fa-icon [icon]="editIcon"></fa-icon>
+              </button>
+            </p>
+            <div
+              class="d-flex"
+              style="width: 30%; position: relative; bottom: 10px"
+              *ngIf="flagExpireDate"
+            >
+              <input
+                type="date"
+                [(ngModel)]="offer.Expires"
+                value="{{ offer.Expires }}"
+                class="form-control"
+              />
+              <button class="btn btn-success" (click)="updateOffers(offer)">
+                update
+              </button>
             </div>
-
           </mat-expansion-panel>
         </mat-accordion>
       </div>
     </mat-tab>
-    
 
     <mat-tab label="Menu">
-      <div class="d-flex justify-content-end" *ngIf="Menus[0]==undefined">
-         <div>
-           <button class="btn rounded-circle addBut" (click)="addMenuCollection()"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
-         </div>
-        <div *ngIf="enterMenuColl" class="d-flex justify-content-between"  >
-          <input placeholder="Enter First Category Of Menu"  type="text" class="form-control mt-3 mx-3 py-1" #NameMenuColl
-          style=" position: relative; bottom: 10px" >
-          <button class="btn addBut" (click)="SaveMenuCollection()">Save</button>
+      <div class="d-flex justify-content-end" *ngIf="Menus[0] == undefined">
+        <div>
+          <button
+            class="btn rounded-circle addBut"
+            (click)="addMenuCollection()"
+          >
+            <fa-icon [icon]="plusIcon"></fa-icon>
+          </button>
+        </div>
+        <div *ngIf="enterMenuColl" class="d-flex justify-content-between">
+          <input
+            placeholder="Enter First Category Of Menu"
+            type="text"
+            class="form-control mt-3 mx-3 py-1"
+            #NameMenuColl
+            style="position: relative; bottom: 10px"
+          />
+          <button class="btn addBut" (click)="SaveMenuCollection()">
+            Save
+          </button>
         </div>
       </div>
       <mat-form-field appearance="fill" class="d-flex justify-content-end m-2">
         <mat-label>Select Category</mat-label>
-        <mat-select (selectionChange)="sendSelected(selected)"  [(value)]="selected"  disableRipple>
-          <div *ngFor="let Menu of Menus;let i = index">
-            <mat-option *ngFor="let m of Menu.Name" [value]="m">{{m}}</mat-option>
+        <mat-select
+          (selectionChange)="sendSelected(selected)"
+          [(value)]="selected"
+          disableRipple
+        >
+          <div *ngFor="let Menu of Menus; let i = index">
+            <mat-option *ngFor="let m of Menu.Name" [value]="m">{{
+              m
+            }}</mat-option>
           </div>
-          
-          <div *ngIf="enterName" class="d-flex justify-content-between" >
-            <input placeholder="Enter Name of Catageory" type="text" class="form-control mt-3 mx-3 py-1" #NameMenu
-            style=" position: relative; bottom: 10px" >
-            <span><button class="btn addBut" (click)="SaveMenu()">Save</button></span> 
-          </div> 
-            
 
-           <div class="d-flex justify-content-end">
-              <button class="btn rounded-circle addBut" (click)="EnterName()"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
+          <div *ngIf="enterName" class="d-flex justify-content-between">
+            <input
+              placeholder="Enter Name of Catageory"
+              type="text"
+              class="form-control mt-3 mx-3 py-1"
+              #NameMenu
+              style="position: relative; bottom: 10px"
+            />
+            <span
+              ><button class="btn addBut" (click)="SaveMenu()">
+                Save
+              </button></span
+            >
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <button class="btn rounded-circle addBut" (click)="EnterName()">
+              <fa-icon [icon]="plusIcon"></fa-icon>
+            </button>
           </div>
         </mat-select>
       </mat-form-field>
-      <div class="d-flex justify-content-end me-4"  *ngIf="selected">
-        <button class="btn rounded-circle addBut" (click)="DeleteMenuCollection()">
-           <fa-icon [icon]="faTrashAlt" class="trash"></fa-icon>
+      <div class="d-flex justify-content-end me-4" *ngIf="selected">
+        <button
+          class="btn rounded-circle addBut"
+          (click)="DeleteMenuCollection()"
+        >
+          <fa-icon [icon]="faTrashAlt" class="trash"></fa-icon>
         </button>
       </div>
-  
-          <div class="conatiner m-3" *ngFor="let Menu of MenuCatSelected ">
-            <mat-accordion multi='false'>
-              <mat-expansion-panel (opened)="panelOpenState = true"
-                                   (closed)="panelOpenState = false">
-                <mat-expansion-panel-header class="accordionDiv">
-                  <button class="btn mse-2" (click)="deleteMeal(Menu.CatID)"><fa-icon [icon]="faTrash" class="text-danger"></fa-icon></button>
-                  <mat-panel-title >
-                    {{Menu.ProName}}
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div class="d-flex flex-row">
-                  <div class="m-3">
-                  <img [src]="Menu.ProImg" width="150px" height="150px" class="rounded-3" />
-                  </div >
-                  <div class="m-3">
-                    <p> <b>Description: </b>{{Menu.Description}}<button class="btn mx-2" (click)="updateStateMenu(1)"><fa-icon [icon]="editIcon"></fa-icon></button></p>
-                    <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagMenuDes">
-                      <input type="text" [(ngModel)]="Menu.Description" value="{{Menu.Description}}" class="form-control">
-                      <button class="btn btn-success" (click)="updateMenu(Menu)">update</button>
-                    </div>
-                    <div> <p style="color: var(--first-color);"> Extras:  </p>
-                      <div *ngFor="let extras of Menu.Extras">
-                        <b>Name of Extar: </b>{{extras.Name}}<button class="btn mx-2"(click)="updateStateMenu(2)"><fa-icon [icon]="editIcon"></fa-icon></button> <br/>
-                        <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagMenuExtraName">
-                          <input type="text" [(ngModel)]="extras.Name" value="{{extras.Name}}" class="form-control">
-                          <button class="btn btn-success" (click)="updateMenu(Menu)">update</button>
-                        </div>
-                        <b>Price of Extar: </b>{{extras.Price}}<button class="btn mx-2" (click)="updateStateMenu(3)"><fa-icon [icon]="editIcon"></fa-icon></button>
-                        <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagMenuExtraPrice">
-                          <input type="text" [(ngModel)]="extras.Price" value="{{extras.Price}}" class="form-control">
-                          <button class="btn btn-success" (click)="updateMenu(Menu)">update</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div> <p style="color: var(--first-color);"> Size:  </p>
 
-                      <div *ngFor="let sizes of Menu.Size;let i=index">
-                        <button  [hidden]="!flagMenuSizeName&&!flagMenuSizePrice" class="btn my-1" style="background-color: #e32207; color: white;" >-</button>
+      <div class="conatiner m-3" *ngFor="let Menu of MenuCatSelected">
+        <mat-accordion multi="false">
+          <mat-expansion-panel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false"
+          >
+            <mat-expansion-panel-header class="accordionDiv">
+              <button class="btn mse-2" (click)="deleteMeal(Menu.CatID)">
+                <fa-icon [icon]="faTrash" class="text-danger"></fa-icon>
+              </button>
+              <mat-panel-title>
+                {{ Menu.ProName }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="d-flex flex-row">
+              <div class="m-3">
+                <img
+                  [src]="Menu.ProImg"
+                  width="150px"
+                  height="150px"
+                  class="rounded-3"
+                />
+              </div>
+              <div class="m-3">
+                <p>
+                  <b>Description: </b>{{ Menu.Description
+                  }}<button class="btn mx-2" (click)="updateStateMenu(1)">
+                    <fa-icon [icon]="editIcon"></fa-icon>
+                  </button>
+                </p>
+                <div
+                  class="d-flex"
+                  style="width: 50%; position: relative; bottom: 10px"
+                  *ngIf="flagMenuDes"
+                >
+                  <input
+                    type="text"
+                    [(ngModel)]="Menu.Description"
+                    value="{{ Menu.Description }}"
+                    class="form-control"
+                  />
+                  <button class="btn btn-success" (click)="updateMenu(Menu)">
+                    update
+                  </button>
+                </div>
+                <div>
+                  <p style="color: var(--first-color)">
+                    Extras:
+                    <button class="btn mx-2" (click)="updateStateMenu(2)">
+                      <fa-icon [icon]="editIcon"></fa-icon>
+                    </button>
+                  </p>
 
-                        <b>Name of Size: </b>{{sizes.Name}}<button class="btn mx-2" (click)="updateStateMenu(4)"><fa-icon [icon]="editIcon"></fa-icon></button> <br/>
-                        <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagMenuSizeName">
-                          <input type="text" [(ngModel)]="sizes.Name" value="{{sizes.Name}}" #MenuSize class="form-control" >
-                          <button class="btn btn-success" (click)="updateMenu(Menu)">update</button>
-                        </div>
-                        <b>Price of Size: </b>{{sizes.Price}} <button class="btn mx-2" (click)="updateStateMenu(5)"><fa-icon [icon]="editIcon"></fa-icon></button>
-                        <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagMenuSizePrice">
-                          <input type="text" [(ngModel)]="sizes.Price" value="{{sizes.Price}}" class="form-control">
-                          <button class="btn btn-success" (click)="updateMenu(Menu)">update</button>
-                        </div>
-                      </div>
+                  <div *ngFor="let extras of Menu.Extras; let i = index">
+                    <button
+                      [hidden]="!flagMenuExtraName && !flagMenuExtraPrice"
+                      class="btn my-1"
+                      style="background-color: #e32207; color: white"
+                      (click)="DeleteExtra(Menu, i)"
+                    >
+                      -
+                    </button>
+                    <p class="my-2"><b>Name of Extar: </b>{{ extras.Name }} <br /></p>
+                    
+                    <div
+                      class="d-flex"
+                      style="width: 50%; position: relative; bottom: 10px"
+                      *ngIf="flagMenuExtraName"
+                    >
+                      <input
+                        type="text"
+                        [(ngModel)]="extras.Name"
+                        value="{{ extras.Name }}"
+                        class="form-control"
+                      />
+                      <button
+                        class="btn btn-success"
+                        (click)="updateMenu(Menu)"
+                      >
+                        update
+                      </button>
+                    </div>
+                    <p class="my-2">  <b>Price of Extar: </b>{{ extras.Price }}</p>
+                  
+                    <div
+                      class="d-flex"
+                      style="width: 50%; position: relative; bottom: 10px"
+                      *ngIf="flagMenuExtraPrice"
+                    >
+                      <input
+                        type="text"
+                        [(ngModel)]="extras.Price"
+                        value="{{ extras.Price }}"
+                        class="form-control"
+                      />
+                      <button
+                        class="btn btn-success"
+                        (click)="updateMenu(Menu)"
+                      >
+                        update
+                      </button>
                     </div>
                   </div>
+                  <button
+                    class="btn btn-success addBut"
+                    [hidden]="!flagMenuExtraName && !flagMenuExtraPrice"
+                    (click)="addNewExtra(Menu)"
+                  >
+                    Add Extra
+                  </button>
                 </div>
-              </mat-expansion-panel>
-            </mat-accordion>
-
-          </div>
-          <div class="d-flex justify-content-end" *ngIf="selected">
-            <button class="btn rounded-circle addBut" (click)="addMeal(Menus[0].MenuID)"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
-          </div>
-
+                <div>
+                  <p style="color: var(--first-color)">
+                    Size:
+                    <button class="btn mx-2" (click)="updateStateMenu(3)">
+                      <fa-icon [icon]="editIcon"></fa-icon>
+                    </button>
+                  </p>
+                  <div *ngFor="let sizes of Menu.Size; let i = index">
+                    <button
+                      [hidden]="!flagMenuSizeName && !flagMenuSizePrice"
+                      class="btn my-1"
+                      style="background-color: #e32207; color: white"
+                      (click)="DeleteSize(Menu, i)"
+                    >
+                      -
+                    </button>
+                    <p class="my-2"> <b>Name of Size: </b>{{ sizes.Name }} <br /></p>
+                    <div
+                      class="d-flex"
+                      style="width: 50%; position: relative; bottom: 10px"
+                      *ngIf="flagMenuSizeName"
+                    >
+                      <input
+                        type="text"
+                        [(ngModel)]="sizes.Name"
+                        value="{{ sizes.Name }}"
+                        class="form-control"
+                      />
+                      <button
+                        class="btn btn-success"
+                        (click)="updateMenu(Menu)"
+                      >
+                        update
+                      </button>
+                    </div>
+                    <p class="my-2"><b>Price of Size: </b>{{ sizes.Price }}</p>
+                    <div
+                      class="d-flex"
+                      style="width: 50%; position: relative; bottom: 10px"
+                      *ngIf="flagMenuSizePrice"
+                    >
+                      <input
+                        type="text"
+                        [(ngModel)]="sizes.Price"
+                        value="{{ sizes.Price }}"
+                        class="form-control"
+                      />
+                      <button
+                        class="btn btn-success"
+                        (click)="updateMenu(Menu)"
+                      >
+                        update
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-success addBut"
+                    [hidden]="!flagMenuSizeName && !flagMenuSizePrice"
+                    (click)="addNewSize(Menu)"
+                  >
+                    Add Size
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div class="d-flex justify-content-end" *ngIf="selected">
+        <button
+          class="btn rounded-circle addBut"
+          (click)="addMeal(Menus[0].MenuID)"
+        >
+          <fa-icon [icon]="plusIcon"></fa-icon>
+        </button>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>

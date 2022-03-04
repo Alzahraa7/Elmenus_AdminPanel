@@ -72,6 +72,7 @@ export class ResDetailsComponent implements OnInit {
   flagMenuExtraPrice:boolean=false;
   flagMenuSizeName:boolean=false;
   flagMenuSizePrice:boolean=false;
+  addExtra:object={}
   @ViewChild(AddBranchComponent) form!:AddBranchComponent;
   constructor(
     private _snackBar: MatSnackBar,
@@ -361,16 +362,12 @@ export class ResDetailsComponent implements OnInit {
         break;
       case 2:
        this.flagMenuExtraName = this.flagMenuExtraName ? false:true
+       this.flagMenuExtraPrice = this.flagMenuExtraPrice ? false:true
         break;
       case 3:
-        this.flagMenuExtraPrice = this.flagMenuExtraPrice ? false:true
-      break;
-      case 4:
        this.flagMenuSizeName = this.flagMenuSizeName ? false:true
+       this.flagMenuSizePrice = this.  flagMenuSizePrice ? false:true
         break;
-      case 5:
-        this.flagMenuSizePrice = this.  flagMenuSizePrice ? false:true
-      break;
       default:
         break;
     }
@@ -381,7 +378,22 @@ export class ResDetailsComponent implements OnInit {
     this.openSnackBar(`You have Updated this Category Collection`)
 
   }
- 
+  DeleteSize(Menu:IMenuCat,index:number){
+      console.log(Menu,index)
+      Menu.Size.splice(index,1)
+      this.updateMenu(Menu)
+  }
+  DeleteExtra(Menu:IMenuCat,index:number){
+    Menu.Extras.splice(index,1)
+    this.updateMenu(Menu)
+  }
+  addNewExtra(Menu:IMenuCat){
+    Menu.Extras.push({Name:'',Price:0})
+    
+  }
+  addNewSize(Menu:IMenuCat){
+    Menu.Extras.push({Name:'',Price:0})
+  }
   
 
 }
