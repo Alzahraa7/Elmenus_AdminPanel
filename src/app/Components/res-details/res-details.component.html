@@ -65,7 +65,7 @@
             <mat-expansion-panel-header class="accordionDiv">
               <button class="btn mse-2" (click)="deleteBranch(branch)" ><fa-icon [icon]="faTrash" class="text-danger"></fa-icon></button>
               <mat-panel-title >
-                    <p>{{branch.LocName}}</p> 
+                    <p>{{branch.LocName}}</p>
               </mat-panel-title>
             </mat-expansion-panel-header>
             <p> <b>Location: </b>{{branch.LocName}} <button class="btn mse-2" (click)="editStateLoc = true"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
@@ -113,7 +113,7 @@
         </mat-accordion>
       </div>
     </mat-tab>
-    
+
     <mat-tab label="Menu">
       <div class="d-flex justify-content-end" *ngIf="Menus[0]==undefined">
          <div>
@@ -131,14 +131,14 @@
           <div *ngFor="let Menu of Menus;let i = index">
             <mat-option *ngFor="let m of Menu.Name" [value]="m">{{m}}</mat-option>
           </div>
-          
+
           <div *ngIf="enterName" class="d-flex justify-content-between" >
             <input placeholder="Enter Name of Catageory" type="text" class="form-control mt-3 mx-3 py-1" #NameMenu
             style=" position: relative; bottom: 10px" >
-            <span><button class="btn addBut" (click)="SaveMenu()">Save</button></span> 
-          </div> 
-            
-         
+            <span><button class="btn addBut" (click)="SaveMenu()">Save</button></span>
+          </div>
+
+
            <div class="d-flex justify-content-end">
               <button class="btn rounded-circle addBut" (click)="EnterName()"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
           </div>
@@ -149,7 +149,7 @@
            <fa-icon [icon]="faTrashAlt" class="trash"></fa-icon>
         </button>
       </div>
-      
+
 
           <div class="conatiner m-3" *ngFor="let Menu of MenuCatSelected ">
             <mat-accordion multi='false'>

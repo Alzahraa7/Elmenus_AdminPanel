@@ -116,17 +116,21 @@ export class ResDetailsComponent implements OnInit {
       duration:3000
     });
   }
-
-  sendSelected(val: any) {
-    console.log(val);
-    this.menuSrvs.getMenuCatSelected(val).subscribe(i => {
+  sendId(id:any,val:string){
+    this.menuSrvs.getMenuSelected2(id,this.ResId,val).subscribe(i=>{
       this.MenuCatSelected = i;
+    })
+  }
+  sendSelected(val: any) {
+    //console.log(val);
+    this.menuSrvs.getMenuCatSelected(val,this.ResId).subscribe(i => {
+      console.log(i)
+      this.sendId(i[0],val);
     })
   }
 
   disappearForm(val:boolean){
     this.submitted= val;
-
   }
   appearForm(val:boolean){
     this.formBranch = val;
@@ -272,7 +276,7 @@ export class ResDetailsComponent implements OnInit {
   }
   EnterName(){
       this.enterName=!this.enterName
-      
+
   }
   SaveMenu(){
     console.log(this.NameMenu.nativeElement.value)
@@ -288,11 +292,11 @@ export class ResDetailsComponent implements OnInit {
     else{
       this.openSnackBar("you must be fill input first !")
     }
-    
+
   }
   addMenuCollection(){
     this.enterMenuColl = !this.enterMenuColl
-   
+
   }
   SaveMenuCollection(){
 
@@ -306,7 +310,7 @@ export class ResDetailsComponent implements OnInit {
     else{
       this.openSnackBar("you must be fill input first !")
     }
-    
+
 
   }
   DeleteMenuCollection(){
@@ -321,7 +325,7 @@ export class ResDetailsComponent implements OnInit {
         this.openSnackBar(`You have deleted this Category Collection`)
       }
     })
-   
+
   }
 
 

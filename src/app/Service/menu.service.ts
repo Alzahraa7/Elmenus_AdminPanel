@@ -12,6 +12,7 @@ export class MenuService {
   Menus: any;
   MenuCollecCat!: AngularFirestoreCollectionGroup<IMenuCat>;
   MenusCat:any;
+  MenuCollecSelected!: AngularFirestoreCollection<IMenuCat>;
   MenusCatSelected:any;
   MealDoc: AngularFirestoreDocument<IMenuCat> | undefined;
   MenuCollecDoc:AngularFirestoreDocument<IMenuCat>|undefined
@@ -67,15 +68,29 @@ export class MenuService {
     return this.MenusCat;
   }
 
-  getMenuCatSelected(selected:string):Observable<IMenuCat[]>{
-    this.MenuCollecCat = this.firestore.collectionGroup(`${selected}`);
-        this.MenusCatSelected = this.MenuCollecCat.snapshotChanges().pipe(map(changes => {
+  getMenuCatSelected(selected:string,ResID:string|null):Observable<IMenuCat[]>{
+    this.MenuCollecSelected = this.firestore.collection(`Restaurant/${ResID}/Menu`);
+        this.MenusCatSelected = this.MenuCollecSelected.snapshotChanges().pipe(map(changes => {
+          return changes.map( res => {
+            const data = res.payload.doc.data();
+            data.CatID = res.payload.doc.id;
+            return res.payload.doc.id;
+          })
+        }));
+        this.MenuCollecSelected.valueChanges().subscribe(i=>console.log(i))
+    return this.MenusCatSelected;
+  }
+  getMenuSelected2(id:any,ResID:string|null,selected:string):Observable<IMenuCat[]>{
+    console.log(id)
+    this.MenuCollecSelected = this.firestore.collection(`Restaurant/${ResID}/Menu/${id}/${selected}`);
+        this.MenusCatSelected = this.MenuCollecSelected.snapshotChanges().pipe(map(changes => {
           return changes.map( res => {
             const data = res.payload.doc.data();
             data.CatID = res.payload.doc.id;
             return data;
           })
         }));
+        this.MenuCollecSelected.valueChanges().subscribe(i=>console.log(i))
     return this.MenusCatSelected;
   }
 
@@ -112,7 +127,7 @@ export class MenuService {
 
   }
   deleteMenuCollec(ResID:any,Menu:IMenu,CollectionName:string){
-    
+
 
     this.firestore
     .collection(`Restaurant/${ResID}/Menu/${Menu.MenuID}/${CollectionName}`)
@@ -132,10 +147,10 @@ export class MenuService {
         this.MenuCollecDoc = this.firestore.doc(`Restaurant/${ResID}/Menu/${Menu.MenuID}/${CollectionName}/${CollectionMenuID}`);
         this.MenuCollecDoc.delete();
       }
-     
+
       let ref = this.firestore.doc(`Restaurant/${ResID}/Menu/${Menu.MenuID}`);
       ref.update(Menu);
-      
+
     });
 
   }
