@@ -54,6 +54,7 @@ export class ResDetailsComponent implements OnInit {
   @ViewChild('TypeInput') typeInput !: ElementRef;
   @ViewChild('NameMenu') NameMenu !:ElementRef;
   @ViewChild('NameMenuColl') NameMenuCollec !:ElementRef;
+  @ViewChild('MenuSize') MenuSize !:ElementRef
   //update Offer date
   flagPromoCode = false;
   flagOfferDesc = false;
@@ -66,6 +67,11 @@ export class ResDetailsComponent implements OnInit {
 
   faTrashAlt=faTrashAlt;
   editState:boolean = false;
+  flagMenuDes:boolean=false
+  flagMenuExtraName:boolean=false;
+  flagMenuExtraPrice:boolean=false;
+  flagMenuSizeName:boolean=false;
+  flagMenuSizePrice:boolean=false;
   @ViewChild(AddBranchComponent) form!:AddBranchComponent;
   constructor(
     private _snackBar: MatSnackBar,
@@ -348,6 +354,35 @@ export class ResDetailsComponent implements OnInit {
     })
    
   }
+  updateStateMenu(State: number){
+    switch (State){
+      case 1:
+        this.flagMenuDes = this.flagMenuDes ? false : true;
+        break;
+      case 2:
+       this.flagMenuExtraName = this.flagMenuExtraName ? false:true
+        break;
+      case 3:
+        this.flagMenuExtraPrice = this.flagMenuExtraPrice ? false:true
+      break;
+      case 4:
+       this.flagMenuSizeName = this.flagMenuSizeName ? false:true
+        break;
+      case 5:
+        this.flagMenuSizePrice = this.  flagMenuSizePrice ? false:true
+      break;
+      default:
+        break;
+    }
+  } 
 
+  updateMenu(Menu:IMenuCat){
+    this.ResId,this.Menus[0].MenuID,this.selected
+    this.menuSrvs.updateMeal(Menu,this.ResId,this.selected,this.Menus[0].MenuID)
+    this.openSnackBar(`You have Updated this Category Collection`)
+
+  }
+ 
+  
 
 }

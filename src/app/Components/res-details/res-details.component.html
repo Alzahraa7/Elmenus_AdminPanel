@@ -159,7 +159,7 @@
             <span><button class="btn addBut" (click)="SaveMenu()">Save</button></span> 
           </div> 
             
-         
+
            <div class="d-flex justify-content-end">
               <button class="btn rounded-circle addBut" (click)="EnterName()"> <fa-icon [icon]="plusIcon"></fa-icon> </button>
           </div>
@@ -170,8 +170,7 @@
            <fa-icon [icon]="faTrashAlt" class="trash"></fa-icon>
         </button>
       </div>
-      
-
+  
           <div class="conatiner m-3" *ngFor="let Menu of MenuCatSelected ">
             <mat-accordion multi='false'>
               <mat-expansion-panel (opened)="panelOpenState = true"
@@ -187,18 +186,41 @@
                   <img [src]="Menu.ProImg" width="150px" height="150px" class="rounded-3" />
                   </div >
                   <div class="m-3">
-                    <p> <b>Description: </b>{{Menu.Description}}</p>
+                    <p> <b>Description: </b>{{Menu.Description}}<button class="btn mx-2" (click)="updateStateMenu(1)"><fa-icon [icon]="editIcon"></fa-icon></button></p>
+                    <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagMenuDes">
+                      <input type="text" [(ngModel)]="Menu.Description" value="{{Menu.Description}}" class="form-control">
+                      <button class="btn btn-success" (click)="updateMenu(Menu)">update</button>
+                    </div>
                     <div> <p style="color: var(--first-color);"> Extras:  </p>
-                      <p *ngFor="let extras of Menu.Extras">
-                        <b>Name of Extar: </b>{{extras.Name}} <br/>
-                        <b>Price of Extar: </b>{{extras.Price}}
-                      </p>
+                      <div *ngFor="let extras of Menu.Extras">
+                        <b>Name of Extar: </b>{{extras.Name}}<button class="btn mx-2"(click)="updateStateMenu(2)"><fa-icon [icon]="editIcon"></fa-icon></button> <br/>
+                        <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagMenuExtraName">
+                          <input type="text" [(ngModel)]="extras.Name" value="{{extras.Name}}" class="form-control">
+                          <button class="btn btn-success" (click)="updateMenu(Menu)">update</button>
+                        </div>
+                        <b>Price of Extar: </b>{{extras.Price}}<button class="btn mx-2" (click)="updateStateMenu(3)"><fa-icon [icon]="editIcon"></fa-icon></button>
+                        <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagMenuExtraPrice">
+                          <input type="text" [(ngModel)]="extras.Price" value="{{extras.Price}}" class="form-control">
+                          <button class="btn btn-success" (click)="updateMenu(Menu)">update</button>
+                        </div>
+                      </div>
                     </div>
                     <div> <p style="color: var(--first-color);"> Size:  </p>
-                      <p *ngFor="let sizes of Menu.Size">
-                        <b>Name of Extar: </b>{{sizes.Name}} <br/>
-                        <b>Price of Extar: </b>{{sizes.Price}}
-                      </p>
+
+                      <div *ngFor="let sizes of Menu.Size;let i=index">
+                        <button  [hidden]="!flagMenuSizeName&&!flagMenuSizePrice" class="btn my-1" style="background-color: #e32207; color: white;" >-</button>
+
+                        <b>Name of Size: </b>{{sizes.Name}}<button class="btn mx-2" (click)="updateStateMenu(4)"><fa-icon [icon]="editIcon"></fa-icon></button> <br/>
+                        <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagMenuSizeName">
+                          <input type="text" [(ngModel)]="sizes.Name" value="{{sizes.Name}}" #MenuSize class="form-control" >
+                          <button class="btn btn-success" (click)="updateMenu(Menu)">update</button>
+                        </div>
+                        <b>Price of Size: </b>{{sizes.Price}} <button class="btn mx-2" (click)="updateStateMenu(5)"><fa-icon [icon]="editIcon"></fa-icon></button>
+                        <div class="d-flex" style="width: 30%; position: relative; bottom: 10px" *ngIf="flagMenuSizePrice">
+                          <input type="text" [(ngModel)]="sizes.Price" value="{{sizes.Price}}" class="form-control">
+                          <button class="btn btn-success" (click)="updateMenu(Menu)">update</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
