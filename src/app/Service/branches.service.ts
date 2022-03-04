@@ -32,4 +32,9 @@ export class BranchesService {
     this.IsSubmit = true;
   }
 
+  updateBranch(branch:IBranches,ResId:string|null){
+    const ref = this.firestore.doc(`Restaurant/${ResId}/Branches/${branch.BranchId}`);
+    ref.update(branch)
+  }
+
 }

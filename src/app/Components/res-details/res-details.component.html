@@ -9,22 +9,22 @@
       <div class="d-flex flex-column textDiv2" >
         <p><span class="textDiv">Name: </span> <span>{{Restaurant?.ResName}}</span>  <button class="btn mse-2" (click)="updateBasicRes(1)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
         <input #ResNameInput [hidden]="!NameFlag" type="text" class="form-control m-0 p-0" value="{{Restaurant?.ResName}}"
-        style="width: 30%; position: relative; bottom: 10px"> 
+        style="width: 30%; position: relative; bottom: 10px">
 
         <p><span class="textDiv">Owner: </span>  <span>{{Restaurant?.OwnerName}}</span>  <button class="btn mse-2" (click)="updateBasicRes(2)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
         <input #ownerNameInput [hidden]="!ownerFlg" type="text" class="form-control m-0 p-0" value="{{Restaurant?.OwnerName}}"
-        style="width: 30%; position: relative; bottom: 10px"> 
+        style="width: 30%; position: relative; bottom: 10px">
 
         <p><span class="textDiv">Phone: </span>  <span>{{Restaurant?.Phone}}</span>  <button class="btn mse-2" (click)="updateBasicRes(3)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
         <input #PhoneInput [hidden]="!phoneFlag" type="text" class="form-control m-0 p-0" value="{{Restaurant?.Phone}}"
-        style="width: 30%;position: relative; bottom: 10px"> 
+        style="width: 30%;position: relative; bottom: 10px">
 
         <p><span class="textDiv">Mood: </span> <span> {{Restaurant?.Mood}} </span>  <button class="btn mse-2" (click)="updateBasicRes(4)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
         <div *ngFor="let mood of changedMood; let i = index" class="d-flex" style="width: 30%; position: relative; bottom: 10px" >
           <input  [hidden]="!moodFlag" #MoodInput type="text" class="form-control my-1 p-0" value="{{mood}}"
-        id="{{i}}" (change)="saveUpdateMood(MoodInput.value, i)"> 
+        id="{{i}}" (change)="saveUpdateMood(MoodInput.value, i)">
         <button  [hidden]="!moodFlag" class="btn my-1" style="background-color: #e32207; color: white;" (click)="deleteMood(MoodInput.value)">-</button>
-        
+
       </div>
       <small class="text-danger" [hidden]="!errorShow" style="position: relative; bottom: 10px;" >you must filled this field first!!</small>
 
@@ -33,10 +33,10 @@
         <p><span class="textDiv">Type: </span>  <span>{{Restaurant?.Type}} </span> <button class="btn mse-2" (click)="updateBasicRes(5)"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
         <div *ngFor="let type of changedType; let i = index" class="d-flex" style="width: 30%; border-color: #e32207; position: relative; bottom: 10px">
           <input #TypeInput [hidden]="!typeFlag" type="text" class="form-control my-1 p-0" value="{{type}}"
-           (change)="saveUpdateType(TypeInput.value, i)"> 
-          
+           (change)="saveUpdateType(TypeInput.value, i)">
+
           <button  [hidden]="!typeFlag" class="btn my-1" style="background-color: #e32207; color: white;" (click)="deleteType(TypeInput.value)">-</button>
-        
+
         </div>
         <small class="text-danger" [hidden]="!errorTypeShow" style="position: relative; bottom: 10px;" >you must filled this field first!!</small>
 
@@ -44,7 +44,7 @@
 
 
         <button class="btn btnClass my-2" [hidden]="!NameFlag && !ownerFlg && !phoneFlag && !moodFlag && !typeFlag" (click)="updateRes()">Update</button>
-     
+
       </div>
     </div>
   </div>
@@ -67,14 +67,27 @@
                 {{branch.LocName}}
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <p> <b>Location: </b>{{branch.LocName}} <button class="btn mse-2" (click)="updateFiledBranch(branch,'LocName')"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-            <div *ngIf="editState">
-              
+            <p> <b>Location: </b>{{branch.LocName}} <button class="btn mse-2" (click)="editStateLoc = true"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+            <div *ngIf="editStateLoc">
+              <div class="input-group mb-3" style="width: 30%; position: relative; bottom: 10px">
+                <input type="text" [(ngModel)]="branch.LocName" value="{{branch?.LocName}}" class="form-control m-0 p-0" >
+                <button class="btn btn-success" type="button" id="button-addon2" (click)="updateFiledBranch(branch,'LocName')">update</button>
+              </div>
             </div>
-            <p> <b>Address: </b>{{branch.Address}} <button class="btn mse-2" (click)="updateFiledBranch(branch,'Address')"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-
-            <p> <b>Working Hours: </b>{{branch.Workinghours}}  <button class="btn mse-2" (click)="updateFiledBranch(branch,'Workinghours')"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
-
+            <p> <b>Address: </b>{{branch.Address}} <button class="btn mse-2" (click)="editStateAdd = true"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+            <div *ngIf="editStateAdd">
+              <div class="input-group mb-3" style="width: 30%; position: relative; bottom: 10px">
+                <input type="text" [(ngModel)]="branch.Address" value="{{branch?.Address}}" class="form-control m-0 p-0" >
+                <button class="btn btn-success" type="button" id="button-addon2" (click)="updateFiledBranch(branch,'Address')">update</button>
+              </div>
+            </div>
+            <p> <b>Working Hours: </b>{{branch.Workinghours}}  <button class="btn mse-2" (click)="editStateWH = true"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
+            <div *ngIf="editStateWH">
+              <div class="input-group mb-3" style="width: 30%; position: relative; bottom: 10px">
+                <input type="text" [(ngModel)]="branch.Workinghours" value="{{branch?.Workinghours}}" class="form-control m-0 p-0" >
+                <button class="btn btn-success" type="button" id="button-addon2" (click)="updateFiledBranch(branch,'Workinghours')">update</button>
+              </div>
+            </div>
           </mat-expansion-panel>
         </mat-accordion>
       </div>
@@ -106,7 +119,7 @@
           <div *ngFor="let Menu of Menus;let i = index">
             <mat-option *ngFor="let m of Menu.Name" [value]="m">{{m}}</mat-option>
           </div>
-          
+
         </mat-select>
       </mat-form-field>
           <div class="conatiner m-3" *ngFor="let Menu of MenuCatSelected ">
@@ -141,7 +154,7 @@
                 </div>
               </mat-expansion-panel>
             </mat-accordion>
-            
+
           </div>
           <div class="d-flex justify-content-end">
             <button class="btn rounded-circle addBut" (click)="addMeal(Menus[0].MenuID)"> <fa-icon [icon]="plusIcon"></fa-icon> </button>

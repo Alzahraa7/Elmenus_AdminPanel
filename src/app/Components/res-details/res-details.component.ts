@@ -50,7 +50,10 @@ export class ResDetailsComponent implements OnInit {
   @ViewChild('MoodInput') moodInput !: ElementRef;
   @ViewChild('TypeInput') typeInput !: ElementRef;
   faTrash = faTrash;
-  editState:boolean = false;
+  editStateLoc:boolean = false;
+  editStateAdd:boolean = false;
+  editStateWH:boolean = false;
+
   @ViewChild(AddBranchComponent) form!:AddBranchComponent;
   constructor(
     private _snackBar: MatSnackBar,
@@ -122,9 +125,11 @@ export class ResDetailsComponent implements OnInit {
     this.form.clickAdd=true;
   }
 
-  updateFiledBranch(branch:IBranches,branchField:string){
-    this.editState =true
-    console.log(branch,branchField);
+  updateFiledBranch(branch:IBranches,field:string){
+    if(field=='LocName') this.editStateLoc =false;
+    else if(field == 'Address') this.editStateAdd = false;
+    else if(field == 'Workinghours') this.editStateWH = false;
+    this.brancessrvs.updateBranch(branch,this.ResId)
   }
   // shrouk --> UPdate Basic Res
   updateBasicRes(ResNumber: any) {
