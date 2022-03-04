@@ -37,4 +37,9 @@ export class BranchesService {
     ref.update(branch)
   }
 
+  deleteBranch(ResId:string|null,branch:IBranches){
+    const ref = this.firestore.doc(`Restaurant/${ResId}/Branches/${branch.BranchId}`);
+    ref.delete();
+  }
+
 }

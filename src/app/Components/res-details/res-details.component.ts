@@ -129,7 +129,20 @@ export class ResDetailsComponent implements OnInit {
     if(field=='LocName') this.editStateLoc =false;
     else if(field == 'Address') this.editStateAdd = false;
     else if(field == 'Workinghours') this.editStateWH = false;
-    this.brancessrvs.updateBranch(branch,this.ResId)
+    this.brancessrvs.updateBranch(branch,this.ResId);
+    this.openSnackBar(`You have updated branch to ${branch.LocName}`);
+  }
+
+  deleteBranch(branch:IBranches){
+    let dialogRef = this.dialog.open(CustomDialogComponent,{
+      data:{mess:`Are you sure you want to delete ${branch.LocName} Branch ?`}
+    });
+    dialogRef.afterClosed().subscribe(i=>{
+      if(i.data){
+        this.brancessrvs.deleteBranch(this.ResId,branch);
+        this.openSnackBar(`You have deleted ${branch.LocName} Branch`);
+      }
+    })
   }
   // shrouk --> UPdate Basic Res
   updateBasicRes(ResNumber: any) {

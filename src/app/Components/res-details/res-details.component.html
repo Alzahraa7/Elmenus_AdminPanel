@@ -63,8 +63,9 @@
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header class="accordionDiv">
+              <button class="btn mse-2" (click)="deleteBranch(branch)" ><fa-icon [icon]="faTrash" class="text-danger"></fa-icon></button>
               <mat-panel-title >
-                {{branch.LocName}}
+                    <p>{{branch.LocName}}</p> 
               </mat-panel-title>
             </mat-expansion-panel-header>
             <p> <b>Location: </b>{{branch.LocName}} <button class="btn mse-2" (click)="editStateLoc = true"><fa-icon [icon]="editIcon"></fa-icon></button> </p>
