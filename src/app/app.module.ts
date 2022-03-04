@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NavbarComponent } from './Components/navbar/navbar.component'
 import { FooterComponent } from './Components/footer/footer.component';
-
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule , AngularFirestore } from "@angular/fire/firestore";
@@ -56,7 +56,8 @@ import { AddMealComponent } from './Components/add-meal/add-meal.component';
     MatExpansionModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireAnalyticsModule
   ],
   providers: [
     RestaurantService,
