@@ -54,7 +54,7 @@ export class AddCareerComponent implements OnInit {
         this.UpdateCareer=doc.data()
         console.log("Document data:", doc.data());
       } else {
-        this.openSnackBar("No such document!");
+        console.log("No such document!");
       }
       console.log(this.UpdateCareer)
       this.fillUpdate(this.UpdateCareer)
