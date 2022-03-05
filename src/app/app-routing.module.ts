@@ -19,7 +19,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { AuthGuard } from './Gaurds/auth.guard';
 
 const routes: Routes = [
-  {path:'', component:MainUIComponent,children:[
+  {path:'', component:MainUIComponent, canActivate: [AuthGuard], children:[
     { path: 'Restaurants', component: RestaurantsComponent, canActivate: [AuthGuard]},
     {path:'confirmRest', component:ConfirmRestComponent, canActivate: [AuthGuard]},
     {path:'Careers', component:ListCareerComponent, canActivate: [AuthGuard]},
@@ -29,7 +29,7 @@ const routes: Routes = [
     {path:'Profile',component:ProfileComponent, canActivate: [AuthGuard]},
     {path:'',component:DashboardComponent},
   ]},
-  {path:'',component:UiformComponent,children:[
+  {path:'',component:UiformComponent, canActivate: [AuthGuard], children:[
     { path: 'addRestaurant', component: AddRestaurantComponent, canActivate: [AuthGuard]},
     {path:'addAdmin/:name',component:AdminsAddComponent, canActivate: [AuthGuard]},
     {path:'addCareer',component:AddCareerComponent, canActivate: [AuthGuard]},
