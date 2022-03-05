@@ -1,0 +1,46 @@
+
+<div #var class="container mt-5 CardForm" *ngIf="clickAddOffer" >
+  <h3 >Add New Offer</h3>
+  <form class="m-3" [formGroup]="addOfferForm" >
+    <!----------------------------------------Description------------------------------------------->
+    <div class="mb-3">
+        <label for="Description" class="form-label">Description:</label>
+        <input type="text" formControlName="Description" class="form-control" id="Description" name="Description" [class.is-invalid]="Description?.touched && Description?.invalid" [class.is-valid]="Description?.valid">
+        <div class="alert alert-danger" [hidden]="Description?.valid || Description?.untouched">
+          <small *ngIf="Description?.errors?.['required']">
+              Description Name is required !
+          </small>
+          <small *ngIf="Description?.errors?.['minlength']">
+              Description Name must be at least 10 Charcters !
+          </small>
+        </div>
+      </div>
+      <!----------------------------------------Expires------------------------------------------>
+      <div class="mb-3">
+        <label for="Expires" class="form-label">Expiry Date:</label>
+        <input type="datetime-local" formControlName="Expires" class="form-control" id="Address" name="Address" [class.is-invalid]="Expires?.touched && Expires?.invalid" [class.is-valid]="Expires?.valid">
+        <div class="alert alert-danger" [hidden]="Expires?.valid || Expires?.untouched">
+          <small *ngIf="Expires?.errors?.['required']">
+            Expires is required !
+          </small>
+         
+        </div>
+      </div>
+      <!-------------------------------------------PromoCode---------------------------------->
+      <div class="mb-3">
+        <label for="PromoCode" class="form-label">Promo Code:</label>
+        <input type="text" formControlName="PromoCode" class="form-control" id="PromoCode" name="PromoCode" [class.is-invalid]="PromoCode?.touched && PromoCode?.invalid" [class.is-valid]="PromoCode?.valid">
+        <div class="alert alert-danger" [hidden]="PromoCode?.valid || PromoCode?.untouched">
+          <small *ngIf="PromoCode?.errors?.['required']">
+              PromoCode is required !
+          </small>
+          <small *ngIf="PromoCode?.errors?.['minlength']">
+              PromoCode must be at least 5 Charcters
+          </small>
+        </div>
+      </div>
+      <div class="d-flex mt-4">
+        <button class="btn" [disabled]="addOfferForm.invalid" type="submit" (click)="SubmitOffer()">Add Offer<b>+</b></button>
+      </div>
+  </form>
+</div>

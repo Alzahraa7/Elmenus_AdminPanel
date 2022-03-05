@@ -48,6 +48,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { AddRestaurantComponent } from './Components/add-restaurant/add-restaurant.component';
 import { MainUIComponent } from './Components/main-ui/main-ui.component';
 import { UiformComponent } from './Components/uiform/uiform.component';
+import { AddOfferComponent } from './Components/add-offer/add-offer.component';
 
 @NgModule({
   declarations:[
@@ -73,7 +74,8 @@ import { UiformComponent } from './Components/uiform/uiform.component';
     DashboardComponent,
     AddRestaurantComponent,
     MainUIComponent,
-    UiformComponent
+    UiformComponent,
+    AddOfferComponent,
   ],
   imports: [
     BrowserModule,
