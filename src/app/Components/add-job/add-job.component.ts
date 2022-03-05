@@ -9,6 +9,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
 import { IJob } from 'src/app/Model/ijob';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-job',
@@ -24,10 +25,12 @@ export class AddJobComponent implements OnInit {
   Requires:any
   NameJob:string=""
   CollectionJob:any
+  
   constructor(
     private FormService: FormBuilder,
     private careerService: CareerfirebaseService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private _snackBar: MatSnackBar,
   ) {
     this.addJobForm = FormService.group({
       Description: ['', [Validators.required, Validators.minLength(100)]],
@@ -37,7 +40,14 @@ export class AddJobComponent implements OnInit {
     });
     
   }
-
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['bg-success', 'text-white'],
+      duration: 3000,
+    });
+  }
   ngOnInit(): void {
     this.activeRoute.paramMap.subscribe((paramMap) => {
       this.IDCareer = String(paramMap.get('id'));
@@ -89,13 +99,13 @@ export class AddJobComponent implements OnInit {
     let Job: IJob = this.addJobForm.value as IJob;
     console.log(Job)
     this.careerService.addDetailsJob(Job,this.IDCareer,this.JobName)
-    alert("Add Successfully!")
+    this.openSnackBar("Add Successfully!")
     this.restForm();
   }
   UpdateJob(){
     let JobDetails: IJob = this.addJobForm.value as IJob;
     this.careerService.UpdateJob(JobDetails,this.NameJob,this.CollectionJob.id);
-    alert("Update Successfully!")
+    this.openSnackBar("Update Successfully!")
     this.restForm();
 
   }

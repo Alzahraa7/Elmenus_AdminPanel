@@ -9,6 +9,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
 import { ICareer } from 'src/app/Model/icareer'; 
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-career',
@@ -23,7 +24,8 @@ export class AddCareerComponent implements OnInit {
     private FormService: FormBuilder,
     private careerService: CareerfirebaseService,
     private router: Router,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private _snackBar: MatSnackBar,
   ) {
     this.addCareerForm = this.FormService.group({
       Name: ['', [Validators.required, Validators.minLength(4)]],
@@ -34,7 +36,14 @@ export class AddCareerComponent implements OnInit {
     //   Address: ['', [Validators.required,Validators.minLength(5)]],
     // });
   }
-
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['bg-success', 'text-white'],
+      duration: 3000,
+    });
+  }
   ngOnInit(): void {
     this.activeRoute.paramMap.subscribe((paramMap)=>{
       this.IDCareer=String(paramMap.get('id'));
@@ -107,13 +116,13 @@ export class AddCareerComponent implements OnInit {
   SubmitDepartment() {
     let Career: ICareer = this.addCareerForm.value as ICareer;
     this.careerService.addCareer(Career);
-    alert('Add Success');
+    this.openSnackBar('Add Success');
     this.restForm()
   }
   UpdateDepartment(){
     let Career: ICareer = this.addCareerForm.value as ICareer;
     this.careerService.UpdateCareer(Career,this.IDCareer);
-    alert('Update Scucess')
+    this.openSnackBar('Update Scucess')
     this.restForm()
   }
   restForm(){

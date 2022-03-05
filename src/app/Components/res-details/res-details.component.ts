@@ -14,6 +14,7 @@ import { RestaurantService } from 'src/app/Service/restaurant.service';
 import { AddBranchComponent } from '../add-branch/add-branch.component';
 import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 import { Location } from '@angular/common';
+import { AddOfferComponent } from '../add-offer/add-offer.component';
 
 @Component({
   selector: 'app-res-details',
@@ -29,7 +30,9 @@ export class ResDetailsComponent implements OnInit {
   MenuCatSelected:IMenuCat[]=[];
   ResId:string|null = null;
   formBranch=false;
+  formOffers=false;
   submitted:boolean=true;
+  submittedOffer:boolean=true;
   selected = '';
   panelOpenState = false;
   plusIcon = faPlus;
@@ -74,6 +77,7 @@ export class ResDetailsComponent implements OnInit {
   flagMenuSizePrice:boolean=false;
   addExtra:object={}
   @ViewChild(AddBranchComponent) form!:AddBranchComponent;
+  @ViewChild(AddOfferComponent)offersForm!:AddOfferComponent;
   constructor(
     private _snackBar: MatSnackBar,
     private actRout: ActivatedRoute,
@@ -147,7 +151,20 @@ export class ResDetailsComponent implements OnInit {
   appearForm(val:boolean){
     this.formBranch = val;
     this.form.clickAdd=true;
+    
   }
+
+  disappearFormOffer(val:boolean|any){
+    this.submittedOffer= val;
+  }
+
+  appearFormOffer(val:boolean){
+    this.offersForm.clickAddOffer=true;
+    this.formOffers = val;
+
+  }
+
+  
 
   updateFiledBranch(branch:IBranches,field:string){
     if(field=='LocName') this.editStateLoc =false;

@@ -288,9 +288,16 @@
 
     <mat-tab label="Offers">
       <div class="d-flex justify-content-end">
-        <button class="btn rounded-circle addBut">
+        <button class="btn rounded-circle addBut" (click)="appearFormOffer(true)">
           <fa-icon [icon]="plusIcon"></fa-icon>
         </button>
+      </div>
+      <div>
+        <app-add-offer
+        [clickAddOffer]="formOffers"
+        (submitted)="disappearFormOffer($event)"
+        >
+        </app-add-offer>
       </div>
       <div class="conatiner m-3" *ngFor="let offer of Offers">
         <mat-accordion>

@@ -46,52 +46,8 @@
         [icon]="faTrash"
         class="me-4"
         style="color: #e32207"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        (click)="deleteCareer(Careers[index2])"
       ></fa-icon>
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title text-dark" id="exampleModalLabel">
-                Delete Career
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body text-dark">
-              Are you sure delete this Department?
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-danger"
-                data-bs-dismiss="modal"
-                (click)="deleteCareer(Careers[index2])"
-              >
-                Yes
-              </button>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                No
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
       <fa-icon
         [icon]="faEdit"
         class=""
@@ -142,57 +98,14 @@
               ></fa-icon>
             </button>
 
-            <button class="btn btn-danger"  data-bs-toggle="modal"
-            data-bs-target="#DeleteJobModal">
+            <button class="btn btn-danger"  (click)="deleteJob($event, job.Name, Careers[index2])">
               <fa-icon
                 [icon]="faTrash"
                 class=""
                
               ></fa-icon>
             </button>
-            <div
-              class="modal fade"
-              id="DeleteJobModal"
-              tabindex="-1"
-              aria-labelledby="DeleteJobModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title text-dark" id="DeleteJobModalLabel">
-                      Delete Job
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body text-dark">
-                    Are you sure delete Collection of this Job?
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-danger"
-                      data-bs-dismiss="modal"
-                      (click)="deleteJob($event, job.Name, Careers[index2])"
-                    >
-                      Yes
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      No
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </td>
           <td>
             <button

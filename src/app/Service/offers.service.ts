@@ -28,6 +28,12 @@ export class OffersService {
     ref.update(offer)
   }
 
+  addOffer(newOffer:IOffers,ResId:string|null){
+    this.OffersCollec = this.firestore.collection(`Restaurant/${ResId}/Offers`);
+    this.OffersCollec.add(newOffer);
+    // this.IsSubmit = true;
+  }
+
   deleteOffer(ResId:string|null,offer: IOffers){
     const ref = this.firestore.doc(`Restaurant/${ResId}/Offers/${offer.OfferId}`);
     ref.delete();
