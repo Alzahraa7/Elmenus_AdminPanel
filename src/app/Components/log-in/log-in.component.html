@@ -1,4 +1,4 @@
-<div class="contAll" *ngIf="!isSignIn">
+<div class="contAll">
 
     <div class="logIn_Form">
         <div class="logCont">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="button mt-3">
-                <input type="submit" value="Log In" class="btn" [disabled]="myForm.invalid">
+                <input type="submit" value="Log In" class="btn" [disabled]="myForm.invalid" routerLink="/Profile">
                 </div>
                 
                 <div class="ForgotPass">
@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<app-navbar *ngIf="isSignIn" (isLogOut)="handleLogOut()"></app-navbar>
-<app-profile *ngIf="isSignIn" (isLogOut)="handleLogOut()"></app-profile>
+<!-- <app-navbar *ngIf="isSignIn" (isLogOut)="handleLogOut()"></app-navbar>
+<app-profile *ngIf="isSignIn" (isLogOut)="handleLogOut()"></app-profile> -->
 
 

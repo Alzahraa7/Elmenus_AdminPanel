@@ -29,7 +29,8 @@ import { AdminsComponent } from './Components/admin-components/admins-list/admin
 import { AdminsAddComponent } from './Components/admin-components/admins-add/admins-add.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ListCareerComponent } from './Components/list-career/list-career.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import {FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { JobDetailsComponent } from './Components/job-details/job-details.component';
 import { AddCareerComponent } from './Components/add-career/add-career.component';
 import { AddJobComponent } from './Components/add-job/add-job.component';
@@ -53,6 +54,7 @@ import { UiformComponent } from './Components/uiform/uiform.component';
   declarations:[
     AppComponent,
     NavbarComponent,
+    
     FooterComponent,
     RestaurantsComponent,
     TableComponent,

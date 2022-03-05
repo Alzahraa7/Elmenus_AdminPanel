@@ -9,13 +9,13 @@ import { AuthService } from 'src/app/Service/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
- 
+  isUserLogged!: boolean;
   user: any;
   navUser: string;
   @Output() isLogOut = new EventEmitter<void>()
 
   constructor(public firebaseService: AuthService) {
-
+    
     this.user = localStorage.getItem('email')
      console.log("from Nav" + this.user);
     this.navUser = this.user?.slice(1).split("@")[0];
@@ -24,6 +24,11 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.firebaseService.getloggedStatus().subscribe(status=>{
+      this.isUserLogged=status;
+      console.log(this.isUserLogged);
+    });
   }
 
   logOut(){
