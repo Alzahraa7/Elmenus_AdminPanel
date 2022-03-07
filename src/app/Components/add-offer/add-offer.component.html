@@ -18,7 +18,7 @@
       <!----------------------------------------Expires------------------------------------------>
       <div class="mb-3">
         <label for="Expires" class="form-label">Expiry Date:</label>
-        <input type="datetime-local" formControlName="Expires" class="form-control" id="Address" name="Address" [class.is-invalid]="Expires?.touched && Expires?.invalid" [class.is-valid]="Expires?.valid">
+        <input type="date" formControlName="Expires" class="form-control" id="Address" name="Address" [class.is-invalid]="Expires?.touched && Expires?.invalid" [class.is-valid]="Expires?.valid">
         <div class="alert alert-danger" [hidden]="Expires?.valid || Expires?.untouched">
           <small *ngIf="Expires?.errors?.['required']">
             Expires is required !

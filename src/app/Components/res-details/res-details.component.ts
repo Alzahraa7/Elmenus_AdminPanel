@@ -226,6 +226,7 @@ export class ResDetailsComponent implements OnInit {
     updateRes.Mood = this.changedMood;
     updateRes.Type = this.changedType;
     this.restSrvs.updateRes(updateRes);
+    this.openSnackBar(`You have updated ${updateRes.ResName} Restaurant`);
   }
 
 
