@@ -12,11 +12,13 @@ text-decoration-line: none;
 }
 
 mat-sidenav {
-    margin: 16px;
-    width: 240px;
+    margin:0;
+    width: 250px;
+    max-height:100%;
+    /* min-height: fit-content; */
     overflow-x: hidden;
     border-right: none;
-    background: #E32207;
+    background: #F44336;
     color: white;
     border-radius: 10px;
     padding: 16px;
@@ -59,8 +61,7 @@ mat-sidenav-container {
     align-items: center;
     justify-content: flex-start;
     font-size: 1rem;
-
-    color: #C3311E;
+    color: #F44336;
     background-color: #FFFFFF;
 
 }
@@ -78,14 +79,14 @@ mat-divider {
 .btn.dropdown-toggle{
     width: fit-content;
     color:#FFFFFF ;
-    background-color: #C3311E;
+    background-color: #F44336;
     padding-right: 10px;
 }
 
 
 .dropdown-toggle{
     color:#FFFFFF ;
-    background-color: #C3311E;
+    background-color: #F44336;
 }
 
 .dropdown-menu{
@@ -93,12 +94,12 @@ mat-divider {
 }
 
 .dropdown-item{
-    color:#C3311E ;
+    color:#F44336 ;
     background-color: #FFFFFF;
 }
 
 .dropdown-item:hover{
-    color:#C3311E ;
+    color:#F44336 ;
     background-color: #dddee6f1;
 }
 
@@ -106,14 +107,14 @@ mat-divider {
 .accordion-item{
     width:auto;
     height: auto;
-    background-color: #E32207;
+    background-color: #F44336;
     color: #FFFFFF;
     border:none;
 
 }
 
 .accordion-button{
-    background-color: #E32207;
+    background-color: #F44336;
     color: #FFFFFF;
     padding-bottom: 0;
     border:none;
@@ -133,11 +134,11 @@ mat-divider {
 .accordion-body{
     padding: 5px;
     background-color: #FFFFFF;
-    color:#E32207;
+    color:#F44336;
     border:none;
     border-radius: 20px;
     outline-width: 1px;
-    outline-color: #f55641;
+    outline-color: #F44336;
     text-align: center;
 
 }
@@ -148,7 +149,7 @@ mat-divider {
 
 h3{
     margin:0;
-    color: #E32207;
+    color: #F44336;
     padding: 5px;
     border-radius: 15px;
     text-align: center;
@@ -175,20 +176,24 @@ h3:hover{
 .mat-focus-indicator.mat-icon-button.mat-button-base{
     position: absolute;
     z-index: 5100;
-    background-color: #E32207;
+    background-color: #F44336;
     color: #FFFFFF;
-    top:20px;
     width: 100px;
     border-radius: 20px;
-    top:16px;
+    top:75px;
     left:-50px;
     padding-right: 10px;
     text-align: end;
 }
 
+
+
 /* The whole side bar */
 .mat-drawer-opened{
     box-shadow: none;
+    /* min-height: fit-content; */
+    height: auto;
+    /* max-height:fit-content ; */
 }
 
 

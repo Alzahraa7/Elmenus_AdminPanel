@@ -13,3 +13,19 @@
   position: absolute;
   bottom: 0;
 }
+
+
+.footrBanner{
+    font-size: large;
+    font-weight: bold;
+}
+
+.footerBase{
+    font-size: large;
+    
+    border-top: 10px solid #F44336;
+}
+
+.FooterCpyMrk{
+    margin-top: 20px;
+}
