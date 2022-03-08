@@ -17,6 +17,7 @@ import { UiformComponent } from './Components/uiform/uiform.component';
 import { LogInComponent } from './Components/log-in/log-in.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { AuthGuard } from './Gaurds/auth.guard';
+import { UsersComponent } from './Components/users/users.component';
 
 const routes: Routes = [
   {path:'', component:MainUIComponent, canActivate: [AuthGuard], children:[
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path:'confirmRest', component:ConfirmRestComponent, canActivate: [AuthGuard]},
     {path:'Careers', component:ListCareerComponent, canActivate: [AuthGuard]},
     {path:'listAdmin',component:AdminsComponent, canActivate: [AuthGuard]},
+    {path:'listUser',component:UsersComponent,canActivate:[AuthGuard]},
     {path:'JobDetails/:Name',component:JobDetailsComponent, canActivate: [AuthGuard]},
     {path:'ResDetails/:id',component:ResDetailsComponent, canActivate: [AuthGuard]},
     {path:'Profile',component:ProfileComponent, canActivate: [AuthGuard]},
