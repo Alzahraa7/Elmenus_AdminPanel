@@ -94,24 +94,20 @@ export class AddCareerComponent implements OnInit {
     this.Jobs.removeAt(jobIndex);
   }
 
-   fillUpdate(Career:ICareer){
-      console.log(Career)
-      Career.Jobs?.map((job)=>{
-        console.log(job.Name)
-      })
-      console.log(Career.Jobs)
-      this.addCareerForm = this.FormService.group({
-        Name: [Career.Name, [Validators.required, Validators.minLength(4)]],
-        Jobs: this.FormService.array([
-            this.FormService.group({
-              Name: this.FormService.control(Career.Jobs?.[0].Name, [Validators.required]),
-              Address: this.FormService.control(Career.Jobs?.[0].Address, [Validators.required]),
-               }) 
-              ]),
-      });
+   fillUpdate(Career:any){
+      console.log(Career.Jobs.length)
      
       
-      
+
+     for(var i=0; i<Career.Jobs.length;i++){
+      this.addNewJob()
+     
+     }
+     this.addCareerForm.setValue({
+       Name:Career.Name,
+       Jobs:Career.Jobs
+     })
+
   }
   SubmitDepartment() {
     let Career: ICareer = this.addCareerForm.value as ICareer;

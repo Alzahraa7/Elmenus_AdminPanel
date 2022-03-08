@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CareerfirebaseService } from 'src/app/Service/careerfirebase.service';
 import { IJob } from 'src/app/Model/ijob';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-job',
@@ -31,6 +32,7 @@ export class AddJobComponent implements OnInit {
     private careerService: CareerfirebaseService,
     private activeRoute: ActivatedRoute,
     private _snackBar: MatSnackBar,
+    private location:Location,
   ) {
     this.addJobForm = FormService.group({
       Description: ['', [Validators.required, Validators.minLength(100)]],
@@ -66,6 +68,7 @@ export class AddJobComponent implements OnInit {
       
 
     });
+    console.log(this.NameJob,this.CollectionJob[0].idmthis.IDCareer)
   }
   
   get Description() {
@@ -82,7 +85,11 @@ export class AddJobComponent implements OnInit {
   }
 
   addRequirment(): void {
+     if(!this.Requirements.value.includes('')){
       this.Requirements.push(this.FormService.control('',[Validators.required]));
+     }else{
+       this.openSnackBar('you must fill this Requirment field first!')
+     }
     
   }
   removeRequirment(ReqIndex: number): void {
@@ -90,7 +97,12 @@ export class AddJobComponent implements OnInit {
   }
 
   addRespons(): void {
-    this.Responsibilities.push(this.FormService.control('',[Validators.required]));
+    if(!this.Responsibilities.value.includes('')){
+      this.Responsibilities.push(this.FormService.control('',[Validators.required]));
+    }else{
+      this.openSnackBar('you must fill this Respons field first!')
+    }
+    
   }
   removeRespons(ResIndex: number): void {
     this.Responsibilities.removeAt(ResIndex);
@@ -101,21 +113,36 @@ export class AddJobComponent implements OnInit {
     this.careerService.addDetailsJob(Job,this.IDCareer,this.JobName)
     this.openSnackBar("Add Successfully!")
     this.restForm();
+    this.location.back()   
   }
   UpdateJob(){
     let JobDetails: IJob = this.addJobForm.value as IJob;
-    this.careerService.UpdateJob(JobDetails,this.NameJob,this.CollectionJob.id);
+    
+    this.careerService.UpdateJob(JobDetails,this.NameJob,this.CollectionJob[0].id,this.IDCareer);
     this.openSnackBar("Update Successfully!")
     this.restForm();
+    this.location.back()  
+
 
   }
   fillJob(JobCollection:IJob){
-    this.addJobForm.setValue({
-      Description:JobCollection.Description,
-      Location:JobCollection.Location,
-      Requirements:[JobCollection.Requirements],
-      Responsibilities:[JobCollection.Responsibilities]
-    })
+    console.log(JobCollection.Requirements.length-1)
+    for(let i=0; i< JobCollection.Requirements.length-1;i++){
+      this.addRequirment()
+    }
+    for(let i=0; i< JobCollection.Responsibilities.length-1;i++){
+      this.addRespons()
+    }
+      this.addJobForm.setValue({
+        Description:JobCollection.Description,
+        Location:JobCollection.Location,
+        Requirements:JobCollection.Requirements,
+        Responsibilities:JobCollection.Responsibilities
+      })
+      
+    
+    
+    
 
   }
   restForm(){

@@ -36,7 +36,7 @@ const routes: Routes = [
     {path:'addAdmin/:name',component:AdminsAddComponent, canActivate: [AuthGuard]},
     {path:'addCareer',component:AddCareerComponent, canActivate: [AuthGuard]},
     {path:'addCareer/:id',component:AddCareerComponent, canActivate: [AuthGuard]},
-    {path:'addJob/:NameJob',component:AddJobComponent, canActivate: [AuthGuard]},
+    {path:'addJob/:NameJob/:id',component:AddJobComponent, canActivate: [AuthGuard]},
     {path:'addJob/:id/:Name',component:AddJobComponent, canActivate: [AuthGuard]},
     {path:'addMeal/:idRes/:idMen/:NameColl',component:AddMealComponent, canActivate: [AuthGuard]},
   ]},

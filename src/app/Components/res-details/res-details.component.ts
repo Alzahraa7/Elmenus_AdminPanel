@@ -57,7 +57,8 @@ export class ResDetailsComponent implements OnInit {
   @ViewChild('TypeInput') typeInput !: ElementRef;
   @ViewChild('NameMenu') NameMenu !:ElementRef;
   @ViewChild('NameMenuColl') NameMenuCollec !:ElementRef;
-  @ViewChild('MenuSize') MenuSize !:ElementRef
+  @ViewChild('MenuSize') MenuSize !:ElementRef;
+  @ViewChild('Extra') Extra !:ElementRef;
   //update Offer date
   flagPromoCode = false;
   flagOfferDesc = false;
@@ -410,11 +411,25 @@ export class ResDetailsComponent implements OnInit {
     this.updateMenu(Menu)
   }
   addNewExtra(Menu:IMenuCat){
-    Menu.Extras.push({Name:'',Price:0})
+    // console.log(Menu.Extras[Menu.Extras.length-1].Name=='')
+    // console.log(Menu.Extras.includes({Name: '', Price: 0}))
+    if(Menu.Extras[Menu.Extras.length-1].Name=='')
+    {
+         this.openSnackBar('you must fill this field first')
+    }else{
+      Menu.Extras.push({Name:'',Price:0})
+    }
+    
     
   }
   addNewSize(Menu:IMenuCat){
-    Menu.Extras.push({Name:'',Price:0})
+    if(Menu.Size[Menu.Size.length-1].Name=='')
+    {
+         this.openSnackBar('you must fill this field first')
+    }else{
+      Menu.Size.push({Name:'',Price:0})
+    }
+
   }
   
 
