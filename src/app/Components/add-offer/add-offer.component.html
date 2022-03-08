@@ -1,6 +1,8 @@
 
-<div #var class="container mt-5 CardForm" *ngIf="clickAddOffer" >
-  <h3 >Add New Offer</h3>
+<div #var class="container CardForm" *ngIf="clickAddOffer" >
+  <div class="h3div">
+    <h3 >Add New Offer</h3>
+  </div>
   <form class="m-3" [formGroup]="addOfferForm" >
     <!----------------------------------------Description------------------------------------------->
     <div class="mb-3">
@@ -40,7 +42,7 @@
         </div>
       </div>
       <div class="d-flex mt-4">
-        <button class="btn" [disabled]="addOfferForm.invalid" type="submit" (click)="SubmitOffer()">Add Offer<b>+</b></button>
+        <button class="btn" [disabled]="addOfferForm.invalid" type="submit" (click)="SubmitOffer()">Add<b>+</b></button>
       </div>
   </form>
 </div>
