@@ -1,1 +1,51 @@
-<p>dashboard works!</p>
+<div class="container">
+  <h1 style="font-weight: bolder mt-2;"> Dashboard </h1>
+  <div class="row">
+    <div class="col-6">
+      <div class="statisticsDiv  p-4 m-5 mt-3 position-relative">
+        <div class="position-absolute icon">
+          <fa-icon style="color: var(--first-color);" [icon]="faRestIcon"></fa-icon>
+        </div>
+        <p style="font-size: 20px; ">Subscriped Restaurants: </p>
+        <p class="mt-4 ms-5 d-inline-block" style="color: black;">{{RestCountConfirmed}}</p> <span style='font-size: 14px;'>&nbsp; Restaurant</span>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="statisticsDiv  p-4 m-5 mt-3 position-relative">
+        <div class="position-absolute icon">
+          <fa-icon style="color: var(--first-color);" [icon]="faRestIcon"></fa-icon>
+        </div>
+        <p style="font-size: 20px; ">Not Confirmed Restaurants: </p>
+        <p class="mt-4 ms-5 d-inline-block" style="color: black;">{{RestCountNotConf}}</p> <span style='font-size: 14px;'>&nbsp; Restaurant</span>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="statisticsDiv  p-4 m-5 mt-3 position-relative">
+        <div class="position-absolute icon">
+          <fa-icon style="color: var(--first-color);" [icon]="faUserIcon"></fa-icon>
+        </div>
+        <p style="font-size: 20px; ">Users' count: </p>
+        <p *ngIf='RestCountConfirmed!=0' class="mt-4 ms-5 d-inline-block" style="color: black;">{{UserCount}}</p> <span style='font-size: 14px;'>&nbsp; User</span>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="statisticsDiv  p-4 m-5 mt-3 position-relative">
+        <div class="position-absolute icon">
+          <fa-icon style="color: var(--first-color);" [icon]="faCityIcon"></fa-icon>
+        </div>
+        <p style="font-size: 20px; ">We covered: </p>
+        <p class="mt-4 ms-5 d-inline-block" style="color: black;">{{cityCount}}</p> <span style='font-size: 14px;'>&nbsp; City</span>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="statisticsDivvac p-4 m-5 mt-3 position-relative">
+        <div class="position-absolute icon">
+          <fa-icon style="color: var(--first-color);" [icon]="faCareericon"></fa-icon>
+        </div>
+        <p style="font-size: 20px; ">job vacancies: </p>
+        <p class="mt-4 ms-5 d-inline-block" style="color: black;">{{careerCount}}</p> <span style='font-size: 14px;'>&nbsp; offer</span>
+      </div>
+    </div>
+  </div>
+  </div>
+

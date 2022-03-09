@@ -17,24 +17,26 @@ import { UiformComponent } from './Components/uiform/uiform.component';
 import { LogInComponent } from './Components/log-in/log-in.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { AuthGuard } from './Gaurds/auth.guard';
+import { UsersComponent } from './Components/users/users.component';
 
 const routes: Routes = [
-  {path:'', component:MainUIComponent,children:[
+  {path:'', component:MainUIComponent, canActivate: [AuthGuard], children:[
     { path: 'Restaurants', component: RestaurantsComponent, canActivate: [AuthGuard]},
     {path:'confirmRest', component:ConfirmRestComponent, canActivate: [AuthGuard]},
     {path:'Careers', component:ListCareerComponent, canActivate: [AuthGuard]},
     {path:'listAdmin',component:AdminsComponent, canActivate: [AuthGuard]},
+    {path:'listUser',component:UsersComponent,canActivate:[AuthGuard]},
     {path:'JobDetails/:Name',component:JobDetailsComponent, canActivate: [AuthGuard]},
     {path:'ResDetails/:id',component:ResDetailsComponent, canActivate: [AuthGuard]},
     {path:'Profile',component:ProfileComponent, canActivate: [AuthGuard]},
     {path:'',component:DashboardComponent},
   ]},
-  {path:'',component:UiformComponent,children:[
+  {path:'',component:UiformComponent, canActivate: [AuthGuard], children:[
     { path: 'addRestaurant', component: AddRestaurantComponent, canActivate: [AuthGuard]},
     {path:'addAdmin/:name',component:AdminsAddComponent, canActivate: [AuthGuard]},
     {path:'addCareer',component:AddCareerComponent, canActivate: [AuthGuard]},
     {path:'addCareer/:id',component:AddCareerComponent, canActivate: [AuthGuard]},
-    {path:'addJob/:NameJob',component:AddJobComponent, canActivate: [AuthGuard]},
+    {path:'addJob/:NameJob/:id',component:AddJobComponent, canActivate: [AuthGuard]},
     {path:'addJob/:id/:Name',component:AddJobComponent, canActivate: [AuthGuard]},
     {path:'addMeal/:idRes/:idMen/:NameColl',component:AddMealComponent, canActivate: [AuthGuard]},
   ]},

@@ -1,0 +1,25 @@
+<link rel="stylesheet" href='../../Components/table/table.component.css'>
+<div class="container">
+  <div class="tableDiv" class="px-2 py-4">
+    <table class="table table-hover tableDiv" style="background-color: #fff;">
+      <thead class="theadstyle">
+        <tr>
+          <td>User Name</td>
+          <td>User Email</td>
+          <td>Delete</td>
+        </tr>
+      </thead>
+      <tbody class="bodyDiv">
+        <tr *ngFor="let user of Users">
+            <td>{{user.Name}}</td>
+            <td>{{user.Email}}</td>
+            <td> <button class="btn btn-danger" (click)="DeleteUser(user.id)">
+              <fa-icon
+                [icon]="faTrash"
+              ></fa-icon>
+            </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

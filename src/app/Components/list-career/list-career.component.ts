@@ -98,8 +98,8 @@ export class ListCareerComponent implements OnInit {
     console.log(idCareer);
     this.router.navigate(['addCareer', idCareer]);
   }
-  UpdateJob(JobName: string) {
-    this.router.navigate(['addJob', JobName]);
+  UpdateJob(id:string,JobName: string) {
+    this.router.navigate(['addJob', JobName,id]);
   }
   AddJobDetails(id: string, JobName: string) {
     console.log(id, JobName);

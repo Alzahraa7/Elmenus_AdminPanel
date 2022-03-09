@@ -1,0 +1,39 @@
+.CardForm {
+    box-shadow: 0px 0px 10px 1px  #DA4835;
+    border-radius: 20px !important;
+    padding: 12px 0;
+    margin: auto;
+    width: 80%;
+  }
+  .CardForm h3{
+      text-align: center;
+      color: #ffffff;
+      
+  }
+  
+  h3{
+    background-color: #F44336;
+    box-shadow: 0px 0px 5px 2px  #DA4835;
+  }
+  
+  .h3div{
+    background-color: var(--first-color);
+    border-radius: 20px !important;
+    box-shadow: 0px 0px 5px 2px  #F44336;
+    width: 96%;
+    margin: auto;
+    margin-top: 10px;
+  }
+  
+  .btn{
+    background-color:#DA4835 ;
+    color:#FFFFFF;
+    box-shadow: 0px 0px 5px 0.5px  #DA4835;
+  }
+  
+  .btn:hover{
+    background-color:#DA4835 ;
+    color:#FFFFFF;
+    box-shadow: 0px 0px 5px 2px  #DA4835;
+  }
+  

@@ -315,7 +315,7 @@
                     <fa-icon [icon]="editIcon"></fa-icon>
                   </button>
                 </p>
-                <div class="d-flex" style="width: 50%; position: relative; bottom: 10px" *ngIf="flagMenuDes">
+                <div class="d-flex" style=" position: relative; bottom: 10px" *ngIf="flagMenuDes">
                   <input type="text" [(ngModel)]="Menu.Description" value="{{ Menu.Description }}"
                     class="form-control" />
                   <button class="btn btn-success" (click)="updateMenu(Menu)">
@@ -331,22 +331,27 @@
                   </p>
 
                   <div *ngFor="let extras of Menu.Extras; let i = index">
-                    <button [hidden]="!flagMenuExtraName && !flagMenuExtraPrice" class="btn my-1"
+                    
+                    <p class="my-2"><b>Name of Extar: </b>{{ extras.Name }} <br /></p>
+
+                    <div class="d-flex" style=" position: relative; bottom: 10px" *ngIf="flagMenuExtraName">
+                      <input type="text" #Extra [(ngModel)]="extras.Name" value="{{ extras.Name }}" class="form-control" />
+                      <button [hidden]="!flagMenuExtraName && !flagMenuExtraPrice" class="btn my-1 me-1"
                       style="background-color: #e32207; color: white" (click)="DeleteExtra(Menu, i)">
                       -
                     </button>
-                    <p class="my-2"><b>Name of Extar: </b>{{ extras.Name }} <br /></p>
-
-                    <div class="d-flex" style="width: 50%; position: relative; bottom: 10px" *ngIf="flagMenuExtraName">
-                      <input type="text" [(ngModel)]="extras.Name" value="{{ extras.Name }}" class="form-control" />
                       <button class="btn btn-success" (click)="updateMenu(Menu)">
                         update
                       </button>
                     </div>
                     <p class="my-2"> <b>Price of Extar: </b>{{ extras.Price }}</p>
 
-                    <div class="d-flex" style="width: 50%; position: relative; bottom: 10px" *ngIf="flagMenuExtraPrice">
+                    <div class="d-flex" style=" position: relative; bottom: 10px" *ngIf="flagMenuExtraPrice">
                       <input type="text" [(ngModel)]="extras.Price" value="{{ extras.Price }}" class="form-control" />
+                      <button [hidden]="!flagMenuExtraName && !flagMenuExtraPrice" class="btn my-1"
+                      style="background-color: #e32207; color: white" (click)="DeleteExtra(Menu, i)">
+                      -
+                    </button>
                       <button class="btn btn-success" (click)="updateMenu(Menu)">
                         update
                       </button>
@@ -365,20 +370,26 @@
                     </button>
                   </p>
                   <div *ngFor="let sizes of Menu.Size; let i = index">
-                    <button [hidden]="!flagMenuSizeName && !flagMenuSizePrice" class="btn my-1"
-                      style="background-color: #e32207; color: white" (click)="DeleteSize(Menu, i)">
-                      -
-                    </button>
+                    
                     <p class="my-2"> <b>Name of Size: </b>{{ sizes.Name }} <br /></p>
                     <div class="d-flex" style="width: 50%; position: relative; bottom: 10px" *ngIf="flagMenuSizeName">
                       <input type="text" [(ngModel)]="sizes.Name" value="{{ sizes.Name }}" class="form-control" />
+                      <button [hidden]="!flagMenuSizeName && !flagMenuSizePrice" class="btn my-1 me-1"
+                      style="background-color: #e32207; color: white" (click)="DeleteSize(Menu, i)">
+                      -
+                    </button>
                       <button class="btn btn-success" (click)="updateMenu(Menu)">
                         update
                       </button>
+                      
                     </div>
                     <p class="my-2"><b>Price of Size: </b>{{ sizes.Price }}</p>
                     <div class="d-flex" style="width: 50%; position: relative; bottom: 10px" *ngIf="flagMenuSizePrice">
                       <input type="text" [(ngModel)]="sizes.Price" value="{{ sizes.Price }}" class="form-control" />
+                      <button [hidden]="!flagMenuSizeName && !flagMenuSizePrice" class="btn my-1 me-1"
+                      style="background-color: #e32207; color: white" (click)="DeleteSize(Menu, i)">
+                      -
+                    </button>
                       <button class="btn btn-success" (click)="updateMenu(Menu)">
                         update
                       </button>

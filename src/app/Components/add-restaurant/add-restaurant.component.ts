@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { IRestaurant } from 'src/app/Model/irestaurant';
@@ -26,7 +27,8 @@ export class AddRestaurantComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private RestaurantServer: RestaurantService,
               private storage: AngularFireStorage,
-              private router: Router
+              private router: Router,
+              private _snackBar: MatSnackBar,
               ) {
 
     this.addResForm = fb.group({
@@ -51,6 +53,14 @@ export class AddRestaurantComponent implements OnInit {
      "Fancy Dining"
     ]
    }
+   openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['bg-danger', 'text-white'],
+      duration: 3000,
+    });
+  }
 
 
    get ResName(){
@@ -140,8 +150,10 @@ export class AddRestaurantComponent implements OnInit {
 
   addMood(){
     // console.log()
-    if(this.moodInput.nativeElement.value){
+    if(!this.Mood.value.includes('')){
       this.Mood.push(this.fb.control(''));
+    }else{
+      this.openSnackBar('you must fill this field first!')
     }
   }
   deleteMood(index:number){
@@ -150,8 +162,10 @@ export class AddRestaurantComponent implements OnInit {
 
   addType(){
     // console.log()
-    if(this.typeInput.nativeElement.value){
+    if(!this.Type.value.includes('')){
       this.Type.push(this.fb.control(''));
+    }else{
+      this.openSnackBar('you must fill this field first!')
     }
   }
   deleteType(index:number){

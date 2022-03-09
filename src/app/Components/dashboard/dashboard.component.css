@@ -1,0 +1,54 @@
+@keyframes transformDiv {
+  from{
+    transform: translateX(25px);
+  }
+  to{
+    transform: translateX(50px);
+  }
+}
+.statisticsDiv{
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 1px  var(--first-color);
+  color: var(--first-color);
+  background-color: white;
+  width: 70%;
+  height: 70%;
+  font-size: xx-large;
+  font-weight: bolder;
+  transition-property: all;
+  transition-duration: 1s;
+  animation: transformDiv;
+  animation-duration: 3s;
+  transform: translateX(50px);
+}
+
+.statisticsDivvac{
+  width:60%;
+  margin:auto !important;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 1px  var(--first-color);
+  color: var(--first-color);
+  background-color: white;
+  height: 90%;
+  font-size: xx-large;
+  font-weight: bolder;
+  transition-property: all;
+  transition-duration: 1s;
+  animation: transformDiv;
+  animation-duration: 3s;
+  transform: translateX(50px);
+}
+
+.statisticsDiv:hover,.statisticsDivvac:hover{
+  box-shadow: 0px 0px 5px 1px  var(--first-color) inset;
+  transition-timing-function:ease-in-out;
+  transform: scale(0.99);
+}
+.icon{
+  top:-10px;
+  background-color: white;
+  right:0;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 2px 1px var(--first-color);
+}

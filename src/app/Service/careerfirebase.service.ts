@@ -123,9 +123,9 @@ export class CareerfirebaseService {
     this.CareerDoc = this.db.doc(`Careers/${id}`);
     this.CareerDoc.update(Career);
   }
- UpdateJob(JobDtails:IJob,NameJob:string, idJob:string ){
-  console.log(JobDtails);
-  this.CareerDoc = this.db.doc(`${NameJob}/${idJob}`);
+ UpdateJob(JobDtails:IJob,NameJob:string, idJob:string,idCareer:string ){
+  console.log(idCareer,NameJob,idJob);
+  this.CareerDoc = this.db.doc(`Careers/${idCareer}/${NameJob}/${idJob}`);
   this.CareerDoc.update(JobDtails);
      
  }
