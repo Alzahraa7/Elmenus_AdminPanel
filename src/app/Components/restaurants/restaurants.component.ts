@@ -37,6 +37,7 @@ export class RestaurantsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    // window.location.reload()
     this.RestaurantService.getRestaurants().subscribe((Res: any)=>{
       this.Restaurants = Res
       this.Restaurants = this.Restaurants.filter((res)=> res.IsActivated == true);

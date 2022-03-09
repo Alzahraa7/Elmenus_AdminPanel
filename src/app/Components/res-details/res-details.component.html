@@ -1,9 +1,18 @@
 <div class="container">
   <div class="row mt-3">
     <div class="col-2">
-      <div class="imgDiv">
-        <img class="rounded-3" [src]="Restaurant?.ImageLogo" alt="" />
+      <fa-icon [icon]="editIcon" style="font-size: large; margin-left: 10vw;" (click)="updateBasicRes(6)"></fa-icon>
+      <div class="imgDiv mb-1 mt-0">
+        <img class="rounded-3" [src]="imgageSelectedSrc" alt="" (click)="changeLogo.click()"/>
       </div>
+
+      <input type="file"  #changeLogo class="form-control" (change)="showSrc($event)" hidden>
+
+      <!-- https://s3-eu-west-1.amazonaws.com/elmenusv5-stg/Normal/dc5ae4ff-2580-11e8-add5-0242ac110011.jpg -->
+      <p class="text-danger text-center" [hidden]="!flageImage">Click on Photo and update</p>
+
+        <button class="btn btnClass mt-0"(click)="updateRes()" [hidden]="!flageImage">Update</button>
+
     </div>
     <div class="col-10">
       <div class="d-flex flex-column textDiv2">

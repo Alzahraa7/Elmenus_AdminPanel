@@ -63,6 +63,11 @@ export class ResDetailsComponent implements OnInit {
   flagOfferDesc = false;
   flagExpireDate = false;
 
+  // update image
+  imgageSelectedSrc = "";
+  selectedImage: any;
+  flageImage = false; 
+
   faTrash = faTrash;
   editStateLoc:boolean = false;
   editStateAdd:boolean = false;
@@ -100,6 +105,7 @@ export class ResDetailsComponent implements OnInit {
       this.ResId = param.get('id');
       this.restSrvs.getRestById(this.ResId).subscribe(res => {
         this.Restaurant = res;
+        this.imgageSelectedSrc = this.Restaurant.ImageLogo
         this.changedMood = this.Restaurant?.Mood ? this.Restaurant?.Mood : [];
         this.changedType = this.Restaurant?.Type ? this.Restaurant?.Type : [];
       });
@@ -204,6 +210,9 @@ export class ResDetailsComponent implements OnInit {
       case 5:
         this.typeFlag = this.typeFlag ? false : true;
         break;
+      case 6:
+        this.flageImage = this.flageImage ? false : true;
+        break;
       default:
         break;
     }
@@ -217,9 +226,17 @@ export class ResDetailsComponent implements OnInit {
   }
 
   updateRes() {
-    let updateRes: IRestaurant = this.Restaurant as IRestaurant;
+    // change flage
+    this.NameFlag = false;
+    this.phoneFlag = false;
+    this.ownerFlg = false;
+    this.moodFlag = false;
+    this.typeFlag = false;
+    this.flageImage = false;
 
+    let updateRes: IRestaurant = this.Restaurant as IRestaurant;
     updateRes.ResPushID = this.ResId ? this.ResId : "";
+    updateRes.ImageLogo = this.selectedImage ? this.selectedImage : this.Restaurant?.ImageLogo;
     updateRes.ResName = this.resNameInput.nativeElement.value;
     updateRes.OwnerName = this.ownerNameInput.nativeElement.value;
     updateRes.Phone = this.phoneInput.nativeElement.value;
@@ -228,6 +245,24 @@ export class ResDetailsComponent implements OnInit {
     this.restSrvs.updateRes(updateRes);
     this.openSnackBar(`You have updated ${updateRes.ResName} Restaurant`);
   }
+   // shrouk -> change image -> update
+   showSrc(event:any){
+    if(event.target.files && event.target.files[0]){
+      const reader = new FileReader();
+      console.log(event.target.files[0]);
+      reader.onload = (e:any) =>{
+        this.imgageSelectedSrc = e.target.result
+        console.log(e.target.result)
+        this.selectedImage = e.target.result;
+      } ;
+      reader.readAsDataURL(event.target.files[0]);
+      // this.selectedImage = event.target.files[0]
+      
+    }
+    else{
+    }
+  }
+
 
 
   deleteMood(delMood: string) {
@@ -306,6 +341,7 @@ export class ResDetailsComponent implements OnInit {
     })
   }
 
+ 
 // menu
   addMeal(id:string){
     console.log(this.ResId,id)
